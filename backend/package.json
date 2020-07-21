@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "lint": "eslint app.js",
-    "start": "nodemon src/index.js",
+    "start": "nodemon src/main.js",
     "test": "mocha tests/**/*Tests.js"
   },
   "author": "",

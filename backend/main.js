@@ -4,10 +4,12 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const env = require("./.env/env");
-const userRoutes = require("./routes/user");
+const userRoutes = require("./routes/userRoutes");
 
 
 const app = express();
+
+mongoose.set('useCreateIndex', true);
 
 mongoose
   .connect(
@@ -15,7 +17,11 @@ mongoose
     env.dbpw +
     "@proc.sfuco.mongodb.net/" +
     env.dbName +
-    "?retryWrites=true&w=majority"
+    "?retryWrites=true&w=majority", 
+    { 
+        useNewUrlParser: true, 
+        useUnifiedTopology: true 
+    }
   )
   .then(() => {
     console.log("Connected to database!");

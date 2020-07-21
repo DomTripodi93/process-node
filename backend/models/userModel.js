@@ -14,7 +14,6 @@ const userModel = new Schema(
     canEdit: { type: Boolean, default: false },
   }
 );
-userModel.plugin(AutoIncrement, {inc_field: 'id'});
 
 userModel.plugin(uniqueValidator);
 
