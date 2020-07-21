@@ -3,13 +3,19 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
+const env = require("./.env/env");
 const userRoutes = require("./routes/user");
+
 
 const app = express();
 
 mongoose
   .connect(
-    ""
+    "mongodb+srv://proc:" + 
+    env.dbpw +
+    "@proc.sfuco.mongodb.net/" +
+    env.dbName +
+    "?retryWrites=true&w=majority"
   )
   .then(() => {
     console.log("Connected to database!");
