@@ -1,0 +1,29 @@
+.full-button{
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+}
+
+.grid50-to-100 { 
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    @media only screen and (max-width: 915px){
+        display: grid;
+        grid-template-columns: 100%;
+    }
+}
+
+.border-practice{
+    background-color: rgb(159, 255, 146);
+    border: solid;
+    width: 80%;
+    margin: auto;
+}
+
+.border-difficulty{
+    background-color: rgb(255, 235, 60);
+    border: solid;
+    width: 80%;
+    margin: auto;
+}
