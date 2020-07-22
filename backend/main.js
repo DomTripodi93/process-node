@@ -9,8 +9,6 @@ const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
-mongoose.set('useCreateIndex', true);
-
 mongoose
   .connect(
     "mongodb+srv://proc:" + 
@@ -20,7 +18,8 @@ mongoose
     "?retryWrites=true&w=majority", 
     { 
         useNewUrlParser: true, 
-        useUnifiedTopology: true 
+        useUnifiedTopology: true,
+        useCreateIndex: true
     }
   )
   .then(() => {

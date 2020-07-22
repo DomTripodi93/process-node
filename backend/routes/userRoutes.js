@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../models/userModel");
 
+const evn = require("../.env/env");
+
 const router = express.Router();
 
 router.post("/register", (req, res, next) => {
@@ -48,7 +50,7 @@ router.post("/login", (req, res, next) => {
       }
       const token = jwt.sign(
         { email: fetchedUser.email, userId: fetchedUser._id },
-        "a8yg907asg07asga0sFAKEaishgoahg0y023KEYa09shg0as8hg",
+        env.tokenKey,
         { expiresIn: "24h" }
       );
       res.status(200).json({
