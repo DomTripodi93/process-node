@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 const departmentModel = new Schema(
   {
-    userId: { type: Number },
+    userId: { type: Number, required: true },
     deptName: { type: String, required: true },
     funcName: { type: String }
   }
