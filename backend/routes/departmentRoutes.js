@@ -1,9 +1,10 @@
 const express = require('express');
+const checkAuth = require("../middleware/check-auth");
 
 function routes(Department) {
     const router = express.Router();
 
-    router.post("/", (req, res) => {
+    router.post("/", checkAuth, (req, res) => {
         const dept = new Department(req.body);
         dept.userId = req.userId;
         dept.save();
@@ -11,7 +12,7 @@ function routes(Department) {
         return res.json(dept);
     });
 
-    router.get("/byUser", (req, res) => {
+    router.get("/byUser", checkAuth, (req, res) => {
         const query = {
             userId: req.userId
         }
