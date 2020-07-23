@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../models/userModel");
 
-const evn = require("../.env/env");
+const env = require("../.env/env");
 
 const router = express.Router();
 
@@ -60,7 +60,7 @@ router.post("/login", (req, res, next) => {
       });
     })
     .catch(err => {
-      return res.status(401).json({
+      return res.status(500).json({
         message: "Auth failed error"
       });
     });
