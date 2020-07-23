@@ -48,4 +48,11 @@ app.use((req, res, next) => {
 
 app.use("/api/auth", userRoutes);
 
+
+const port = process.env.PORT || 3200;
+
+app.server = app.listen(port, () => {
+  console.log(`Running on port ${port}`);
+});
+
 module.exports = app;

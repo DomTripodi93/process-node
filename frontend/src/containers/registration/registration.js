@@ -25,7 +25,13 @@ const Registration = (props) => {
             return;
         }
 
-        props.registerUser(userCredentials, () => { props.history.push('/signin') });
+        let userForRegistration = {
+            email,
+            name,
+            password
+        }
+
+        props.registerUser(userForRegistration, () => { props.history.push('/signin') });
     };
 
     const handleChange = event => {

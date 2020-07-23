@@ -3,7 +3,7 @@ import axios from 'axios';
 import helpers from '../../shared/helpers';
 
 const helper = new helpers();
-const ROOT_URL = 'http://localhost:5000/api';
+const ROOT_URL = 'http://localhost:4000/api';
 
 export const registerUser = (user, callback) => {
     user.name = helper.capitalize(user.name);
@@ -18,6 +18,7 @@ export const signInUser = (user, callback) => {
     return dispatch => {
         axios.post(`${ROOT_URL}/auth/login`, user)
             .then(response => {
+                console.log(response)
                 dispatch(setUserData(response.data));
                 callback();
             })
