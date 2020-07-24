@@ -1,33 +1,19 @@
 const express = require('express');
 
-const checkAuth = require("../middleware/check-auth");
+const departmentController = require("../controllers/departmentController");
+const checkAuth = require("../middleware/checkAuth");
 
 function routes(Department) {
     const router = express.Router();
+    router.use("", checkAuth)
+
+    const controller = departmentController(Department);
+
     router.route("")
-        .post(checkAuth, (req, res) => {
-            const dept = new Department(req.body);
-            dept.userId = req.userId;
-            dept.save((err) => {
-                if (err) {
-                  return res.send(err);
-                }
-                return res.json(dept);
-              });
-        });
+        .post(controller.post);
 
     router.route("/byUser")
-        .get(checkAuth, (req, res) => {
-            const query = {
-                userId: req.userId
-            }
-            Department.find(query, (err, depts) => {
-                if (err) {
-                    return res.send(err);
-                }
-                return res.json(depts);
-            })
-        });
+        .get(controller.get);
     
     return router;
 }

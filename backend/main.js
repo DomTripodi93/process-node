@@ -3,11 +3,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
+const env = require("./.env/env");
+
+const userRoutes = require("./routes/userRoutes");
 const Department = require("./models/departmentModel");
 const departmentRoutes = require("./routes/departmentRoutes")(Department);
 
-const env = require("./.env/env");
-const userRoutes = require("./routes/userRoutes");
 
 
 const app = express();
