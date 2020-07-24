@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 const objectiveModel = new Schema(
   {
-    userId: { type: Number, required: true },
+    userId: { type: String, required: true },
     deptName: { type: String, required: true },
     objectiveName: { type: String, required: true },
     goal: {type: String},

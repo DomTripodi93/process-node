@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 const commonDifficultyModel = new Schema(
   {
-    userId: { type: Number, required: true },
+    userId: { type: String, required: true },
     deptName: { type: String, required: true },
     objectiveName: { type: String, required: true },
     stepNumber: { type: String, required: true },

@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const settingsModel = new Schema(
   {
-    userId: { type: Number, required: true },
+    userId: { type: String, required: true },
     isNew: { type: Boolean, default: true },
     initialEmployeePassword: { type: String, required: true }
   }
