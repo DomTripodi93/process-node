@@ -47,7 +47,7 @@ export const signOutUser = (callback) => {
 
 export const checkUser = (id, token) => {
     return dispatch => {
-        axios.get(`${ROOT_URL}/user/${id}`, {
+        axios.get(`${ROOT_URL}/user`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -56,8 +56,8 @@ export const checkUser = (id, token) => {
                 console.log(user)
                 dispatch(
                     setUserData({
-                        token: token,
-                        id: id,
+                        token,
+                        id,
                         settings: user.data.settings
                     })
                 )

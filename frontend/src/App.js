@@ -30,11 +30,11 @@ const App = (props) => {
   const [authValue, setAuthValue] = useState(props.isAuthenticated);
 
   useEffect(() => {
-    // let token = localStorage.getItem('token');
-    // let userId = localStorage.getItem('id');
-    // if (!props.isAuthenticated) {
-    //   props.checkUser(userId, token);
-    // }
+    let token = localStorage.getItem('token');
+    let userId = localStorage.getItem('id');
+    if (!props.isAuthenticated) {
+      props.checkUser(userId, token);
+    }
     setAuthValue(props.isAuthenticated)
   }, [props]);
 

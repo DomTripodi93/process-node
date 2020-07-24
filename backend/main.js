@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 
 const env = require("./.env/env");
 
+const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const Department = require("./models/departmentModel");
 const departmentRoutes = require("./routes/departmentRoutes")(Department);
@@ -50,8 +51,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/auth", userRoutes);
-
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
 app.use("/api/department", departmentRoutes);
 
 
