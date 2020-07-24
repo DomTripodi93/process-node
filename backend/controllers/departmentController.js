@@ -8,7 +8,7 @@ function departmentController(Department) {
                 return res.send(err);
             }
             res.status(201);
-            return res.json(dept);
+                return res.json(dept);
             });
     };
 
@@ -32,7 +32,7 @@ function departmentController(Department) {
         Department.find(query, (err, dept) => {
             if (err) {
                 return res.send(err);
-            }
+            } 
             return res.json(dept[0]);
         })
     }
@@ -42,6 +42,3 @@ function departmentController(Department) {
   }
   
   module.exports = departmentController;
-
-
-//   res.status(401).json({ message: "Auth failed!" });
