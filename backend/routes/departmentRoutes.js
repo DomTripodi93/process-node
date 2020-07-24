@@ -4,16 +4,18 @@ const departmentController = require("../controllers/departmentController");
 const checkAuth = require("../middleware/checkAuth");
 
 function routes(Department) {
+    const controller = departmentController(Department);
     const router = express.Router();
     router.use("", checkAuth)
-
-    const controller = departmentController(Department);
 
     router.route("")
         .post(controller.post);
 
     router.route("/byUser")
-        .get(controller.get);
+        .get(controller.getByUser);
+
+    router.route("/:name")
+        .get(controller.getByName)
     
     return router;
 }
