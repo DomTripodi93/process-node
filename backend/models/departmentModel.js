@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require("mongoose-unique-validator");
 
 const { Schema } = mongoose;
 
@@ -11,6 +10,6 @@ const departmentModel = new Schema(
   }
 );
 
-departmentModel.index({deptName: 1, userId: 1}, {unique: true})
+departmentModel.index({deptName: 1, userId: 1}, {unique: true});
 
 module.exports = mongoose.model('Department', departmentModel);

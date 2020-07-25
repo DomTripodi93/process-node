@@ -1,19 +1,18 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require("mongoose-unique-validator");
 
 const { Schema } = mongoose;
 
 const stepModel = new Schema(
   {
-    userId: { type: String, required: true },
-    deptName: { type: String, required: true },
-    objectiveName: { type: String, required: true },
-    stepNumber: { type: String, required: true },
+    userId: { type: mongoose.Schema.Types.ObjectId, required: true, unique: false },
+    deptName: { type: String, required: true, unique: false },
+    objectiveName: { type: String, required: true, unique: false },
+    stepNumber: { type: String, required: true, unique: false },
     name: { type: String },
     goal: { type: String }
   }
 );
 
-stepModel.plugin(uniqueValidator);
+stepModel.index({deptName: 1, userId: 1, objectiveName: 1, stepNumber: 1}, {unique: true})
 
 module.exports = mongoose.model('Step', stepModel);

@@ -1,20 +1,25 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require("mongoose-unique-validator");
 
 const { Schema } = mongoose;
 
 const commonDifficultyModel = new Schema(
   {
-    userId: { type: String, required: true },
-    deptName: { type: String, required: true },
-    objectiveName: { type: String, required: true },
-    stepNumber: { type: String, required: true },
-    difficulty: { type: String, required: true },
+    userId: { type: mongoose.Schema.Types.ObjectId, required: true, unique: false },
+    deptName: { type: String, required: true, unique: false },
+    objectiveName: { type: String, required: true, unique: false },
+    stepNumber: { type: String, required: true, unique: false },
+    difficulty: { type: String, required: true, unique: false },
     cause: { type: String },
     solution: { type: String}
   }
 );
 
-commonDifficultyModel.plugin(uniqueValidator);
+commonDifficultyModel.index({
+    deptName: 1, 
+    userId: 1, 
+    objectiveName: 1, 
+    stepNumber: 1, 
+    difficulty: 1
+}, {unique: true});
 
 module.exports = mongoose.model('CommonDifficulty', commonDifficultyModel);
