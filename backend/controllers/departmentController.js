@@ -1,3 +1,5 @@
+const autoMapper = require("../middleware/autoMapper");
+
 function departmentController(Department) {
 
     function post(req, res) {
@@ -8,8 +10,8 @@ function departmentController(Department) {
                 return res.send(err);
             }
             res.status(201);
-                return res.json(dept);
-            });
+            return res.json(dept);
+        });
     };
 
     function getByUser(req, res) {
@@ -21,7 +23,7 @@ function departmentController(Department) {
                 return res.send(err);
             }
             return res.json(depts);
-        })
+        });
     };
 
     function getByName(req, res) {
@@ -32,13 +34,31 @@ function departmentController(Department) {
         Department.find(query, (err, dept) => {
             if (err) {
                 return res.send(err);
-            } 
+            }
             return res.json(dept[0]);
-        })
+        });
+    }
+
+    function put(req, res) {
+        let query = { deptName: req.params.name, userId: req.userId };
+        Department.find(query, (err, depts) => {
+            if (err) {
+                return res.send(err);
+            }
+            let newDept = autoMapper(depts[0], req.body);
+            Department.updateOne(query, newDept)
+                .then(result => {
+                    if (result.nModified > 0) {
+                        return res.status(200).json({ message: "Update Successful" });
+                    } else {
+                        return res.status(500).json({ message: "No Changes" });
+                    }
+                });
+        });
     }
 
 
-    return { post, getByUser, getByName };
-  }
-  
-  module.exports = departmentController;
+    return { post, getByUser, getByName, put };
+}
+
+module.exports = departmentController;

@@ -16,6 +16,9 @@ function routes(Department) {
 
     router.route("/:name")
         .get(controller.getByName);
+
+    router.route("/:name")
+        .put(controller.put)
     
     return router;
 }
