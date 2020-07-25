@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 
 const env = require("./.env/env");
 
-const authRoutes = require("./routes/authRoutes");
+const User = require("./models/userModel");
+const authRoutes = require("./routes/authRoutes")(User);
 const userRoutes = require("./routes/userRoutes");
 const Department = require("./models/departmentModel");
 const departmentRoutes = require("./routes/departmentRoutes")(Department);
