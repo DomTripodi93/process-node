@@ -9,11 +9,14 @@ import FormSelect from '../../../shared/elements/form-select/form-select.compone
 const EmployeeForm = props => {
     const [employeeInfo, setEmployeeInfo] = useState({
         name: '',
+        email: '',
+        password: '',
         deptName: 'None',
         canEdit: false,
         title: '',
+        rootId: props.rootId
     });
-    const { name, deptName, canEdit, title } = employeeInfo;
+    const { name, email, password, deptName, canEdit, title } = employeeInfo;
     const deptOptions = props.deptOptions;
     const editOptions = [
         {
@@ -70,9 +73,25 @@ const EmployeeForm = props => {
             <form onSubmit={handleSubmit}>
                 <FormInput
                     label='Name'
-                    type='name'
+                    type='text'
                     name='name'
                     value={name}
+                    onChange={handleChange}
+                    required
+                />
+                <FormInput
+                    label='Email'
+                    type='text'
+                    name='email'
+                    value={email}
+                    onChange={handleChange}
+                    required
+                />
+                <FormInput
+                    label='Password'
+                    type='password'
+                    name='password'
+                    value={password}
                     onChange={handleChange}
                     required
                 />
@@ -132,5 +151,9 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
+const mapStateToProps = state => ({
+    rootId: state.user.rootId
+});
 
-export default connect(null, mapDispatchToProps)(EmployeeForm);
+
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeForm);
