@@ -24,7 +24,30 @@ function userController(User) {
         })
     };
 
-    return { getUserData }
+    function getEmployeesForUser(req, res) {
+        const query = {
+            rootId: req.userId
+        }
+        User.find(query, (err, users) => {
+            if (err) {
+                return res.send(err);
+            }
+            let usersForReturn = []
+            users.forEach(user => {
+                usersForReturn.push({
+                    rootId: user.rootId,
+                    email: user.email,
+                    name: user.name,
+                    deptName: user.deptName,
+                    title: user.title,
+                    canEdit: user.canEdit,
+                });
+            });
+            return res.json(users);
+        });
+    }
+
+    return { getUserData, getEmployeesForUser }
 }
 
 module.exports = userController;
