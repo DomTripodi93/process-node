@@ -11,6 +11,8 @@ const Department = require("./models/departmentModel");
 const departmentRoutes = require("./routes/departmentRoutes")(Department);
 const Objective = require("./models/objectiveModel");
 const objectiveRoutes = require("./routes/objectiveRoutes")(Objective);
+const Step = require("./models/stepModel");
+const stepRoutes = require("./routes/stepRoutes")(Step);
 
 const app = express();
 
@@ -55,6 +57,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/department", departmentRoutes);
 app.use("/api/objective", objectiveRoutes);
+app.use("/api/step", stepRoutes);
 
 
 const port = process.env.PORT || 3200;

@@ -1,29 +1,30 @@
 const express = require('express');
 
-const objectiveController = require("../controllers/objectiveController");
+const stepController = require("../controllers/stepController");
 const checkAuth = require("../middleware/checkAuth");
 
-function routes(Objective) {
-    const controller = objectiveController(Objective);
+function routes(Step) {
+    const controller = stepController(Step);
     const router = express.Router();
     router.use("", checkAuth);
 
     router.route("")
         .post(controller.post);
 
-    router.route("/byDepartment/:department")
-        .get(controller.getByDepartment);
+    router.route("/byObjective/:department&:objective")
+        .get(controller.getByObjective);
 
-    router.route("/:department&:objective")
-        .get(controller.getByName);
+    router.route("/:department&:objective&:step")
+        .get(controller.getByNumber);
 
-    router.route("/:department&:objective")
+    router.route("/:department&:objective&:step")
         .put(controller.put)
 
-    router.delete("/:department&:objective", (req, res) => {
-        Objective.deleteOne({ 
+    router.delete("/:department&:objective&:step", (req, res) => {
+        Step.deleteOne({ 
             deptName: req.params.department, 
             objectiveName: req.params.objective, 
+            stepNumber: req.params.step,
             userId: req.userId 
         }).then(
             result => {
