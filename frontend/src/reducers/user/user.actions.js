@@ -58,7 +58,8 @@ export const checkUser = (id, token) => {
                     setUserData({
                         token,
                         id,
-                        settings: user.data.settings
+                        settings: user.data.settings,
+                        rootId: user.data.rootId
                     })
                 )
             })

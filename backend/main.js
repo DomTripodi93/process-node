@@ -12,8 +12,6 @@ const departmentRoutes = require("./routes/departmentRoutes")(Department);
 const Objective = require("./models/objectiveModel");
 const objectiveRoutes = require("./routes/objectiveRoutes")(Objective);
 
-
-
 const app = express();
 
 mongoose

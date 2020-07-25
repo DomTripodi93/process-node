@@ -4,7 +4,8 @@ const INITIAL_STATE = {
     userToken: null,
     userId: null,
     isAuthenticated: false,
-    settings: {}
+    settings: {},
+    rootId: null
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -15,7 +16,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 userToken: action.payload.token,
                 userId: action.payload.id,
                 isAuthenticated: true,
-                settings: action.payload.settings
+                settings: action.payload.settings,
+                rootId: action.payload.rootId
             };
         case UserActionTypes.SIGNOUT_USER:
             return {

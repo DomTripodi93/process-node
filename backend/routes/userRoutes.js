@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("", checkAuth, (req, res) => {
     const query = {
-        userId: req.userId
+        _id: req.userId
     }
     User.find(query, (err, user) => {
         if (err) {
