@@ -7,7 +7,7 @@ const env = require("./.env/env");
 
 const User = require("./models/userModel");
 const authRoutes = require("./routes/authRoutes")(User);
-const userRoutes = require("./routes/userRoutes");
+const userRoutes = require("./routes/userRoutes")(User);
 const Department = require("./models/departmentModel");
 const departmentRoutes = require("./routes/departmentRoutes")(Department);
 const Objective = require("./models/objectiveModel");
