@@ -8,7 +8,7 @@ const env = require("../.env/env");
 
 const router = express.Router();
 
-router.post("/register", (req, res, next) => {
+router.post("/register", (req, res ) => {
   bcrypt.hash(req.body.password, 10).then(hash => {
     const user = new User({
       ...req.body,
@@ -30,7 +30,7 @@ router.post("/register", (req, res, next) => {
   });
 });
 
-router.post("/login", (req, res, next) => {
+router.post("/login", (req, res ) => {
   let fetchedUser;
   User.findOne({ email: req.body.email })
     .then(user => {
