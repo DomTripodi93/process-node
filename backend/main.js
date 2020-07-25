@@ -9,6 +9,8 @@ const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const Department = require("./models/departmentModel");
 const departmentRoutes = require("./routes/departmentRoutes")(Department);
+const Objective = require("./models/objectiveModel");
+const objectiveRoutes = require("./routes/objectiveRoutes")(Objective);
 
 
 
@@ -54,6 +56,7 @@ app.use((req, res, next) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/department", departmentRoutes);
+app.use("/api/objective", objectiveRoutes);
 
 
 const port = process.env.PORT || 3200;
