@@ -19,7 +19,19 @@ function routes(Department) {
 
     router.route("/:name")
         .put(controller.put)
-    
+
+    router.delete("/:name", (req, res) => {
+        Department.deleteOne({ deptName: req.params.name, userId: req.userId }).then(
+            result => {
+                if (result.n > 0) {
+                    res.status(200).json({ message: "Deletion successful!" });
+                } else {
+                    res.status(500).json({ message: "Cannot Delete" });
+                }
+            }
+        );
+    })
+
     return router;
 }
 
