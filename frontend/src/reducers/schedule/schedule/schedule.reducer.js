@@ -11,7 +11,7 @@ const scheduleReducer = (state = INITIAL_STATE, action) => {
     let dateWithEmployee = action.employeeId + "/" + action.date;
     const filterTasks = (taskArray, id) => {
         return taskArray.filter((value) => {
-            return value.id !== id;
+            return value._id !== id;
         });
     }
     const sortTasks = (taskArray) => {
@@ -67,19 +67,19 @@ const scheduleReducer = (state = INITIAL_STATE, action) => {
                 taskHold[action.date].push(action.payload);
                 taskHold[action.date] = sortTasks([
                     action.payload,
-                    ...filterTasks(taskHold[action.date], action.payload.id)
+                    ...filterTasks(taskHold[action.date], action.payload._id)
                 ]);
             }
             if (taskHold[dateWithEmployee]) {
                 taskHold[dateWithEmployee].push(dateWithEmployee);
                 taskHold[dateWithEmployee] = sortTasks([
                     action.payload,
-                    ...filterTasks(taskHold[dateWithEmployee], action.payload.id)
+                    ...filterTasks(taskHold[dateWithEmployee], action.payload._id)
                 ]);
             }
             selectedHold = sortTasks([
                 action.payload,
-                ...filterTasks(selectedHold, action.payload.id)
+                ...filterTasks(selectedHold, action.payload._id)
             ]);
             return {
                 scheduledTasks: taskHold,
@@ -87,12 +87,12 @@ const scheduleReducer = (state = INITIAL_STATE, action) => {
             };
         case ScheduleActionTypes.DELETE_SCHEDULE:
             if (taskHold[action.date]) {
-                taskHold[action.date] = filterTasks(taskHold[action.date], action.payload.id);
+                taskHold[action.date] = filterTasks(taskHold[action.date], action.payload._id);
             }
             if (taskHold[dateWithEmployee]) {
-                taskHold[dateWithEmployee] = filterTasks(taskHold[dateWithEmployee], action.payload.id);
+                taskHold[dateWithEmployee] = filterTasks(taskHold[dateWithEmployee], action.payload._id);
             }
-            selectedHold = filterTasks(selectedHold, action.payload.id);
+            selectedHold = filterTasks(selectedHold, action.payload._id);
             return {
                 scheduledTasks: taskHold,
                 selectedScheduledTasks: selectedHold

@@ -23,11 +23,11 @@ const commonDifficultyReducer = (state = INITIAL_STATE, action) => {
                     action.payload,
                     ...state.commonDifficulties
                         .filter((value) => {
-                            return value.id !== action.payload.id
+                            return value._id !== action.payload._id
                         })
                 ]
                     .sort((first, second) => {
-                        if (first.id > second.id) {
+                        if (first._id > second._id) {
                             return 1
                         } else {
                             return -1
@@ -40,7 +40,7 @@ const commonDifficultyReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 commonDifficulties: [...state.commonDifficulties
                     .filter((value) => {
-                        return value.id !== action.payload
+                        return value._id !== action.payload
                     })
                 ]
             };

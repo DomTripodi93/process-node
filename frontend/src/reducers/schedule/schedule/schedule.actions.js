@@ -37,7 +37,7 @@ export function addScheduledTask(schedule, callback, date, employeeId) {
 
 export function updateScheduledTask(schedule, callback, date, employeeId) {
     return dispatch => {
-        http.updateItemById("schedule", schedule, schedule.id)
+        http.updateItemById("schedule", schedule, schedule._id)
             .then(() => {
                 dispatch(updateSchedulesInState(schedule, date, employeeId));
                 callback();

@@ -21,7 +21,7 @@ const ScheduleDay = props => {
             "Are you sure you want to delete this scheduled task: " + task.objectiveName + "?"
         )) {
             let date = props.year + "/" + props.month + "/" + props.day
-            props.deleteSchedule(task.id, date, task.employeeId);
+            props.deleteSchedule(task._id, date, task.employeeId);
         }
     }
 
@@ -67,7 +67,7 @@ const ScheduleDay = props => {
                             </div>
                             {props.scheduledTasks.map(scheduledTask => (
                                 <div
-                                    key={scheduledTask.id}
+                                    key={scheduledTask._id}
                                     className="grid-one-employee-button size-holder middle">
                                     <SingleScheduledTask
                                         objectives={props.objectives}
@@ -112,7 +112,7 @@ const ScheduleDay = props => {
                             </div>
                             {props.scheduledTasks.map(scheduledTask => (
                                 <div
-                                    key={scheduledTask.id}
+                                    key={scheduledTask._id}
                                     className="grid-all-employees-button size-holder middle">
                                     <SingleScheduledTask
                                         objectives={props.objectives}

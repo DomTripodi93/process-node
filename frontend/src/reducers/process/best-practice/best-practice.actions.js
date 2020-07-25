@@ -31,7 +31,7 @@ export function addBestPractice(bestPractice, callback) {
 export function updateBestPractice(bestPractice, callback) {
     bestPractice = prepBestPracticeValues(bestPractice);
     return dispatch => {
-        http.updateItemById("bestPractice", bestPractice, bestPractice.id)
+        http.updateItemById("bestPractice", bestPractice, bestPractice._id)
             .then(() => {
                 dispatch(updateBestPracticesInState(bestPractice));
                 callback();

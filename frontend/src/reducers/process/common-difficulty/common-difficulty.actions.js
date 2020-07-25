@@ -31,7 +31,7 @@ export function addCommonDifficulty(commonDifficulty, callback) {
 export function updateCommonDifficulty(commonDifficulty, callback) {
     commonDifficulty = prepCommonDifficultyValues(commonDifficulty);
     return dispatch => {
-        http.updateItemById("commonDifficulty", commonDifficulty, commonDifficulty.id)
+        http.updateItemById("commonDifficulty", commonDifficulty, commonDifficulty._id)
             .then(() => {
                 dispatch(updateCommonDifficultiesInState(commonDifficulty));
                 callback();

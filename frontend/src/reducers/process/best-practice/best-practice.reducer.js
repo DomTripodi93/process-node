@@ -23,11 +23,11 @@ const bestPracticeReducer = (state = INITIAL_STATE, action) => {
                     action.payload,
                     ...state.bestPractices
                         .filter((value) => {
-                            return value.id !== action.payload.id
+                            return value._id !== action.payload._id
                         })
                 ]
                     .sort((first, second) => {
-                        if (first.id > second.id) {
+                        if (first._id > second._id) {
                             return 1
                         } else {
                             return -1
@@ -40,7 +40,7 @@ const bestPracticeReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 bestPractices: [...state.bestPractices
                     .filter((value) => {
-                        return value.id !== action.payload
+                        return value._id !== action.payload
                     })
                 ]
             };

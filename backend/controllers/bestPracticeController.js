@@ -29,7 +29,7 @@ function bestPracticeController(BestPractice) {
         });
     };
 
-    function getByNumber(req, res) {
+    function getById(req, res) {
         const query = {
             userId: req.userId,
             _id: req.params.id
@@ -64,7 +64,7 @@ function bestPracticeController(BestPractice) {
     }
 
 
-    return { post, getByStep, getByNumber, put };
+    return { post, getByStep, getById, put };
 }
 
 module.exports = bestPracticeController;

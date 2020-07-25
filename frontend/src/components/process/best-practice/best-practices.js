@@ -9,7 +9,7 @@ const BestPractices = props => {
                     <div className='grid50-to-100'>
                         {props.bestPractices.map(bestPractice => (
                             <div
-                                key={bestPractice.id}
+                                key={bestPractice._id}
                             >
                                 <SingleBestPractice
                                     bestPractice={bestPractice}

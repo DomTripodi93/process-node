@@ -13,6 +13,8 @@ const Objective = require("./models/objectiveModel");
 const objectiveRoutes = require("./routes/objectiveRoutes")(Objective);
 const Step = require("./models/stepModel");
 const stepRoutes = require("./routes/stepRoutes")(Step);
+const BestPractice = require("./models/bestPracticeModel");
+const bestPracticeRoutes = require("./routes/bestPracticeRoutes")(BestPractice);
 
 const app = express();
 
@@ -58,6 +60,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/department", departmentRoutes);
 app.use("/api/objective", objectiveRoutes);
 app.use("/api/step", stepRoutes);
+app.use("/api/bestPractice", bestPracticeRoutes);
 
 
 const port = process.env.PORT || 3200;

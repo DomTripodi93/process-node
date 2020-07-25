@@ -9,7 +9,7 @@ const CommonDifficulties = props => {
                     <div className='grid50-to-100'>
                         {props.commonDifficulties.map(commonDifficulty => (
                             <div
-                                key={commonDifficulty.id}
+                                key={commonDifficulty._id}
                             >
                                 <SingleCommonDifficulty
                                     commonDifficulty={commonDifficulty}

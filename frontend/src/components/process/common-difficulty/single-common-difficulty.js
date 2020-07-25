@@ -18,7 +18,7 @@ const SingleCommonDifficulty = props => {
             props.commonDifficulty.name + "?"
         )) {
             props.deleteCommonDifficulty(
-                props.commonDifficulty.id
+                props.commonDifficulty._id
             );
         }
     }
