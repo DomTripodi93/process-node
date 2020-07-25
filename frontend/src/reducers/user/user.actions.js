@@ -18,7 +18,6 @@ export const signInUser = (user, callback) => {
     return dispatch => {
         axios.post(`${ROOT_URL}/auth/login`, user)
             .then(response => {
-                console.log(response)
                 dispatch(setUserData(response.data));
                 callback();
             })
