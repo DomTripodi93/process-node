@@ -1,6 +1,6 @@
 const autoMapper = require("../middleware/autoMapper");
 
-function bestPracticeController(CommonDifficulty) {
+function commonDifficultyController(CommonDifficulty) {
 
     function post(req, res) {
         const commonDifficulty = new CommonDifficulty(req.body);
@@ -21,11 +21,11 @@ function bestPracticeController(CommonDifficulty) {
             objectiveName: req.params.objective,
             stepNumber: req.params.step
         }
-        CommonDifficulty.find(query, (err, bestPractices) => {
+        CommonDifficulty.find(query, (err, commonDifficultys) => {
             if (err) {
                 return res.send(err);
             }
-            return res.json(bestPractices);
+            return res.json(commonDifficultys);
         });
     };
 
@@ -47,12 +47,12 @@ function bestPracticeController(CommonDifficulty) {
             userId: req.userId,
             _id: req.params.id
         };
-        CommonDifficulty.find(query, (err, bestPractices) => {
+        CommonDifficulty.find(query, (err, commonDifficultys) => {
             if (err) {
                 return res.send(err);
             }
-            let newBestPractice = autoMapper(bestPractices[0], req.body);
-            CommonDifficulty.updateOne(query, newBestPractice)
+            let newCommonDifficulty = autoMapper(commonDifficultys[0], req.body);
+            CommonDifficulty.updateOne(query, newCommonDifficulty)
                 .then(result => {
                     if (result.nModified > 0) {
                         return res.status(200).json({ message: "Update Successful" });
@@ -67,4 +67,4 @@ function bestPracticeController(CommonDifficulty) {
     return { post, getByStep, getById, put };
 }
 
-module.exports = bestPracticeController;
+module.exports = commonDifficultyController;
