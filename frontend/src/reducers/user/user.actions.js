@@ -52,7 +52,6 @@ export const checkUser = (id, token) => {
             }
         })
             .then((user) => {
-                console.log(user)
                 dispatch(
                     setUserData({
                         token,

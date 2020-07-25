@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { signInUser } from '../../reducers/user/user.actions';
+import { signInUser, checkUser } from '../../reducers/user/user.actions';
 
 import FormInput from '../../shared/elements/form-input/form-input.component';
 import CustomButton from '../../shared/elements/button/custom-button.component';
@@ -20,7 +20,12 @@ const Signin = props => {
     const handleSubmit = async event => {
         event.preventDefault();
 
-        props.signInUser(userCredentials, () => { props.history.push('/') });
+        props.signInUser(userCredentials, () => { 
+            let token = localStorage.getItem('token');
+            let userId = localStorage.getItem('id');
+            props.checkUser(userId, token);
+            props.history.push('/') 
+        });
     };
 
     const handleChange = event => {
@@ -68,7 +73,8 @@ const Signin = props => {
 const mapDispatchToProps = dispatch => ({
     signInUser: (userCredentials, callback) => {
         dispatch(signInUser(userCredentials, callback))
-    }
+    },
+    checkUser: (userId, token) => dispatch(checkUser(userId, token)),
 });
 
 export default connect(null, mapDispatchToProps)(Signin);
