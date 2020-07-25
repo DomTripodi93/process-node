@@ -8,6 +8,7 @@ const env = require("./.env/env");
 const User = require("./models/userModel");
 const authRoutes = require("./routes/authRoutes")(User);
 const userRoutes = require("./routes/userRoutes")(User);
+const employeeRoutes = require("./routes/employeeRoutes")(User);
 const Department = require("./models/departmentModel");
 const departmentRoutes = require("./routes/departmentRoutes")(Department);
 const Objective = require("./models/objectiveModel");
@@ -65,6 +66,7 @@ app.use("/api/objective", objectiveRoutes);
 app.use("/api/step", stepRoutes);
 app.use("/api/bestPractice", bestPracticeRoutes);
 app.use("/api/commonDifficulty", commonDifficultyRoutes);
+app.use("/api/employee", employeeRoutes);
 
 
 const port = process.env.PORT || 3200;

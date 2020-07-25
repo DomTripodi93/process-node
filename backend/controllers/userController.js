@@ -43,7 +43,7 @@ function userController(User) {
                     canEdit: user.canEdit,
                 });
             });
-            return res.json(users);
+            return res.json(usersForReturn);
         });
     }
 
