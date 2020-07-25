@@ -1,61 +1,58 @@
 const autoMapper = require("../middleware/autoMapper");
 
-function stepController(Step) {
+function bestPracticeController(BestPractice) {
 
     function post(req, res) {
-        const step = new Step(req.body);
-        step.userId = req.userId;
-        step.save((err) => {
+        const bestPractice = new BestPractice(req.body);
+        bestPractice.userId = req.userId;
+        bestPractice.save((err) => {
             if (err) {
                 return res.send(err);
             }
             res.status(201);
-            return res.json(step);
+            return res.json(bestPractice);
         });
     };
 
-    function getByObjective(req, res) {
+    function getByStep(req, res) {
         const query = {
             userId: req.userId,
             deptName: req.params.department,
-            objectiveName: req.params.objective
+            objectiveName: req.params.objective,
+            stepNumber: req.params.step
         }
-        Step.find(query, (err, steps) => {
+        BestPractice.find(query, (err, bestPractices) => {
             if (err) {
                 return res.send(err);
             }
-            return res.json(steps);
+            return res.json(bestPractices);
         });
     };
 
     function getByNumber(req, res) {
         const query = {
             userId: req.userId,
-            deptName: req.params.department,
-            objectiveName: req.params.objective,
-            stepNumber: req.params.step
+            _id: req.params.id
         }
-        Step.find(query, (err, step) => {
+        BestPractice.find(query, (err, bestPractice) => {
             if (err) {
                 return res.send(err);
             }
-            return res.json(step[0]);
+            return res.json(bestPractice[0]);
         });
     }
 
     function put(req, res) {
         let query = { 
             userId: req.userId,
-            objectiveName: req.params.objective,
-            deptName: req.params.department,
-            stepNumber: req.params.step
+            _id: req.params.id
         };
-        Step.find(query, (err, steps) => {
+        BestPractice.find(query, (err, bestPractices) => {
             if (err) {
                 return res.send(err);
             }
-            let newStep = autoMapper(steps[0], req.body);
-            Step.updateOne(query, newStep)
+            let newBestPractice = autoMapper(bestPractices[0], req.body);
+            BestPractice.updateOne(query, newBestPractice)
                 .then(result => {
                     if (result.nModified > 0) {
                         return res.status(200).json({ message: "Update Successful" });
@@ -67,7 +64,7 @@ function stepController(Step) {
     }
 
 
-    return { post, getByObjective, getByNumber, put };
+    return { post, getByStep, getByNumber, put };
 }
 
-module.exports = stepController;
+module.exports = bestPracticeController;

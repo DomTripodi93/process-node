@@ -51,8 +51,8 @@ function objectiveController(Objective) {
             if (err) {
                 return res.send(err);
             }
-            let newDept = autoMapper(objectives[0], req.body);
-            Objective.updateOne(query, newDept)
+            let newObjective = autoMapper(objectives[0], req.body);
+            Objective.updateOne(query, newObjective)
                 .then(result => {
                     if (result.nModified > 0) {
                         return res.status(200).json({ message: "Update Successful" });
