@@ -87,12 +87,12 @@ const scheduleReducer = (state = INITIAL_STATE, action) => {
             };
         case ScheduleActionTypes.DELETE_SCHEDULE:
             if (taskHold[action.date]) {
-                taskHold[action.date] = filterTasks(taskHold[action.date], action.payload._id);
+                taskHold[action.date] = filterTasks(taskHold[action.date], action.payload);
             }
             if (taskHold[dateWithEmployee]) {
-                taskHold[dateWithEmployee] = filterTasks(taskHold[dateWithEmployee], action.payload._id);
+                taskHold[dateWithEmployee] = filterTasks(taskHold[dateWithEmployee], action.payload);
             }
-            selectedHold = filterTasks(selectedHold, action.payload._id);
+            selectedHold = filterTasks(selectedHold, action.payload);
             return {
                 scheduledTasks: taskHold,
                 selectedScheduledTasks: selectedHold

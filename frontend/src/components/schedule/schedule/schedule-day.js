@@ -20,7 +20,7 @@ const ScheduleDay = props => {
         if (window.confirm(
             "Are you sure you want to delete this scheduled task: " + task.objectiveName + "?"
         )) {
-            let date = props.year + "/" + props.month + "/" + props.day
+            let date = props.year + "/" + props.month + "/" + props.day;
             props.deleteSchedule(task._id, date, task.employeeId);
         }
     }
@@ -193,7 +193,7 @@ const ScheduleDay = props => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        deleteSchedule: (id) => dispatch(deleteSchedule(id))
+        deleteSchedule: (id, date, employeeId) => dispatch(deleteSchedule(id, date, employeeId))
     }
 }
 
