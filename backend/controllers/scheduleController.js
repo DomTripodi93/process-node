@@ -5,6 +5,8 @@ function scheduleController(Schedule) {
     function post(req, res) {
         const schedule = new Schedule(req.body);
         schedule.userId = req.userId;
+        const timeZoneOffset = (new Date).getTimezoneOffset() * 60000;
+        schedule.date = new Date((new Date(schedule.date) - timeZoneOffset));
         schedule.save((err) => {
             if (err) {
                 return res.send(err);
@@ -15,7 +17,7 @@ function scheduleController(Schedule) {
     };
 
     function getByUser(req, res) {
-        const day = [req.params.year, req.params.month - 1, req.params.day];
+        const day = [req.params.year, req.params.month - 1, req.params.day]
         const query = {
             userId: req.userId,
             date: {
@@ -27,7 +29,6 @@ function scheduleController(Schedule) {
             if (err) {
                 return res.send(err);
             }
-            console.log(schedules)
             return res.json(schedules);
         });
     };
