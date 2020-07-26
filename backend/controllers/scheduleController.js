@@ -25,7 +25,9 @@ function scheduleController(Schedule) {
                 $lt: new Date(Date.UTC(...day, 23, 59, 59))
             }
         }
-        Schedule.find(query, (err, schedules) => {
+        Schedule.find(query)
+            .sort({date: 1})
+            .exec((err, schedules) => {
             if (err) {
                 return res.send(err);
             }
