@@ -19,6 +19,8 @@ const BestPractice = require("./models/bestPracticeModel");
 const bestPracticeRoutes = require("./routes/bestPracticeRoutes")(BestPractice);
 const CommonDifficulty = require("./models/commonDifficultyModel");
 const commonDifficultyRoutes = require("./routes/commonDifficultyRoutes")(CommonDifficulty);
+const Schedule = require("./models/scheduleModel");
+const scheduleRoutes = require("./routes/scheduleRoutes")(Schedule);
 
 const app = express();
 
@@ -67,6 +69,7 @@ app.use("/api/step", stepRoutes);
 app.use("/api/bestPractice", bestPracticeRoutes);
 app.use("/api/commonDifficulty", commonDifficultyRoutes);
 app.use("/api/employee", employeeRoutes);
+app.use("/api/schedule", scheduleRoutes);
 
 
 const port = process.env.PORT || 3200;
