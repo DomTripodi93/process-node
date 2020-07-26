@@ -31,24 +31,26 @@ function userController(User) {
         const query = {
             rootId: req.userId
         }
-        User.find(query, (err, users) => {
-            if (err) {
-                return res.send(err);
-            }
-            let usersForReturn = []
-            users.forEach(user => {
-                usersForReturn.push({
-                    id: user._id,
-                    rootId: user.rootId,
-                    email: user.email,
-                    name: user.name,
-                    deptName: user.deptName,
-                    title: user.title,
-                    canEdit: user.canEdit,
+        User.find(query)
+            .sort({name: 1})
+            .exec((err, users) => {
+                if (err) {
+                    return res.send(err);
+                }
+                let usersForReturn = []
+                users.forEach(user => {
+                    usersForReturn.push({
+                        id: user._id,
+                        rootId: user.rootId,
+                        email: user.email,
+                        name: user.name,
+                        deptName: user.deptName,
+                        title: user.title,
+                        canEdit: user.canEdit,
+                    });
                 });
+                return res.json(usersForReturn);
             });
-            return res.json(usersForReturn);
-        });
     }
 
     function put(req, res) {
