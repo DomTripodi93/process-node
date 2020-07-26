@@ -29,7 +29,7 @@ function departmentController(Department) {
     function getByName(req, res) {
         const query = {
             userId: req.userId,
-            deptName: req.params.name
+            deptName: req.params.deptName
         }
         Department.find(query, (err, dept) => {
             if (err) {
@@ -40,7 +40,7 @@ function departmentController(Department) {
     }
 
     function put(req, res) {
-        let query = { deptName: req.params.name, userId: req.userId };
+        let query = { deptName: req.params.deptName, userId: req.userId };
         Department.find(query, (err, depts) => {
             if (err) {
                 return res.send(err);

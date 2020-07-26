@@ -1,10 +1,12 @@
 const express = require('express');
 
 const departmentController = require("../controllers/departmentController");
+const deleteController = require("../controllers/deleteController");
 const checkAuth = require("../middleware/checkAuth");
 
 function routes(Department) {
     const controller = departmentController(Department);
+    const controllerDelete = deleteController(Department);
     const router = express.Router();
     router.use("", checkAuth);
 
@@ -12,23 +14,12 @@ function routes(Department) {
         .post(controller.post)
         .get(controller.getByUser);
 
-    router.route("/:name")
+    router.route("/:deptName")
         .get(controller.getByName);
 
-    router.route("/:name")
+    router.route("/:deptName")
         .put(controller.put)
-
-    router.delete("/:name", (req, res) => {
-        Department.deleteOne({ deptName: req.params.name, userId: req.userId }).then(
-            result => {
-                if (result.n > 0) {
-                    res.status(200).json({ message: "Deletion successful!" });
-                } else {
-                    res.status(500).json({ message: "Cannot Delete" });
-                }
-            }
-        );
-    })
+        .delete(controllerDelete.deleteOne)
 
     return router;
 }
