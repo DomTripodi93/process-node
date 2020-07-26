@@ -7,6 +7,7 @@ function authController (User) {
     function postRegister(req, res ) {
         bcrypt.hash(req.body.password, 10).then(hash => {
           const user = new User({
+            title: "Owner",
             ...req.body,
             password: hash
           });
