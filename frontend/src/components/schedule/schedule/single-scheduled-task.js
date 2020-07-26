@@ -44,7 +44,7 @@ const SingleScheduledTask = props => {
                         }
                         className="inner-border-left">
                         <h5 className="grid-text">
-                            {props.scheduledTask.employeeId} - {props.scheduledTask.employeeName}
+                            {props.scheduledTask.employeeId.substring(19)} - {props.scheduledTask.employeeName}
                         </h5>
                     </Link>
                     <div className="inner-border-left">
