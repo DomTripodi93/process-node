@@ -13,6 +13,9 @@ function routes(User) {
     router.route("")
         .get(controllerUser.getEmployeesForUser)
         .post(controllerAuth.postRegister);
+    
+    router.route("/:id")
+        .put(controllerUser.put)
 
     return router;
 }

@@ -48,7 +48,32 @@ function userController(User) {
         });
     }
 
-    return { getUserData, getEmployeesForUser }
+    function put(req, res) {
+        const query = {
+            rootId: req.userId,
+            _id: req.params.id
+        }
+        User.find(query, (err, users) => {
+            if (err) {
+                return res.send(err);
+            }
+            let userForUpdate = users[0].toObject();
+            let keys = ["name", "email", "deptName", "canEdit", "title"];
+            keys.forEach(key =>{
+                userForUpdate[key] = req.body[key];
+            })
+            User.updateOne(query, userForUpdate)
+                .then(result => {
+                    if (result.nModified > 0) {
+                        return res.status(200).json({ message: "Update Successful" });
+                    } else {
+                        return res.status(500).json({ message: "No Changes" });
+                    }
+                });
+        });
+    }
+
+    return { getUserData, getEmployeesForUser, put }
 }
 
 module.exports = userController;
