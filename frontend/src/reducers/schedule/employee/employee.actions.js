@@ -9,8 +9,9 @@ const helper = new helpers();
 
 export function fetchEmployees() {
     return dispatch => {
-        http.fetchAll("employee/byUser")
+        http.fetchAll("employee")
             .then((employees) => {
+                console.log(employees)
                 dispatch(setEmployees(employees));
             });
     }
@@ -42,7 +43,7 @@ export function addEmployee(employee, callback) {
 export function updateEmployee(employee, callback) {
     employee = prepEmployeeValues(employee);
     return dispatch => {
-        http.updateItemById("employee", employee, employee.employeeId)
+        http.updateItemById("employee", employee, employee.id)
             .then(() => {
                 dispatch(updateEmployeeInState(employee));
                 callback();

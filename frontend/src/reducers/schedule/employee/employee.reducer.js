@@ -11,8 +11,9 @@ const employeeReducer = (state = INITIAL_STATE, action) => {
     let employeeHold = state.employees;
     switch (action.type) {
         case EmployeeActionTypes.SET_EMPLOYEES:
+            console.log(action.payload.data)
             action.payload.data.forEach(employee => {
-                mapHold[employee.employeeId] = employee.name;
+                mapHold[employee.id] = employee.name;
             });
             return {
                 employees: action.payload.data,
@@ -20,22 +21,22 @@ const employeeReducer = (state = INITIAL_STATE, action) => {
                 called: true
             };
         case EmployeeActionTypes.ADD_EMPLOYEE:
-            mapHold[action.payload.employeeId] = action.payload;
+            mapHold[action.payload.id] = action.payload;
             return {
                 ...state,
                 employees: [...state.employees, action.payload],
                 employeeMap: mapHold
             };
         case EmployeeActionTypes.UPDATE_EMPLOYEE:
-            mapHold[action.payload.employeeId] = action.payload.name;
+            mapHold[action.payload.id] = action.payload.name;
             employeeHold = employeeHold
                 .filter((value) => {
-                    return value.employeeId !== action.payload.employeeId
+                    return value.id !== action.payload.id
                 })
             employeeHold.push(action.payload)
             employeeHold = employeeHold
                 .sort((first, second) => {
-                    if (first.employeeId > second.employeeId) {
+                    if (first.id > second.id) {
                         return 1
                     } else {
                         return -1
@@ -50,7 +51,7 @@ const employeeReducer = (state = INITIAL_STATE, action) => {
         case EmployeeActionTypes.DELETE_EMPLOYEE:
             employeeHold = employeeHold
                 .filter((value) => {
-                    return value.employeeId !== action.payload
+                    return value.id !== action.payload
                 });
             delete mapHold[action.payload];
             return {

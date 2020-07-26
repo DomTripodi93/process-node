@@ -35,6 +35,7 @@ function userController(User) {
             let usersForReturn = []
             users.forEach(user => {
                 usersForReturn.push({
+                    id: user._id,
                     rootId: user.rootId,
                     email: user.email,
                     name: user.name,

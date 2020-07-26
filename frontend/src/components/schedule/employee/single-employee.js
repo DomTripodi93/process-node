@@ -14,11 +14,11 @@ const SingleEmployee = props => {
     }
 
     const handleDelete = () => {
-        if (props.employee.employeeId !== 1) {
+        if (props.employee.id !== 1) {
             if (window.confirm(
                 "Are you sure you want to delete this employee: " + props.employee.name + "?"
             )) {
-                props.deleteEmployee(props.employee.employeeId);
+                props.deleteEmployee(props.employee.id);
             }
         } else {
             window.alert(
@@ -33,7 +33,7 @@ const SingleEmployee = props => {
             <div className='border centered'>
                 {!editMode ?
                     <div>
-                        <h3>{props.employee.employeeId}: {props.employee.name}</h3>
+                        <h3>{props.employee.id}: {props.employee.name}</h3>
                         {props.employee.title ?
                             <h4>Title: {props.employee.title}</h4>
                             :
@@ -58,7 +58,7 @@ const SingleEmployee = props => {
                 }
             </div>
             {!props.inFull ?
-                <Link to={'schedule/' + props.employee.employeeId} className='grid100 spaced'>
+                <Link to={'schedule/' + props.employee.id} className='grid100 spaced'>
                     <CustomButton
                         buttonStyle='green'
                         label="View Schedule" />

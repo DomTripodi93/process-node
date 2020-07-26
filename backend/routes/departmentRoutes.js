@@ -9,9 +9,7 @@ function routes(Department) {
     router.use("", checkAuth);
 
     router.route("")
-        .post(controller.post);
-
-    router.route("/byUser")
+        .post(controller.post)
         .get(controller.getByUser);
 
     router.route("/:name")

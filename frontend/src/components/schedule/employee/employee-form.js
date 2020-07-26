@@ -67,7 +67,7 @@ const EmployeeForm = props => {
                 </h3>
                 :
                 <h3 className='centered'>
-                    {props.employeeInput.employeeId}: {props.employeeInput.name}
+                    {props.employeeInput.id}: {props.employeeInput.name}
                 </h3>
             }
             <form onSubmit={handleSubmit}>

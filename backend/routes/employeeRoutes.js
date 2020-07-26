@@ -16,3 +16,5 @@ function routes(User) {
 
     return router;
 }
+
+module.exports = routes;

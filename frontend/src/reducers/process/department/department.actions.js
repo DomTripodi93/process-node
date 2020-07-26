@@ -8,7 +8,7 @@ const helper = new helpers();
 
 export function fetchDepartments() {
     return dispatch => {
-        http.fetchAll("department/byUser")
+        http.fetchAll("department")
             .then((departments) => {
                 dispatch(setDepartments(departments));
             });
