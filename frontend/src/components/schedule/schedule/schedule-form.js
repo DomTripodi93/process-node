@@ -54,7 +54,10 @@ const ScheduledTaskForm = props => {
             setScheduledTaskInfo({ employeeId: props.employeeId })
         }
         if (props.scheduledTaskInput) {
-            setScheduledTaskInfo(props.scheduledTaskInput);
+            setScheduledTaskInfo({
+                ...props.scheduledTaskInput,
+                date: props.scheduledTaskInput.date.substring(0, 16)
+            });
             setOptions(options => {
                 return {
                     ...options,
