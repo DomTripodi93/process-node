@@ -31,12 +31,13 @@ const EmployeeForm = props => {
 
     useEffect(() => {
         if (props.editMode) {
+            let employeeInfoUpdate = {};
             Object.keys(props.employeeInput).forEach(key => {
-                if (props.employeeInput[key] !== null) {
-                    setEmployeeInfo({ [key]: props.employeeInput[key] });
+                if (props.employeeInput[key]) {
+                    employeeInfoUpdate[key] = props.employeeInput[key];
+                    setEmployeeInfo({...employeeInfo, ...employeeInfoUpdate});
                 }
             })
-            setEmployeeInfo(props.employeeInput);
         }
     }, [props])
 
@@ -87,14 +88,18 @@ const EmployeeForm = props => {
                     onChange={handleChange}
                     required
                 />
-                <FormInput
-                    label='Password'
-                    type='password'
-                    name='password'
-                    value={password}
-                    onChange={handleChange}
-                    required
-                />
+                {!props.editMode ?
+                    <FormInput
+                        label='Password'
+                        type='password'
+                        name='password'
+                        value={password}
+                        onChange={handleChange}
+                        required
+                    />
+                    :
+                    null
+                }
                 <FormSelect
                     label="Department"
                     name='deptName'
@@ -111,7 +116,7 @@ const EmployeeForm = props => {
                 />
                 <FormInput
                     label='Job Title'
-                    type='title'
+                    type='text'
                     name='title'
                     value={title}
                     onChange={handleChange}
