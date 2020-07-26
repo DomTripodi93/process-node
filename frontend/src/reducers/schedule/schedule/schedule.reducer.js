@@ -39,7 +39,7 @@ const scheduleReducer = (state = INITIAL_STATE, action) => {
             };
         case ScheduleActionTypes.EXTRACT_SCHEDULES:
             taskHold[dateWithEmployee] = taskHold[action.date].filter((value) => {
-                return value.employeeId === +action.employeeId;
+                return value.employeeId === action.employeeId;
             });
             selectedHold = taskHold[dateWithEmployee];
             return {
