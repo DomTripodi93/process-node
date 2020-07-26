@@ -16,6 +16,9 @@ function routes(Schedule) {
     router.route("/byUser/:month&:year&:day")
         .get(controller.getByUser);
 
+    router.route("/byEmployee/:employeeId&:month&:year&:day")
+        .get(controller.getByEmployee);
+
     router.route("/:_id")
         .get(controller.getById)
         .put(controller.put)
