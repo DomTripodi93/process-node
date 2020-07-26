@@ -58,6 +58,8 @@ function scheduleController(Schedule) {
                 return res.send(err);
             }
             let newSchedule = autoMapper(schedules[0], req.body);
+            const timeZoneOffset = (new Date).getTimezoneOffset() * 60000;
+            newSchedule.date = new Date((new Date(newSchedule.date) - timeZoneOffset));
             Schedule.updateOne(query, newSchedule)
                 .then(result => {
                     if (result.nModified > 0) {
