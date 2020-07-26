@@ -10,12 +10,18 @@ function authController (User) {
             ...req.body,
             password: hash
           });
-          user
-            .save()
+          user.save()
             .then(result => {
               return res.status(201).json({
                 message: "User created!",
-                result: result
+                result: {
+                    id: result._id,
+                    rootId: result.rootId,
+                    email: result.email,
+                    name: result.name,
+                    deptName: result.deptName,
+                    title: result.title,
+                    canEdit: result.canEdit,}
               });
             })
             .catch(err => {

@@ -11,7 +11,6 @@ export function fetchEmployees() {
     return dispatch => {
         http.fetchAll("employee")
             .then((employees) => {
-                console.log(employees)
                 dispatch(setEmployees(employees));
             });
     }
@@ -33,7 +32,8 @@ export function addEmployee(employee, callback) {
     return dispatch => {
         http.addItem("employee", employee)
             .then(addedEmployee => {
-                dispatch(addEmployeeToState(addedEmployee.data));
+                console.log(addedEmployee)
+                dispatch(addEmployeeToState(addedEmployee.data.result));
                 callback();
             });
     }

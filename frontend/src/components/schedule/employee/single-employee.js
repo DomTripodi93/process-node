@@ -33,7 +33,13 @@ const SingleEmployee = props => {
             <div className='border centered'>
                 {!editMode ?
                     <div>
-                        <h3>{props.employee.id}: {props.employee.name}</h3>
+                        <h3>{props.employee.id.substring(19)}: {props.employee.name}</h3>
+                        <hr/>
+                        {props.employee.email ?
+                            <h4>Email: {props.employee.email}</h4>
+                            :
+                            null
+                        }
                         {props.employee.title ?
                             <h4>Title: {props.employee.title}</h4>
                             :

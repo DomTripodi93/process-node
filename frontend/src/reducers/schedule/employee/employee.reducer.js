@@ -11,7 +11,6 @@ const employeeReducer = (state = INITIAL_STATE, action) => {
     let employeeHold = state.employees;
     switch (action.type) {
         case EmployeeActionTypes.SET_EMPLOYEES:
-            console.log(action.payload.data)
             action.payload.data.forEach(employee => {
                 mapHold[employee.id] = employee.name;
             });
