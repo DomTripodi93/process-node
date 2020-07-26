@@ -17,9 +17,9 @@ function commonDifficultyController(CommonDifficulty) {
     function getByStep(req, res) {
         const query = {
             userId: req.userId,
-            deptName: req.params.department,
-            objectiveName: req.params.objective,
-            stepNumber: req.params.step
+            deptName: req.params.deptName,
+            objectiveName: req.params.objectiveName,
+            stepNumber: req.params.stepNumber
         }
         CommonDifficulty.find(query, (err, commonDifficultys) => {
             if (err) {
@@ -32,7 +32,7 @@ function commonDifficultyController(CommonDifficulty) {
     function getById(req, res) {
         const query = {
             userId: req.userId,
-            _id: req.params.id
+            _id: req.params._id
         }
         CommonDifficulty.find(query, (err, commonDifficulty) => {
             if (err) {
@@ -45,7 +45,7 @@ function commonDifficultyController(CommonDifficulty) {
     function put(req, res) {
         let query = { 
             userId: req.userId,
-            _id: req.params.id
+            _id: req.params._id
         };
         CommonDifficulty.find(query, (err, commonDifficultys) => {
             if (err) {

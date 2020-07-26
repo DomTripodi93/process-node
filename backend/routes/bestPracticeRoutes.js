@@ -1,39 +1,25 @@
 const express = require('express');
 
 const bestPracticeController = require("../controllers/bestPracticeController");
+const deleteController = require("../controllers/deleteController");
 const checkAuth = require("../middleware/checkAuth");
 
 function routes(BestPractice) {
     const controller = bestPracticeController(BestPractice);
+    const controllerDelete = deleteController(BestPractice);
     const router = express.Router();
     router.use("", checkAuth);
 
     router.route("")
         .post(controller.post);
 
-    router.route("/byStep/:department&:objective&:step")
+    router.route("/byStep/:deptName&:objectiveName&:stepNumber")
         .get(controller.getByStep);
 
-    router.route("/:id")
-        .get(controller.getById);
-
-    router.route("/:id")
+    router.route("/:_id")
+        .get(controller.getById)
         .put(controller.put)
-
-    router.delete("/:id", (req, res) => {
-        BestPractice.deleteOne({ 
-            _id: req.params.id,
-            userId: req.userId 
-        }).then(
-            result => {
-                if (result.n > 0) {
-                    res.status(200).json({ message: "Deletion successful!" });
-                } else {
-                    res.status(500).json({ message: "Cannot Delete" });
-                }
-            }
-        );
-    })
+        .delete(controllerDelete.deleteOne);
 
     return router;
 }

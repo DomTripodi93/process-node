@@ -17,8 +17,8 @@ function stepController(Step) {
     function getByObjective(req, res) {
         const query = {
             userId: req.userId,
-            deptName: req.params.department,
-            objectiveName: req.params.objective
+            deptName: req.params.deptName,
+            objectiveName: req.params.objectiveName
         }
         Step.find(query, (err, steps) => {
             if (err) {
@@ -31,9 +31,9 @@ function stepController(Step) {
     function getByNumber(req, res) {
         const query = {
             userId: req.userId,
-            deptName: req.params.department,
-            objectiveName: req.params.objective,
-            stepNumber: req.params.step
+            deptName: req.params.deptName,
+            objectiveName: req.params.objectiveName,
+            stepNumber: req.params.stepNumber
         }
         Step.find(query, (err, step) => {
             if (err) {
@@ -46,9 +46,9 @@ function stepController(Step) {
     function put(req, res) {
         let query = { 
             userId: req.userId,
-            objectiveName: req.params.objective,
-            deptName: req.params.department,
-            stepNumber: req.params.step
+            deptName: req.params.deptName,
+            objectiveName: req.params.objectiveName,
+            stepNumber: req.params.stepNumber
         };
         Step.find(query, (err, steps) => {
             if (err) {

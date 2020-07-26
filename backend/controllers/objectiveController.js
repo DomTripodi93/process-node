@@ -17,7 +17,7 @@ function objectiveController(Objective) {
     function getByDepartment(req, res) {
         const query = {
             userId: req.userId,
-            deptName: req.params.department
+            deptName: req.params.deptName
         }
         Objective.find(query, (err, objectives) => {
             if (err) {
@@ -30,8 +30,8 @@ function objectiveController(Objective) {
     function getByName(req, res) {
         const query = {
             userId: req.userId,
-            objectiveName: req.params.objective,
-            deptName: req.params.department
+            objectiveName: req.params.objectiveName,
+            deptName: req.params.deptName
         }
         Objective.find(query, (err, objective) => {
             if (err) {
@@ -44,8 +44,8 @@ function objectiveController(Objective) {
     function put(req, res) {
         let query = { 
             userId: req.userId,
-            objectiveName: req.params.objective,
-            deptName: req.params.department
+            objectiveName: req.params.objectiveName,
+            deptName: req.params.deptName
         };
         Objective.find(query, (err, objectives) => {
             if (err) {

@@ -1,40 +1,25 @@
 const express = require('express');
 
 const objectiveController = require("../controllers/objectiveController");
+const deleteController = require("../controllers/deleteController");
 const checkAuth = require("../middleware/checkAuth");
 
 function routes(Objective) {
     const controller = objectiveController(Objective);
+    const controllerDelete = deleteController(Objective);
     const router = express.Router();
     router.use("", checkAuth);
 
     router.route("")
         .post(controller.post);
 
-    router.route("/byDepartment/:department")
+    router.route("/byDepartment/:deptName")
         .get(controller.getByDepartment);
 
-    router.route("/:department&:objective")
-        .get(controller.getByName);
-
-    router.route("/:department&:objective")
+    router.route("/:deptName&:objectiveName")
+        .get(controller.getByName)
         .put(controller.put)
-
-    router.delete("/:department&:objective", (req, res) => {
-        Objective.deleteOne({ 
-            deptName: req.params.department, 
-            objectiveName: req.params.objective, 
-            userId: req.userId 
-        }).then(
-            result => {
-                if (result.n > 0) {
-                    res.status(200).json({ message: "Deletion successful!" });
-                } else {
-                    res.status(500).json({ message: "Cannot Delete" });
-                }
-            }
-        );
-    })
+        .delete(controllerDelete.deleteOne);
 
     return router;
 }

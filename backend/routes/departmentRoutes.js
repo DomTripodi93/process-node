@@ -15,9 +15,7 @@ function routes(Department) {
         .get(controller.getByUser);
 
     router.route("/:deptName")
-        .get(controller.getByName);
-
-    router.route("/:deptName")
+        .get(controller.getByName)
         .put(controller.put)
         .delete(controllerDelete.deleteOne)
 

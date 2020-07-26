@@ -17,9 +17,9 @@ function bestPracticeController(BestPractice) {
     function getByStep(req, res) {
         const query = {
             userId: req.userId,
-            deptName: req.params.department,
-            objectiveName: req.params.objective,
-            stepNumber: req.params.step
+            deptName: req.params.deptName,
+            objectiveName: req.params.objectiveName,
+            stepNumber: req.params.stepNumber
         }
         BestPractice.find(query, (err, bestPractices) => {
             if (err) {
@@ -32,7 +32,7 @@ function bestPracticeController(BestPractice) {
     function getById(req, res) {
         const query = {
             userId: req.userId,
-            _id: req.params.id
+            _id: req.params._id
         }
         BestPractice.find(query, (err, bestPractice) => {
             if (err) {
@@ -45,7 +45,7 @@ function bestPracticeController(BestPractice) {
     function put(req, res) {
         let query = { 
             userId: req.userId,
-            _id: req.params.id
+            _id: req.params._id
         };
         BestPractice.find(query, (err, bestPractices) => {
             if (err) {
