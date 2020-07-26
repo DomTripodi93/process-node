@@ -15,18 +15,19 @@ function scheduleController(Schedule) {
     };
 
     function getByUser(req, res) {
-        const day = req.params.year + "-" + req.params.month + "-" + req.params.day
+        const day = [req.params.year, req.params.month - 1, req.params.day];
         const query = {
             userId: req.userId,
             date: {
-                $gte: new Date(new Date(day).setHours(00, 00, 00)),
-                $lt: new Date(new Date(day).setHours(23, 59, 59))
+                $gte: new Date(Date.UTC(...day, 00, 00, 00)),
+                $lt: new Date(Date.UTC(...day, 23, 59, 59))
             }
         }
         Schedule.find(query, (err, schedules) => {
             if (err) {
                 return res.send(err);
             }
+            console.log(schedules)
             return res.json(schedules);
         });
     };
