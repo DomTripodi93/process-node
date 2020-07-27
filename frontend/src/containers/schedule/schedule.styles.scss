@@ -1,4 +1,26 @@
 .today-border{
+    height: 12vw;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(111, 255, 123);
+
+    @media only screen and (max-width: 700px) {
+        height: 15vw;
+    }
+}
+
+.day-border{
+    height: 12vw;
+    border-style: solid;
+    border-color: black;
+    background-color: rgb(207, 181, 255);
+
+    @media only screen and (max-width: 700px) {
+        height: 15vw;
+    }
+}
+
+.today-border-employee{
     height: 20vw;
     border-style: solid;
     border-color: black;
@@ -9,13 +31,12 @@
     }
 }
 
-.day-border{
+.day-border-employee{
     height: 20vw;
     border-style: solid;
     border-color: black;
     background-color: rgb(207, 181, 255);
 
-  
     @media only screen and (min-width: 1000px) {
         height: 200px;
     }
