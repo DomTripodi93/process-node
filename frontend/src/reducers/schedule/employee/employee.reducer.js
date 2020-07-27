@@ -35,7 +35,7 @@ const employeeReducer = (state = INITIAL_STATE, action) => {
             employeeHold.push(action.payload)
             employeeHold = employeeHold
                 .sort((first, second) => {
-                    if (first.id > second.id) {
+                    if (first.name > second.name) {
                         return 1
                     } else {
                         return -1
