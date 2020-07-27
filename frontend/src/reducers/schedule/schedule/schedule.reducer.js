@@ -55,8 +55,6 @@ const scheduleReducer = (state = INITIAL_STATE, action) => {
                 taskHold[dateWithEmployee].push(dateWithEmployee);
                 taskHold[dateWithEmployee] = sortTasks(taskHold[dateWithEmployee]);
             }
-            selectedHold.push(action.payload);
-            selectedHold = sortTasks(selectedHold);
 
             return {
                 scheduledTasks: taskHold,
