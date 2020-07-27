@@ -7,6 +7,7 @@ function scheduleController(Schedule) {
         schedule.userId = req.userId;
         const timeZoneOffset = (new Date).getTimezoneOffset() * 60000;
         schedule.date = new Date((new Date(schedule.date) - timeZoneOffset));
+        schedule.status = "Scheduled"
         schedule.save((err) => {
             if (err) {
                 return res.send(err);
