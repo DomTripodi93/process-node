@@ -69,20 +69,20 @@ const ScheduleDayContainer = props => {
     const extractSchedules = props.extractScheduledTasksForEmployee;
 
     useEffect(() => {
-        let setFor = year + "/" + month + "/" + day;
+        let setFor = year + "-" + month + "-" + day;
         if (employeeId) {
-            let setForId = employeeId + "/" + setFor;
+            let setForId = employeeId + "-" + setFor;
             if (!scheduledTasks[setForId]) {
                 if (scheduledTasks[setFor]) {
                     extractSchedules(setFor, employeeId);
                 } else {
-                    fetchSchedulesForEmployee(employeeId, month, day, year);
+                    fetchSchedulesForEmployee(employeeId, setFor);
                 }
             } else {
                 selectSchedules(setForId);
             }
         } else if (!scheduledTasks[setFor]) {
-            fetchSchedulesForDate(month, day, year);
+            fetchSchedulesForDate(setFor);
         } else {
             selectSchedules(setFor);
         }

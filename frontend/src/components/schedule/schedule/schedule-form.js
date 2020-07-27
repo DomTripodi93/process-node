@@ -95,7 +95,7 @@ const ScheduledTaskForm = props => {
 
     const handleSubmit = async event => {
         event.preventDefault();
-        let date = props.year + "/" + props.month + "/" + props.day
+        let date = props.year + "-" + props.month + "-" + props.day
 
         if (props.editMode) {
             if (scheduledTaskInfo !== props.scheduledTaskInput) {
@@ -207,11 +207,11 @@ const ScheduledTaskForm = props => {
 
 
 const mapDispatchToProps = dispatch => ({
-    addScheduledTask: (scheduledTask, callback) => {
-        dispatch(addScheduledTask(scheduledTask, callback))
+    addScheduledTask: (scheduledTask, callback, date, employeeId) => {
+        dispatch(addScheduledTask(scheduledTask, callback, date, employeeId))
     },
-    updateScheduledTask: (scheduledTask, callback) => {
-        dispatch(updateScheduledTask(scheduledTask, callback))
+    updateScheduledTask: (scheduledTask, callback, date, employeeId) => {
+        dispatch(updateScheduledTask(scheduledTask, callback, date, employeeId))
     }
 });
 

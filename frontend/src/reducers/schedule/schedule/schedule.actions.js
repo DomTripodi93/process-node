@@ -4,21 +4,21 @@ import ScheduleActionTypes from './schedule.types';
 
 const http = new rootHttp();
 
-export function fetchSchedulesByDate(month, day, year) {
+export function fetchSchedulesByDate(date) {
     return dispatch => {
-        http.fetchAll("schedule/byUser/" + month + "&" + year + "&" + day)
+        http.fetchAll("schedule/byUser/" + date)
             .then((schedules) => {
-                dispatch(setSchedules(schedules, year + "/" + month + "/" + day));
+                dispatch(setSchedules(schedules, date));
             });
     }
 }
 //Gets all schedules for a specific day
 
-export function fetchSchedulesByEmployee(employeeId, month, day, year) {
+export function fetchSchedulesByEmployee(employeeId, date) {
     return dispatch => {
-        http.fetchAll("schedule/byEmployee/" + employeeId + "&" + month + "&" + year + "&" + day)
+        http.fetchAll("schedule/byEmployee/" + employeeId + "&" + date)
             .then((schedules) => {
-                dispatch(setSchedules(schedules, employeeId + "/" + year + "/" + month + "/" + day));
+                dispatch(setSchedules(schedules, employeeId + "-" + date));
             });
     }
 }
