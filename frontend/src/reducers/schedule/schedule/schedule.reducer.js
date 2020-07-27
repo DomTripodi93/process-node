@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 const scheduleReducer = (state = INITIAL_STATE, action) => {
     let taskHold = state.scheduledTasks;
     let selectedHold = state.selectedScheduledTasks;
-    let dateWithEmployee = action.employeeId + "/" + action.date;
+    let dateWithEmployee = action.employeeId + "-" + action.date;
     const filterTasks = (taskArray, id) => {
         return taskArray.filter((value) => {
             return value._id !== id;
@@ -52,13 +52,13 @@ const scheduleReducer = (state = INITIAL_STATE, action) => {
                 taskHold[action.date] = sortTasks(taskHold[action.date]);
             }
             if (taskHold[dateWithEmployee]) {
-                taskHold[dateWithEmployee].push(dateWithEmployee);
+                taskHold[dateWithEmployee].push(action.payload);
                 taskHold[dateWithEmployee] = sortTasks(taskHold[dateWithEmployee]);
             }
 
             return {
-                scheduledTasks: taskHold,
-                selectedScheduledTasks: selectedHold
+                ...state,
+                scheduledTasks: taskHold
             };
         case ScheduleActionTypes.UPDATE_SCHEDULES:
             if (taskHold[action.date]) {

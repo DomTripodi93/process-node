@@ -51,7 +51,7 @@ const ScheduledTaskForm = props => {
 
     useEffect(() => {
         if (props.employeeId) {
-            setScheduledTaskInfo({ employeeId: props.employeeId })
+            setScheduledTaskInfo({ ...scheduledTaskInfo, employeeId: props.employeeId })
         }
         if (props.scheduledTaskInput) {
             setScheduledTaskInfo({
@@ -110,6 +110,7 @@ const ScheduledTaskForm = props => {
 
     const handleChange = event => {
         const { name, value } = event.target;
+        console.log(scheduledTaskInfo)
 
         if (name === "deptName") {
             setOptions({ ...options, objectiveOptions: objectiveOptionSets[value] })
