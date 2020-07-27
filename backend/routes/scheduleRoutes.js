@@ -14,10 +14,10 @@ function routes(Schedule) {
         .post(controller.post)
     
     router.route("/byUser/:month&:year&:day")
-        .get(controller.getByUser);
+        .get(controller.getByDay);
 
     router.route("/byEmployee/:employeeId&:month&:year&:day")
-        .get(controller.getByEmployee);
+        .get(controller.getByEmployeeDay);
 
     router.route("/:_id")
         .get(controller.getById)

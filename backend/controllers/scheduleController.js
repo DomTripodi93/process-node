@@ -17,14 +17,23 @@ function scheduleController(Schedule) {
         });
     };
 
-    function getByUser(req, res) {
-        const day = [req.params.year, req.params.month - 1, req.params.day]
+    function getDateRange(startDate, endDate) {
+        const startInfo = startDate.split("-");
+        startInfo[1] -= 1;
+        const endInfo = endDate.split("-");
+        endInfo[1] -= 1;
+
+        return {
+            $gte: new Date(Date.UTC(...startInfo, 00, 00, 00)),
+            $lt: new Date(Date.UTC(...endInfo, 23, 59, 59))
+        }
+    }
+
+    function getByDay(req, res) {
+        const day = req.params.year + "-" + req.params.month + "-" + req.params.day;
         const query = {
             userId: req.userId,
-            date: {
-                $gte: new Date(Date.UTC(...day, 00, 00, 00)),
-                $lt: new Date(Date.UTC(...day, 23, 59, 59))
-            }
+            date: getDateRange(day, day)
         }
         Schedule.find(query)
             .sort({date: 1})
@@ -36,14 +45,11 @@ function scheduleController(Schedule) {
         });
     };
 
-    function getByEmployee(req, res) {
-        const day = [req.params.year, req.params.month - 1, req.params.day]
+    function getByEmployeeDay(req, res) {
+        const day = req.params.year + "-" + req.params.month + "-" + req.params.day;
         const query = {
             userId: req.userId,
-            date: {
-                $gte: new Date(Date.UTC(...day, 00, 00, 00)),
-                $lt: new Date(Date.UTC(...day, 23, 59, 59))
-            },
+            date: getDateRange(day, day),
             employeeId: req.params.employeeId
         }
         Schedule.find(query)
@@ -56,15 +62,12 @@ function scheduleController(Schedule) {
         });
     };
 
-    function getByMonth(req, res) {
-        const startDay = [req.params.year, req.params.month - 1, 1]
-        const endDay = [req.params.year, req.params.month - 1, req.params.day]
+    function getByEmployeeMonth(req, res) {
+        const startDay =  req.params.year + "-" + req.params.month + "-" + 1;
+        const endDay =  req.params.year + "-" + req.params.month + "-" + req.params.day;
         const query = {
             employeeId: req.userId,
-            date: {
-                $gte: new Date(Date.UTC(...startDay, 00, 00, 00)),
-                $lt: new Date(Date.UTC(...endDay, 23, 59, 59))
-            }
+            date: getDateRange(startDay, endDay)
         }
         Schedule.find(query)
             .sort({date: 1})
@@ -113,7 +116,7 @@ function scheduleController(Schedule) {
     }
 
 
-    return { post, getByUser, getByEmployee, getByMonth, getById, put };
+    return { post, getByDay, getByEmployeeDay, getByEmployeeMonth, getById, put };
 }
 
 module.exports = scheduleController;
