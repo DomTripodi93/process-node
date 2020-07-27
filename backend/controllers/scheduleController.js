@@ -56,6 +56,26 @@ function scheduleController(Schedule) {
         });
     };
 
+    function getByMonth(req, res) {
+        const startDay = [req.params.year, req.params.month - 1, 1]
+        const endDay = [req.params.year, req.params.month - 1, req.params.day]
+        const query = {
+            employeeId: req.userId,
+            date: {
+                $gte: new Date(Date.UTC(...startDay, 00, 00, 00)),
+                $lt: new Date(Date.UTC(...endDay, 23, 59, 59))
+            }
+        }
+        Schedule.find(query)
+            .sort({date: 1})
+            .exec((err, schedules) => {
+            if (err) {
+                return res.send(err);
+            }
+            return res.json(schedules);
+        });
+    };
+
     function getById(req, res) {
         const query = {
             userId: req.userId,
@@ -93,7 +113,7 @@ function scheduleController(Schedule) {
     }
 
 
-    return { post, getByUser, getByEmployee, getById, put };
+    return { post, getByUser, getByEmployee, getByMonth, getById, put };
 }
 
 module.exports = scheduleController;
