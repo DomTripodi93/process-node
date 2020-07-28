@@ -11,7 +11,7 @@ function routes(Schedule) {
     router.use("", checkAuth);
 
     router.route("")
-        .post(controller.post)
+        .post(controller.post);
     
     router.route("/byUser/:date")
         .get(controller.getByDay);
@@ -22,13 +22,16 @@ function routes(Schedule) {
     router.route("/:_id")
         .get(controller.getById)
         .put(controller.put)
-        .delete(controllerDelete.deleteOne)
+        .delete(controllerDelete.deleteOne);
 
     router.route("/employeeDay/:date")
-        .get(controller.getByDayForEmployee)
+        .get(controller.getByDayForEmployee);
 
     router.route("/employeeMonth/:date")
-        .get(controller.getByMonthForEmployee)
+        .get(controller.getByMonthForEmployee);
+    
+    router.route("/employeeStatus/:id&:status")
+        .put(controller.putStatus);
 
     return router;
 }
