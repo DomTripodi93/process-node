@@ -62,25 +62,6 @@ function scheduleController(Schedule) {
         });
     };
 
-    function getByEmployeeMonth(req, res) {
-        const startDayArr =  req.params.date.split("-");
-        startDayArr[2] = 1;
-        const startDay = startDayArr.join("-");
-        const endDay =  req.params.date;
-        const query = {
-            employeeId: req.userId,
-            date: getDateRange(startDay, endDay)
-        }
-        Schedule.find(query)
-            .sort({date: 1})
-            .exec((err, schedules) => {
-            if (err) {
-                return res.send(err);
-            }
-            return res.json(schedules);
-        });
-    };
-
     function getById(req, res) {
         const query = {
             userId: req.userId,
@@ -103,10 +84,10 @@ function scheduleController(Schedule) {
             if (err) {
                 return res.send(err);
             }
-            let newSchedule = autoMapper(schedules[0], req.body);
+            let scheduleForUpdate = autoMapper(schedules[0], req.body);
             const timeZoneOffset = (new Date).getTimezoneOffset() * 60000;
-            newSchedule.date = new Date((new Date(newSchedule.date) - timeZoneOffset));
-            Schedule.updateOne(query, newSchedule)
+            scheduleForUpdate.date = new Date((new Date(scheduleForUpdate.date) - timeZoneOffset));
+            Schedule.updateOne(query, scheduleForUpdate)
                 .then(result => {
                     if (result.nModified > 0) {
                         return res.status(200).json({ message: "Update Successful" });
@@ -117,8 +98,57 @@ function scheduleController(Schedule) {
         });
     }
 
+    const rootScheduleFunctions = {
+        post,
+        getByDay,
+        getByEmployeeDay,
+        getById,
+        put
+    };
 
-    return { post, getByDay, getByEmployeeDay, getByEmployeeMonth, getById, put };
+    //Below functions for employee use
+
+    function getByMonthForEmployee(req, res) {
+        const startDayArr =  req.params.date.split("-");
+        startDayArr[2] = 1;
+        const startDay = startDayArr.join("-");
+        const endDay =  req.params.date;
+        const query = {
+            employeeId: req.userId,
+            date: getDateRange(startDay, endDay)
+        }
+        Schedule.find(query)
+            .sort({date: 1})
+            .exec((err, schedules) => {
+            if (err) {
+                return res.send(err);
+            }
+            return res.json(schedules);
+        });
+    };
+
+    function getByDayForEmployee(req, res) {
+        const day = req.params.date;
+        const query = {
+            employeeId: req.userId,
+            date: getDateRange(day, day)
+        }
+        Schedule.find(query)
+            .sort({date: 1})
+            .exec((err, schedules) => {
+            if (err) {
+                return res.send(err);
+            }
+            return res.json(schedules);
+        });
+    };
+
+    const employeeScheduleFunctions = {
+        getByMonthForEmployee,
+        getByDayForEmployee
+    };
+
+    return { ...rootScheduleFunctions, ...employeeScheduleFunctions };
 }
 
 module.exports = scheduleController;
