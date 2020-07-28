@@ -24,6 +24,12 @@ function routes(Schedule) {
         .put(controller.put)
         .delete(controllerDelete.deleteOne)
 
+    router.route("/employeeDay/:date")
+        .get(controller.getByDayForEmployee)
+
+    router.route("/employeeMonth/:date")
+        .get(controller.getByMonthForEmployee)
+
     return router;
 }
 
