@@ -143,9 +143,32 @@ function scheduleController(Schedule) {
         });
     };
 
+    function putStatus(req, res) {
+        const query = {
+            employeeId: req.userId,
+            _id: req.params.id,
+        }
+        Schedule.find(query, (err, schedules) => {
+            if (err) {
+                return res.send(err);
+            }
+            let scheduleForUpdate = schedules[0];
+            scheduleForUpdate.status = req.params.status;
+            Schedule.updateOne(query, scheduleForUpdate)
+                .then(result => {
+                    if (result.nModified > 0) {
+                        return res.status(200).json({ message: "Update Successful" });
+                    } else {
+                        return res.status(500).json({ message: "No Changes" });
+                    }
+                });
+        });
+    };
+
     const employeeScheduleFunctions = {
         getByMonthForEmployee,
-        getByDayForEmployee
+        getByDayForEmployee,
+        putStatus
     };
 
     return { ...rootScheduleFunctions, ...employeeScheduleFunctions };
