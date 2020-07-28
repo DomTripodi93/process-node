@@ -56,6 +56,10 @@ export function deleteSchedule(id, date, employeeId) {
 }
 //Deletes selected schedule
 
+
+//Below functions are for managing local state
+
+
 export function addScheduleToState(schedule, date, employeeId) {
     return {
         type: ScheduleActionTypes.ADD_SCHEDULE,
@@ -117,3 +121,38 @@ export function extractScheduledTasksForEmployee(date, employeeId) {
         employeeId
     }
 }
+
+
+//Below functions are for Employee User
+
+
+export function fetchSchedulesByMonth(date) {
+    return dispatch => {
+        http.fetchAll("schedule/employeeMonth/" + date)
+            .then((schedules) => {
+                dispatch(setSchedules(schedules, date.split("-")[1]));
+            });
+    }
+}
+//Gets all schedules for a specific day
+
+export function fetchSchedulesByEmployeeDay(date) {
+    return dispatch => {
+        http.fetchAll("schedule/employeeDay/" + date)
+            .then((schedules) => {
+                dispatch(setSchedules(schedules, date));
+            });
+    }
+}
+//Gets all schedules for a specific day
+
+export function updateScheduledTaskStatus(schedule, callback, status, date) {
+    return dispatch => {
+        http.updateItem("schedule", schedule, schedule._id + "&" + status)
+            .then(() => {
+                dispatch(updateSchedulesInState(schedule, date));
+                callback();
+            });
+    }
+}
+//Updates schedule in database
