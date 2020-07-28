@@ -110,7 +110,6 @@ const ScheduledTaskForm = props => {
 
     const handleChange = event => {
         const { name, value } = event.target;
-        console.log(scheduledTaskInfo)
 
         if (name === "deptName") {
             setOptions({ ...options, objectiveOptions: objectiveOptionSets[value] })
