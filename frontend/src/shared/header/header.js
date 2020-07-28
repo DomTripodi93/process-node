@@ -11,6 +11,9 @@ const Header = props => {
     const [authValue, setAuthValue] = useState(props.isAuthenticated);
     const [rootValue, setRootValue] = useState(props.isRoot);
     const [dropDownHidden, toggleDropDownHidden] = useState(props.hidden);
+    const date = new Date();
+    const today = "/day/" + (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+    console.log(today)
 
     const toggleDropDown = () => {
         if (dropDownHidden) {
@@ -74,6 +77,9 @@ const Header = props => {
                             <div className='routes'>
                                 <Link to='/' className='route'>
                                     Home
+                                </Link>
+                                <Link to={today} className='route'>
+                                    Today
                                 </Link>
                             </div>
                             <div className='edge'>
