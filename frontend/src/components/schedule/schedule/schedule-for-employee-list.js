@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SingleScheduledTask from './single-scheduled-task';
 import CustomButton from '../../../shared/elements/button/custom-button.component';
+import ScheduleDetail from './schedule-detail';
 
 const ScheduleForEmployeeList = props => {
     const [detailsShown, setDetailsShown] = useState({})
@@ -32,9 +33,8 @@ const ScheduleForEmployeeList = props => {
                     key={scheduledTask._id}
                     className="grid-one-employee-user-button size-holder middle">
                     {detailsShown[scheduledTask._id] ?
-                        <div>  
-                            details
-                        </div>
+                        <ScheduleDetail 
+                            scheduledTask={scheduledTask}/>
                         :
                         <SingleScheduledTask
                             objectives={props.objectives}

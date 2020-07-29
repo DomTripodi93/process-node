@@ -63,8 +63,24 @@ function objectiveController(Objective) {
         });
     }
 
+    //Below functions for employee use
 
-    return { post, getByDepartment, getByName, put };
+    function getForEmployee(req, res) {
+        const query = {
+            userId: req.rootId,
+            objectiveName: req.params.objectiveName,
+            deptName: req.params.deptName
+        }
+        Objective.find(query, (err, objective) => {
+            if (err) {
+                return res.send(err);
+            }
+            return res.json(objective[0]);
+        });
+    }
+
+
+    return { post, getByDepartment, getByName, put, getForEmployee };
 }
 
 module.exports = objectiveController;
