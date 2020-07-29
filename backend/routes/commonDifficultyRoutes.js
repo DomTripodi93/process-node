@@ -21,6 +21,9 @@ function routes(CommonDifficulty) {
         .put(controller.put)
         .delete(controllerDelete.deleteOne);
 
+    router.route("/forEmployee/:deptName&:objectiveName&:stepNumber")
+        .get(controller.getForEmployee);
+
     return router;
 }
 

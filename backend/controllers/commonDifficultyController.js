@@ -21,11 +21,11 @@ function commonDifficultyController(CommonDifficulty) {
             objectiveName: req.params.objectiveName,
             stepNumber: req.params.stepNumber
         }
-        CommonDifficulty.find(query, (err, commonDifficultys) => {
+        CommonDifficulty.find(query, (err, commonDifficulties) => {
             if (err) {
                 return res.send(err);
             }
-            return res.json(commonDifficultys);
+            return res.json(commonDifficulties);
         });
     };
 
@@ -47,11 +47,11 @@ function commonDifficultyController(CommonDifficulty) {
             userId: req.userId,
             _id: req.params._id
         };
-        CommonDifficulty.find(query, (err, commonDifficultys) => {
+        CommonDifficulty.find(query, (err, commonDifficulties) => {
             if (err) {
                 return res.send(err);
             }
-            let newCommonDifficulty = autoMapper(commonDifficultys[0], req.body);
+            let newCommonDifficulty = autoMapper(commonDifficulties[0], req.body);
             CommonDifficulty.updateOne(query, newCommonDifficulty)
                 .then(result => {
                     if (result.nModified > 0) {
@@ -63,8 +63,25 @@ function commonDifficultyController(CommonDifficulty) {
         });
     }
 
+    //Below functions for employee use
 
-    return { post, getByStep, getById, put };
+    function getForEmployee(req, res) {
+        const query = {
+            userId: req.rootId,
+            deptName: req.params.deptName,
+            objectiveName: req.params.objectiveName,
+            stepNumber: req.params.stepNumber
+        }
+        CommonDifficulty.find(query, (err, commonDifficulties) => {
+            if (err) {
+                return res.send(err);
+            }
+            return res.json(commonDifficulties);
+        });
+    };
+
+
+    return { post, getByStep, getById, put, getForEmployee };
 }
 
 module.exports = commonDifficultyController;
