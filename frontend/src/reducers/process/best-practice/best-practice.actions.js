@@ -93,3 +93,27 @@ function prepBestPracticeValues(bestPractice) {
 
     return bestPractice;
 }
+
+
+//Below functions are for Employee User
+
+
+export function fetchBestPracticesForEmployee(deptName, objectiveName, stepNumber) {
+    const params = deptName + "&" + objectiveName + "&" + stepNumber;
+    return dispatch => {
+        http.fetchAll("bestPractice/forEmployee/" + params)
+            .then((bestPractices) => {
+                dispatch(setBestPracticesByStep(bestPractices, params));
+            });
+    }
+}
+//Gets all commonDifficulties for a specific department
+
+export function setBestPracticesByStep(bestPractices, key) {
+    return {
+        type: BestPracticeActionTypes.SET_BEST_PRACTICES_BY_STEP,
+        payload: bestPractices,
+        key
+    }
+}
+//Sets commonDifficulties with step as key in state
