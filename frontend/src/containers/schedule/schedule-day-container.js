@@ -197,8 +197,8 @@ const ScheduleDayContainer = props => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchSchedulesByEmployee: (employeeId, month, day, year) => dispatch(fetchSchedulesByEmployee(employeeId, month, day, year)),
-        fetchSchedulesByDate: (month, day, year) => dispatch(fetchSchedulesByDate(month, day, year)),
+        fetchSchedulesByEmployee: (employeeId, date) => dispatch(fetchSchedulesByEmployee(employeeId, date)),
+        fetchSchedulesByDate: (date) => dispatch(fetchSchedulesByDate(date)),
         fetchDepartments: () => dispatch(fetchDepartments()),
         fetchObjectivesByDepartment: (deptName) => dispatch(fetchObjectivesByDepartment(deptName)),
         fetchEmployees: () => dispatch(fetchEmployees()),

@@ -35,7 +35,9 @@ const EmployeeForm = props => {
             Object.keys(props.employeeInput).forEach(key => {
                 if (props.employeeInput[key]) {
                     employeeInfoUpdate[key] = props.employeeInput[key];
-                    setEmployeeInfo({...employeeInfo, ...employeeInfoUpdate});
+                    setEmployeeInfo(employeeInfo => {
+                        return { ...employeeInfo, ...employeeInfoUpdate }
+                    });
                 }
             })
         }

@@ -5,6 +5,7 @@ import ScheduledTaskForm from './schedule-form';
 import ScheduleNone from './schedule-none';
 import ScheduleEmployeeList from './schedule-employee-list';
 import ScheduleList from './schedule-list';
+import ScheduleForEmployeeList from './schedule-for-employee-list';
 
 
 const ScheduleDay = props => {
@@ -77,7 +78,16 @@ const ScheduleDay = props => {
                             }
                         </div>
                         :
-                        null
+                        <ScheduleForEmployeeList
+                            scheduledTasks={props.scheduledTasks}
+                            objectives={props.objectives}
+                            employeeMap={props.employeeMap}
+                            employeeId={props.employeeId}
+                            year={props.year}
+                            month={props.month}
+                            day={props.day}
+                            handleEdit={setEditMode}
+                            handleDelete={handleDelete}/>
                     }
                 </div>
                 :

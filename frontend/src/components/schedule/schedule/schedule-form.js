@@ -51,7 +51,9 @@ const ScheduledTaskForm = props => {
 
     useEffect(() => {
         if (props.employeeId) {
-            setScheduledTaskInfo({ ...scheduledTaskInfo, employeeId: props.employeeId })
+            setScheduledTaskInfo(taskInfo => {
+                return { ...taskInfo, employeeId: props.employeeId }
+            });
         }
         if (props.scheduledTaskInput) {
             setScheduledTaskInfo({
