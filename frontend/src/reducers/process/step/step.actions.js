@@ -128,3 +128,17 @@ function prepStepValues(step) {
 
     return step;
 }
+
+
+//Below functions are for Employee User
+
+
+export function fetchStepsForEmployee(deptName, objectiveName) {
+    return dispatch => {
+        http.fetchAll("step/forEmployee/" + deptName + "&" + objectiveName)
+            .then((steps) => {
+                dispatch(setSteps(steps, deptName, objectiveName));
+            });
+    }
+}
+//Gets all steps for a specific department for Employee User

@@ -144,7 +144,7 @@ function prepObjectiveValues(objective) {
 
 export function getSingleObjectiveForEmployee(objectiveName, deptName, taskId) {
     return dispatch => {
-        http.fetchByValue("objective/forEmployee", deptName + "&" + objectiveName)
+        http.fetchByValue("objective/forEmployee/", deptName + "&" + objectiveName)
             .then((objective) => {
                 dispatch(setObjectives(objective.data, taskId));
             });
