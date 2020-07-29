@@ -8,6 +8,7 @@ import ScheduleList from './schedule-list';
 
 
 const ScheduleDay = props => {
+    console.log(props.scheduledTasks)
     const [editMode, updateEditMode] = useState(false);
     const [selectedTask, setSelectedTask] = useState("");
 

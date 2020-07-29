@@ -23,6 +23,7 @@ const SingleStepContainer = lazy(() => import('./containers/process/single-step-
 const EmployeeContainer = lazy(() => import('./containers/schedule/employee-container'));
 const ScheduleDayContainer = lazy(() => import('./containers/schedule/schedule-day-container'));
 const ScheduleContainer = lazy(() => import('./containers/schedule/schedule-container'));
+const ScheduleEmployeeDayContainer = lazy(() => import('./containers/schedule/schedule-employee-day-container'));
 
 
 
@@ -61,7 +62,11 @@ const App = (props) => {
               <Route exact path='/employees' component={EmployeeContainer} />
               <Route exact path='/schedule' component={ScheduleContainer} />
               <Route path='/schedule/:employeeId' component={ScheduleContainer} />
-              <Route exact path='/day/:month/:day/:year' component={ScheduleDayContainer} />
+              {props.isRoot ?
+                <Route exact path='/day/:month/:day/:year' component={ScheduleDayContainer} />
+                :
+                <Route exact path='/day/:month/:day/:year' component={ScheduleEmployeeDayContainer} />
+              }
               <Route path='/day/:employeeId/:month/:day/:year' component={ScheduleDayContainer} />
             </Switch>
           </Suspense>
@@ -87,7 +92,8 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.user.isAuthenticated
+  isAuthenticated: state.user.isAuthenticated,
+  isRoot: state.user.isRoot
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

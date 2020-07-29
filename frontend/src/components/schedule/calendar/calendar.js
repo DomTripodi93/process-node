@@ -31,7 +31,7 @@ const Calendar = props => {
 
     function countTasksForDay (tasks) {
         if (tasks.length > 0){
-            let tasksHold = {...tasksForDay};
+            let tasksHold = {};
             tasks.forEach(task => {
                 let day = task.date.substring(8,10);
                 if (tasksHold[+day]){

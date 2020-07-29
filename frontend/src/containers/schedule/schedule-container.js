@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from '../../components/schedule/calendar/calendar';
 import CalendarNew from '../../components/schedule/calendar/calendar-new';
-import { fetchSchedulesByMonth } from '../../reducers/schedule/schedule/schedule.actions';
+import { fetchSchedulesByMonth, selectSchedulesInState } from '../../reducers/schedule/schedule/schedule.actions';
 import { connect } from 'react-redux';
 
 import './schedule.styles.scss';
@@ -22,16 +22,20 @@ const ScheduleContainer = props => {
     const dateForCall = new Date(date.getFullYear(), (date.getMonth() + 1), 0)
     const dayForCall = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + dateForCall.getDate();
     const scheduledTasks = props.scheduledTasks;
+    const selectSchedules = props.selectSchedulesInState;
     const fetchSchedules = props.fetchSchedulesByMonth;
     const isRoot = props.isRoot;
 
     useEffect(() => {
         if (!isRoot && !scheduledTasks[thisMonth + 1]) {
             fetchSchedules(dayForCall);
+        } else if (!isRoot && scheduledTasks[thisMonth + 1]) {
+            selectSchedules(thisMonth + 1)
         }
     }, [
         scheduledTasks,
         fetchSchedules,
+        selectSchedules,
         dayForCall,
         thisMonth,
         isRoot
@@ -57,7 +61,8 @@ const ScheduleContainer = props => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchSchedulesByMonth: (date) => dispatch(fetchSchedulesByMonth(date))
+        fetchSchedulesByMonth: (date) => dispatch(fetchSchedulesByMonth(date)),
+        selectSchedulesInState: (date) => dispatch(selectSchedulesInState(date))
     }
 }
 

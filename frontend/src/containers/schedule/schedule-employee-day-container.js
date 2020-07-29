@@ -22,6 +22,7 @@ const ScheduleEmployeeDayContainer = props => {
 
     const departments = props.departments;
     const deptCalled = props.deptCalled;
+    const objectives = props.objectives;
     const objCalled = props.objCalled;
     const fetchAllDepartments = props.fetchDepartments;
     const fetchObjectivesForDepartment = props.fetchObjectivesByDepartment;
@@ -33,9 +34,7 @@ const ScheduleEmployeeDayContainer = props => {
             departments.forEach(dept => {
                 fetchObjectivesForDepartment(dept.deptName);
             })
-        } else if (departments.length === 0) {
-            setNeededDataState(false);
-        }
+        } 
     }, [
         departments,
         fetchAllDepartments,
@@ -108,7 +107,9 @@ const ScheduleEmployeeDayContainer = props => {
                 year={year}
                 month={month}
                 day={day}
-                isRoot={props.isRoot} />
+                isRoot={props.isRoot}
+                departments={departments}
+                objectives={objectives} />
             <br />
             <ScheduleDayChanger
                 action={changeDay} />
