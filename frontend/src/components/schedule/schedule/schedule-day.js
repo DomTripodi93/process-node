@@ -4,6 +4,7 @@ import CustomButton from '../../../shared/elements/button/custom-button.componen
 import { connect } from 'react-redux';
 import { deleteSchedule } from '../../../reducers/schedule/schedule/schedule.actions';
 import ScheduledTaskForm from './schedule-form';
+import ScheduleNone from './schedule-none';
 
 
 
@@ -139,36 +140,17 @@ const ScheduleDay = props => {
                     }
                 </div>
                 :
-                <div>
-                    {props.employeeId ?
-                        <div className="border centered">
-                            <h4 className="spaced">
-                                You currently don't have any scheduled tasks
-                                for {props.employeeMap[props.employeeId]} on {props.month}
-                                -{props.day}-{props.year}!
-                            </h4>
-                            <h4 className="spaced">
-                                Add some scheduled tasks using the button above to
-                                see them here.
-                            </h4>
-                        </div>
-                        :
-                        <div className="border centered">
-                            <h4 className="spaced">
-                                You currently don't have any scheduled tasks
-                                for {props.month}-{props.day}-{props.year}!
-                            </h4>
-                            <h4 className="spaced">
-                                Add some scheduled tasks using the button above to
-                                see them here.
-                            </h4>
-                        </div>
-                    }
-                </div>
+                <ScheduleNone
+                    employeeId={props.employeeId}
+                    employeeMap={props.employeeMap}
+                    month={props.month}
+                    day={props.day}
+                    year={props.year} />
             }
         </div>
     )
 }
+
 
 const mapDispatchToProps = dispatch => {
     return {
