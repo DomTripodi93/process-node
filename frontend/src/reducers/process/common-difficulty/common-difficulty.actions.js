@@ -94,3 +94,27 @@ function prepCommonDifficultyValues(commonDifficulty) {
 
     return commonDifficulty;
 }
+
+
+//Below functions are for Employee User
+
+
+export function fetchCommonDifficultiesForEmployee(deptName, objectiveName, stepNumber) {
+    const params = deptName + "&" + objectiveName + "&" + stepNumber;
+    return dispatch => {
+        http.fetchAll("commonDifficulty/forEmployee/" + params)
+            .then((commonDifficulties) => {
+                dispatch(setCommonDifficultiesByStep(commonDifficulties));
+            });
+    }
+}
+//Gets all commonDifficulties for a specific department
+
+export function setCommonDifficultiesByStep(commonDifficulties, key) {
+    return {
+        type: CommonDifficultyActionTypes.SET_COMMON_DIFFICULTIES_BY_STEP,
+        payload: commonDifficulties,
+        key
+    }
+}
+//Sets commonDifficulties with step as key in state

@@ -1,16 +1,24 @@
 import CommonDifficultyActionTypes from './common-difficulty.types';
 
 const INITIAL_STATE = {
-    commonDifficulties: []
+    commonDifficulties: [],
+    commonDifficultiesByStep: {}
 }
 
 const commonDifficultyReducer = (state = INITIAL_STATE, action) => {
+    let commonDifficultiesHold = { ...state.commonDifficultiesByStep }
     switch (action.type) {
         case CommonDifficultyActionTypes.SET_COMMON_DIFFICULTIES:
             return {
                 ...state,
                 commonDifficulties: action.payload.data
             };
+        case CommonDifficultyActionTypes.SET_COMMON_DIFFICULTIES_BY_STEP:
+            commonDifficultiesHold[action.key] = action.payload;
+            return {
+                ...state,
+                commonDifficultiesByStep: commonDifficultiesHold
+            }
         case CommonDifficultyActionTypes.ADD_COMMON_DIFFICULTY:
             return {
                 ...state,
