@@ -63,8 +63,25 @@ function bestPracticeController(BestPractice) {
         });
     }
 
+    //Below functions for employee use
 
-    return { post, getByStep, getById, put };
+    function getForEmployee(req, res) {
+        const query = {
+            userId: req.rootId,
+            deptName: req.params.deptName,
+            objectiveName: req.params.objectiveName,
+            stepNumber: req.params.stepNumber
+        }
+        BestPractice.find(query, (err, bestPractices) => {
+            if (err) {
+                return res.send(err);
+            }
+            return res.json(bestPractices);
+        });
+    };
+
+
+    return { post, getByStep, getById, put, getForEmployee };
 }
 
 module.exports = bestPracticeController;
