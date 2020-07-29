@@ -13,7 +13,6 @@ const Header = props => {
     const [dropDownHidden, toggleDropDownHidden] = useState(props.hidden);
     const date = new Date();
     const today = "/day/" + (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
-    console.log(today)
 
     const toggleDropDown = () => {
         if (dropDownHidden) {
