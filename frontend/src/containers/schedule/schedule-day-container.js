@@ -14,6 +14,7 @@ import { fetchObjectivesByDepartment } from '../../reducers/process/objective/ob
 import { fetchEmployees } from '../../reducers/schedule/employee/employee.actions';
 
 import './schedule.styles.scss';
+import ScheduleDayChanger from '../../components/schedule/schedule/schedule-day-changer';
 
 
 const ScheduleDayContainer = props => {
@@ -186,9 +187,13 @@ const ScheduleDayContainer = props => {
                 day={day}
                 employeeMap={employeeMap}
                 hasNeededData={hasNeededData} />
+            <br />
+            <ScheduleDayChanger
+                action={changeDay} />
         </div>
     )
 }
+
 
 const mapDispatchToProps = dispatch => {
     return {
