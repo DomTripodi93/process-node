@@ -137,3 +137,17 @@ function prepObjectiveValues(objective) {
 
     return objective;
 }
+
+
+//Below functions are for Employee User
+
+
+export function getSingleObjectiveForEmployee(objectiveName, deptName, taskId) {
+    return dispatch => {
+        http.fetchByValue("objective/forEmployee", deptName + "&" + objectiveName)
+            .then((objective) => {
+                dispatch(setObjectives(objective.data, taskId));
+            });
+    }
+}
+//Gets specific objective by name for Employee User
