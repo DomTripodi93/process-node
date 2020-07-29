@@ -75,7 +75,7 @@ function objectiveController(Objective) {
             if (err) {
                 return res.send(err);
             }
-            return res.json(objective[0]);
+            return res.json(objective);
         });
     }
 

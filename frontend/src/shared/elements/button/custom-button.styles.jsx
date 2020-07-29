@@ -66,6 +66,13 @@ export const CustomizedButton = styled.button`
   @media (max-width: 770px) {
     font-size: 16px;
   }
+
+  &.mini{
+    font-size: 16px;
+    @media (max-width: 700px) {
+      font-size: 2.7vw;
+    }
+  }
 `;
 
 CustomizedButton.displayName = 'CustomizedButton';

@@ -94,6 +94,16 @@ export function setSteps(steps, deptName, objectiveName) {
 }
 //Sets all steps in state
 
+export function setStepsForEmployee(steps, deptName, objectiveName) {
+    return {
+        type: StepActionTypes.SET_STEPS_FOR_EMPLOYEE,
+        payload: steps,
+        deptName,
+        objectiveName
+    }
+}
+//Sets all steps in state
+
 export function setSingleStep(step) {
     return {
         type: StepActionTypes.SET_SINGLE_STEP,
@@ -134,10 +144,12 @@ function prepStepValues(step) {
 
 
 export function fetchStepsForEmployee(deptName, objectiveName) {
+    console.log(objectiveName)
+    console.log(deptName)
     return dispatch => {
         http.fetchAll("step/forEmployee/" + deptName + "&" + objectiveName)
             .then((steps) => {
-                dispatch(setSteps(steps, deptName, objectiveName));
+                dispatch(setStepsForEmployee(steps, deptName, objectiveName));
             });
     }
 }

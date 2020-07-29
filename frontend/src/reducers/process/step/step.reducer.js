@@ -3,7 +3,8 @@ import StepActionTypes from './step.types';
 const INITIAL_STATE = {
     steps: {},
     selectedStep: {},
-    called: {}
+    called: {},
+    employeeSteps: {}
 }
 
 const stepReducer = (state = INITIAL_STATE, action) => {
@@ -55,6 +56,13 @@ const stepReducer = (state = INITIAL_STATE, action) => {
                 steps: stepsHold,
                 called: calledHold
             };
+        case StepActionTypes.SET_STEPS_FOR_EMPLOYEE:
+            let employeeStepsHold = {...state.employeeSteps};
+            employeeStepsHold[action.deptName + "-" + action.objectiveName] = action.payload.data;
+            return {
+                ...state,
+                employeeSteps: employeeStepsHold
+            }
         case StepActionTypes.ADD_STEP:
             stepsHold[action.payload.deptName][action.payload.objectiveName] = [
                 action.payload,
