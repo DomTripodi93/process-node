@@ -52,7 +52,7 @@ function authController (User) {
               });
             }
             const token = jwt.sign(
-              { email: fetchedUser.email, userId: fetchedUser._id },
+              { userId: fetchedUser._id, rootId: fetchedUser.rootId },
               env.tokenKey,
               { expiresIn: "24h" }
             );
