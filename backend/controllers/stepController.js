@@ -66,8 +66,24 @@ function stepController(Step) {
         });
     }
 
+    //Below functions for employee use
 
-    return { post, getByObjective, getByNumber, put };
+    function getForEmployee(req, res) {
+        const query = {
+            userId: req.rootId,
+            deptName: req.params.deptName,
+            objectiveName: req.params.objectiveName
+        }
+        Step.find(query, (err, steps) => {
+            if (err) {
+                return res.send(err);
+            }
+            return res.json(steps);
+        });
+    };
+
+
+    return { post, getByObjective, getByNumber, put, getForEmployee };
 }
 
 module.exports = stepController;

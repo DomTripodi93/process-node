@@ -21,6 +21,9 @@ function routes(Step) {
         .put(controller.put)
         .delete(controllerDelete.deleteOne);
 
+    router.route("/forEmployee/:deptName&:objectiveName")
+        .get(controller.getForEmployee);
+
     return router;
 }
 
