@@ -26,7 +26,6 @@ const ScheduleContainer = props => {
     const isRoot = props.isRoot;
 
     useEffect(() => {
-        console.log(dayForCall)
         if (!isRoot && !scheduledTasks[thisMonth + 1]) {
             fetchSchedules(dayForCall);
         }
@@ -50,7 +49,8 @@ const ScheduleContainer = props => {
                 date={date}
                 month={month}
                 thisMonth={thisMonth}
-                year={year} />
+                year={year}
+                isRoot={isRoot} />
         </div>
     )
 }

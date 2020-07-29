@@ -24,7 +24,26 @@ const Calendar = props => {
     useEffect(() => {
         setMonth(props.month);
         setYear(props.year);
+        countTasksForDay(props.scheduledTasks);
     }, [props])
+
+    const [tasksForDay, setTasksForDay] = useState({});
+
+    function countTasksForDay (tasks) {
+        if (tasks.length > 0){
+            let tasksHold = {...tasksForDay};
+            tasks.forEach(task => {
+                let day = task.date.substring(8,10);
+                if (tasksHold[+day]){
+                    tasksHold[+day] = tasksHold[+day] + 1;
+                } else {
+                    tasksHold[+day] = 1;
+                }
+            })
+            setTasksForDay(tasksHold);
+        }
+    }
+
 
     return (
         <div>
@@ -42,7 +61,20 @@ const Calendar = props => {
                         {date !== today || (date === today && month !== thisMonth) ?
                             <Link to={baseRoute + '/' + date + '/' + year}>
                                 <div className="day-border padded">
-                                    <h5 className="label-text date">{date}</h5>
+                                    {props.isRoot ?
+                                        <div>
+                                            <h5 className="label-text date">{date}</h5>
+                                        </div>
+                                        :
+                                        <div>
+                                            <h5 className="label-text date">{date}</h5>
+                                            {tasksForDay[date] ?
+                                                <div className="centered count">{tasksForDay[date]}</div>
+                                                :
+                                                <div className="centered count">0</div>
+                                            }
+                                        </div>
+                                    }
                                 </div>
                             </Link>
                             :
@@ -51,7 +83,20 @@ const Calendar = props => {
                         {date === today && month === thisMonth ?
                             <Link to={baseRoute + '/' + date + '/' + year}>
                                 <div className="today-border padded" >
-                                    <h5 className="label-text date">{date}</h5>
+                                    {props.isRoot ?
+                                        <div>
+                                            <h5 className="label-text date">{date}</h5>
+                                        </div>
+                                        :
+                                        <div>
+                                            <h5 className="label-text date">{date}</h5>
+                                            {tasksForDay[date] ?
+                                                <div className="centered count">{tasksForDay[date]}</div>
+                                                :
+                                                <div className="centered count">0</div>
+                                            }
+                                        </div>
+                                    }
                                 </div>
                             </Link>
                             :
