@@ -13,7 +13,7 @@ const ScheduleForEmployeeList = props => {
 
     return(
         <div>
-            <div className="grid-one-employee-button size-holder middle">
+            <div className="grid-one-employee-user-button size-holder middle">
                 <div className="grid-one-employee">
                     <div className="inner-border-left-header">
                         <h5 className="grid-header-text">Time</h5>
@@ -30,16 +30,22 @@ const ScheduleForEmployeeList = props => {
             {props.scheduledTasks.map(scheduledTask => (
                 <div
                     key={scheduledTask._id}
-                    className="grid-one-employee-button size-holder middle">
-                    <SingleScheduledTask
-                        objectives={props.objectives}
-                        scheduledTask={scheduledTask}
-                        employeeId="X"
-                        year={props.year}
-                        month={props.month}
-                        day={props.day}
-                        className='sized30' />
-                    <div className="grid50-colapse inner-border-right">
+                    className="grid-one-employee-user-button size-holder middle">
+                    {detailsShown[scheduledTask._id] ?
+                        <div>  
+                            details
+                        </div>
+                        :
+                        <SingleScheduledTask
+                            objectives={props.objectives}
+                            scheduledTask={scheduledTask}
+                            employeeId="X"
+                            year={props.year}
+                            month={props.month}
+                            day={props.day}
+                            className='sized30' />
+                    }
+                    <div className="grid100 inner-border-right">
                         {detailsShown[scheduledTask._id] ?
                             <CustomButton
                                 action={()=> detailsVisible(scheduledTask._id)}
