@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import SingleScheduledTask from './single-scheduled-task';
 import CustomButton from '../../../shared/elements/button/custom-button.component';
 
 const ScheduleForEmployeeList = props => {
+    const [detailsShown, setDetailsShown] = useState({})
+    
+    const detailsVisible = (id) => {
+        let detailHold = {...detailsShown};
+        detailHold[id] = !detailHold[id];
+        setDetailsShown(detailHold);
+    }
+
     return(
         <div>
             <div className="grid-one-employee-button size-holder middle">
@@ -32,7 +40,19 @@ const ScheduleForEmployeeList = props => {
                         day={props.day}
                         className='sized30' />
                     <div className="grid50-colapse inner-border-right">
-                        dropdown
+                        {detailsShown[scheduledTask._id] ?
+                            <CustomButton
+                                action={()=> detailsVisible(scheduledTask._id)}
+                                label="&#x25B3;"
+                                buttonStyle="mini"
+                            />
+                            :
+                            <CustomButton
+                                action={()=> detailsVisible(scheduledTask._id)}
+                                label="&#x25BD;"
+                                buttonStyle="mini"
+                            />
+                        }
                     </div>
                 </div>
             ))}
