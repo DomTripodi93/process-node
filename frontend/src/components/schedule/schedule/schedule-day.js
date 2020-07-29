@@ -7,7 +7,6 @@ import ScheduleEmployeeList from './schedule-employee-list';
 import ScheduleList from './schedule-list';
 
 
-
 const ScheduleDay = props => {
     const [editMode, updateEditMode] = useState(false);
     const [selectedTask, setSelectedTask] = useState("");
@@ -50,30 +49,34 @@ const ScheduleDay = props => {
             }
             {props.scheduledTasks && props.scheduledTasks.length > 0 ?
                 <div>
-                    {props.employeeId ?
-                        <ScheduleEmployeeList
-                            scheduledTasks={props.scheduledTasks}
-                            objectives={props.objectives}
-                            employeeMap={props.employeeMap}
-                            employeeId={props.employeeId}
-                            year={props.year}
-                            month={props.month}
-                            day={props.day}
-                            handleEdit={setEditMode}
-                            handleDelete={handleDelete}
-                            />
+                    {props.isRoot ?
+                        <div>
+                            {props.employeeId ?
+                                <ScheduleEmployeeList
+                                    scheduledTasks={props.scheduledTasks}
+                                    objectives={props.objectives}
+                                    employeeMap={props.employeeMap}
+                                    employeeId={props.employeeId}
+                                    year={props.year}
+                                    month={props.month}
+                                    day={props.day}
+                                    handleEdit={setEditMode}
+                                    handleDelete={handleDelete}/>
+                                :
+                                <ScheduleList
+                                    scheduledTasks={props.scheduledTasks}
+                                    objectives={props.objectives}
+                                    employeeMap={props.employeeMap}
+                                    employeeId={props.employeeId}
+                                    year={props.year}
+                                    month={props.month}
+                                    day={props.day}
+                                    handleEdit={setEditMode}
+                                    handleDelete={handleDelete}/>
+                            }
+                        </div>
                         :
-                        <ScheduleList
-                            scheduledTasks={props.scheduledTasks}
-                            objectives={props.objectives}
-                            employeeMap={props.employeeMap}
-                            employeeId={props.employeeId}
-                            year={props.year}
-                            month={props.month}
-                            day={props.day}
-                            handleEdit={setEditMode}
-                            handleDelete={handleDelete}
-                            />
+                        null
                     }
                 </div>
                 :
