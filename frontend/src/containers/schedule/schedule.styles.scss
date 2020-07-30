@@ -195,6 +195,16 @@
     grid-template-columns: 80% 19%;
 }
 
+.grid-inner-schedule { 
+    display: grid;
+    grid-template-columns: 17% 27% 28% 28%;
+}
+
+.grid-user-button { 
+    display: grid;
+    grid-template-columns: 90% 10%;
+}
+
 .grid7split { 
     display: grid;
     grid-template-columns: 14.289% 14.289% 14.289% 14.289% 14.289% 14.289% 14.289%;
