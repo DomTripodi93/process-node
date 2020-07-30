@@ -146,11 +146,12 @@ export function fetchSchedulesByEmployeeDay(date) {
 }
 //Gets all schedules for a specific day
 
-export function updateScheduledTaskStatus(schedule, callback, status, date) {
+export function updateScheduledTaskStatus(schedule, status, date, callback) {
     return dispatch => {
-        http.updateItem("schedule", schedule, schedule._id + "&" + status)
+        http.updateItem("schedule/employeeStatus", schedule, schedule._id + "&" + status)
             .then(() => {
                 dispatch(updateSchedulesInState(schedule, date));
+                dispatch(updateSchedulesInState(schedule, date.split("-")[1]));
                 callback();
             });
     }

@@ -4,6 +4,8 @@ import { fetchCommonDifficultiesForEmployee } from '../../../reducers/process/co
 import { fetchBestPracticesForEmployee } from '../../../reducers/process/best-practice/best-practice.actions';
 import ScheduleSteps from './schedule-steps';
 import helpers from '../../../shared/helpers';
+import CustomButton from '../../../shared/elements/button/custom-button.component';
+import { updateScheduledTaskStatus } from '../../../reducers/schedule/schedule/schedule.actions';
 
 
 
@@ -38,6 +40,17 @@ const ScheduleDetail = props => {
         }
     }
 
+    function updateSchedule(schedule) {
+        let scheduleHold = schedule;
+        if (scheduleHold.status === "Scheduled"){
+            scheduleHold.status = "Read";
+        } else {
+            scheduleHold.status = "Complete";
+        }
+        console.log(scheduleHold)
+        props.updateScheduledTaskStatus(scheduleHold, scheduleHold.status, props.date, props.action);
+    }
+
     return (
         <div className="inner-border-left">
             {objectives[deptName + "-" + objectiveName][0] ?
@@ -60,9 +73,33 @@ const ScheduleDetail = props => {
                         steps={steps[deptName + "-" + objectiveName]}
                         commonDifficulties={props.commonDifficulties}
                         bestPractices={props.bestPractices} />
+                    <br />
+                    <div className="grid80mid">
+                        <div></div>
+                        {props.scheduledTask.status === "Scheduled" ?
+                            <CustomButton
+                                buttonStyle="blue"
+                                action={() => { updateSchedule(props.scheduledTask) }}
+                                label="Mark Read" />
+                            :
+                            <div>  
+                                {props.scheduledTask.status === "Read" ?
+                                    <CustomButton
+                                        buttonStyle="blue"
+                                        action={() => { updateSchedule(props.scheduledTask) }}
+                                        label="Mark Complete" />
+                                    :
+                                    null
+                                }
+                            </div>
+                        }
+                        <div></div>
+                    </div>
+                    <br />
                 </div>
                 :
-                <div>
+                <div className="grid80">
+                    <h5>{time}</h5>
                     <h3>Not a valid objective. Please consult your Manager</h3>
                 </div>
             }
@@ -75,7 +112,8 @@ const ScheduleDetail = props => {
 const mapDispatchToProps = dispatch => {
     return {
         getBestPractices: (deptName, objectiveName, stepNumber) => dispatch(fetchBestPracticesForEmployee(deptName, objectiveName, stepNumber)),
-        getCommonDifficulties: (deptName, objectiveName, stepNumber) => dispatch(fetchCommonDifficultiesForEmployee(deptName, objectiveName, stepNumber))
+        getCommonDifficulties: (deptName, objectiveName, stepNumber) => dispatch(fetchCommonDifficultiesForEmployee(deptName, objectiveName, stepNumber)),
+        updateScheduledTaskStatus: (schedule, status, date, callback) => dispatch(updateScheduledTaskStatus(schedule, status, date, callback))
     }
 }
 

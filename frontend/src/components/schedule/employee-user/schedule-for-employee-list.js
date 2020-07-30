@@ -73,16 +73,15 @@ const ScheduleForEmployeeList = props => {
                     className="grid-one-employee-user-button size-holder middle">
                     {detailsShown[scheduledTask._id] ?
                         <ScheduleDetail
+                            action={() => detailsVisible(scheduledTask._id)}
                             scheduledTask={scheduledTask}
                             objectives={props.objectives}
-                            steps={props.steps} />
+                            steps={props.steps}
+                            date={props.year + "-" + props.month + "-" + props.day} />
                         :
                         <SingleScheduledTask
                             objectives={props.objectives}
                             scheduledTask={scheduledTask}
-                            year={props.year}
-                            month={props.month}
-                            day={props.day}
                             className='sized30'
                             isRoot={props.isRoot} />
                     }
