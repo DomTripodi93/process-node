@@ -62,7 +62,8 @@ const ScheduleDay = props => {
                                     month={props.month}
                                     day={props.day}
                                     handleEdit={setEditMode}
-                                    handleDelete={handleDelete}/>
+                                    handleDelete={handleDelete} 
+                                    isRoot={props.isRoot} />
                                 :
                                 <ScheduleList
                                     scheduledTasks={props.scheduledTasks}
@@ -73,7 +74,8 @@ const ScheduleDay = props => {
                                     month={props.month}
                                     day={props.day}
                                     handleEdit={setEditMode}
-                                    handleDelete={handleDelete}/>
+                                    handleDelete={handleDelete}
+                                    isRoot={props.isRoot} />
                             }
                         </div>
                         :
@@ -86,7 +88,8 @@ const ScheduleDay = props => {
                             month={props.month}
                             day={props.day}
                             handleEdit={setEditMode}
-                            handleDelete={handleDelete}/>
+                            handleDelete={handleDelete}
+                            isRoot={props.isRoot} />
                     }
                 </div>
                 :

@@ -80,11 +80,11 @@ const ScheduleForEmployeeList = props => {
                         <SingleScheduledTask
                             objectives={props.objectives}
                             scheduledTask={scheduledTask}
-                            employeeId="X"
                             year={props.year}
                             month={props.month}
                             day={props.day}
-                            className='sized30' />
+                            className='sized30'
+                            isRoot={props.isRoot} />
                     }
                     <div className="grid100 inner-border-right">
                         {detailsShown[scheduledTask._id] ?
