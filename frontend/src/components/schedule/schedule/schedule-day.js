@@ -5,7 +5,7 @@ import ScheduledTaskForm from './schedule-form';
 import ScheduleNone from './schedule-none';
 import ScheduleEmployeeList from './schedule-employee-list';
 import ScheduleList from './schedule-list';
-import ScheduleForEmployeeList from './schedule-for-employee-list';
+import ScheduleForEmployeeList from '../employee-user/schedule-for-employee-list';
 
 
 const ScheduleDay = props => {

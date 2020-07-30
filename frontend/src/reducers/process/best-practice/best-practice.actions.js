@@ -103,7 +103,7 @@ export function fetchBestPracticesForEmployee(deptName, objectiveName, stepNumbe
     return dispatch => {
         http.fetchAll("bestPractice/forEmployee/" + params)
             .then((bestPractices) => {
-                dispatch(setBestPracticesByStep(bestPractices, params));
+                dispatch(setBestPracticesByStep(bestPractices.data, params));
             });
     }
 }

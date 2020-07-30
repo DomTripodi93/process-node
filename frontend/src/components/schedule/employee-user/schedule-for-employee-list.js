@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from 'react-redux';
 
-import SingleScheduledTask from './single-scheduled-task';
+import SingleScheduledTask from '../schedule/single-scheduled-task';
 import CustomButton from '../../../shared/elements/button/custom-button.component';
 import ScheduleDetail from './schedule-detail';
 import { getSingleObjectiveForEmployee } from "../../../reducers/process/objective/objective.actions";

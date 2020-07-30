@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CustomButton from '../../../shared/elements/button/custom-button.component';
+import ScheduleStepInfo from './schedule-step-info';
 
 
 const ScheduleSteps = props => {
@@ -14,12 +15,14 @@ const ScheduleSteps = props => {
     return (
         <div>
             {props.steps.map(step => (
-                <div className="border grid-user-button">
+                <div key={step._id} className="border grid-user-button">
                     {detailsShown[step._id] ?
-                        <div>
-                        </div>
+                        <ScheduleStepInfo 
+                            bestPractices={props.bestPractices[step.deptName + "&" + step.objectiveName + "&" + step.stepNumber]}
+                            commonDifficulties={props.commonDifficulties[step.deptName + "&" + step.objectiveName + "&" + step.stepNumber]}
+                            step={step} />
                         :
-                        <div key={step._id} className="grid50">
+                        <div className="grid50">
                             <h5>
                                 Step# {step.stepNumber} - {step.name}
                             </h5>

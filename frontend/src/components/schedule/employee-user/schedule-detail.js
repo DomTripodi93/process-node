@@ -56,7 +56,10 @@ const ScheduleDetail = props => {
                             Time: {objectives[deptName + "-" + objectiveName][0].time} hours
                         </h5>
                     </div>
-                    <ScheduleSteps steps={steps[deptName + "-" + objectiveName]}/>
+                    <ScheduleSteps 
+                        steps={steps[deptName + "-" + objectiveName]}
+                        commonDifficulties={props.commonDifficulties}
+                        bestPractices={props.bestPractices} />
                 </div>
                 :
                 <div>

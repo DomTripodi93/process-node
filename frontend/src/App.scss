@@ -50,6 +50,48 @@ a, ul{
   max-width: 800px;
 }
 
+.bottom-border{
+  border-style: hidden hidden solid hidden;
+  border-color: rgb(0, 21, 44);
+  border-width: thin;
+  width: 90%;
+  margin: none;
+  line-height: 1.2;
+  padding: 0 0 0 0;
+}
+
+.closed-in{
+  padding: 0 0 0 0;
+}
+
+.right-inner-border{
+  border-style:  hidden solid hidden hidden;
+  border-color: rgb(0, 21, 44);
+  border-width: thin;
+  margin-left: 2.9vw;
+  margin: none;
+  line-height: 1.2;
+  padding: 0 0 0 0;
+}
+
+.left-inner-border{
+  border-style: hidden hidden hidden solid;
+  border-color: rgb(0, 21, 44);
+  border-width: thin;
+  margin-right: 2.9vw;
+  line-height: 1.2;
+  padding: 0 0 0 0;
+}
+
+.top-border{
+  border-style: solid hidden hidden hidden;
+  border-color: rgb(0, 21, 44);
+  border-width: thin;
+  margin: none;
+  line-height: 1.2;
+  padding: 0 0 0 0;
+}
+
 .flex { 
   display: flex;
   flex-wrap: wrap;

@@ -104,7 +104,7 @@ export function fetchCommonDifficultiesForEmployee(deptName, objectiveName, step
     return dispatch => {
         http.fetchAll("commonDifficulty/forEmployee/" + params)
             .then((commonDifficulties) => {
-                dispatch(setCommonDifficultiesByStep(commonDifficulties, params));
+                dispatch(setCommonDifficultiesByStep(commonDifficulties.data, params));
             });
     }
 }

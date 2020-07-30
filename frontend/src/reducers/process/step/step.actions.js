@@ -144,8 +144,6 @@ function prepStepValues(step) {
 
 
 export function fetchStepsForEmployee(deptName, objectiveName) {
-    console.log(objectiveName)
-    console.log(deptName)
     return dispatch => {
         http.fetchAll("step/forEmployee/" + deptName + "&" + objectiveName)
             .then((steps) => {
