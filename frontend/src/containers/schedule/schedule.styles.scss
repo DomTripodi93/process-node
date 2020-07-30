@@ -223,14 +223,20 @@
     }
 }
 
-div.orange-back div.detail div.inner-border-left, div.orange-back div.detail{
+div.orange-back div.detail div.inner-border-left, 
+div.orange-back div.detail,
+div.orange-back div.detail a.inner-border-left{
     background-color: rgb(246, 236, 142);
 }
 
-div.blue-back div.detail div.inner-border-left, div.blue-back div.detail{
+div.blue-back div.detail div.inner-border-left,
+div.blue-back div.detail,
+div.blue-back div.detail a.inner-border-left{
     background-color: rgb(149, 248, 253);
 }
 
-div.green-back div.detail div.inner-border-left, div.green-back div.detail{
+div.green-back div.detail div.inner-border-left, 
+div.green-back div.detail,
+div.green-back div.detail a.inner-border-left{
     background-color: rgb(111, 255, 113);
 }

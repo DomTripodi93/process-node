@@ -3,6 +3,18 @@ import SingleScheduledTask from './single-scheduled-task';
 import CustomButton from '../../../shared/elements/button/custom-button.component';
 
 const ScheduleList = props => {
+    const listItem = (scheduledTask) => (
+        <SingleScheduledTask
+            objectives={props.objectives}
+            scheduledTask={scheduledTask}
+            employeeMap={props.employeeMap}
+            employeeId={props.employeeId}
+            year={props.year}
+            month={props.month}
+            day={props.day}
+            isRoot={props.isRoot} />
+    )
+
     return(
         <div>
             <div className="grid-all-employees-button size-holder middle">
@@ -26,15 +38,23 @@ const ScheduleList = props => {
                 <div
                     key={scheduledTask._id}
                     className="grid-all-employees-button size-holder middle">
-                    <SingleScheduledTask
-                        objectives={props.objectives}
-                        scheduledTask={scheduledTask}
-                        employeeMap={props.employeeMap}
-                        employeeId={props.employeeId}
-                        year={props.year}
-                        month={props.month}
-                        day={props.day}
-                        className='sized30' />
+                    {scheduledTask.status === "Scheduled" ?
+                        <div className="orange-back">
+                            {listItem(scheduledTask)}
+                        </div>
+                        :
+                        <div>
+                            {scheduledTask.status === "Read" ?
+                                <div className="blue-back">
+                                    {listItem(scheduledTask)}
+                                </div>
+                                :
+                                <div className="green-back">
+                                    {listItem(scheduledTask)}
+                                </div>
+                            }
+                        </div>
+                    }
                     <div className="grid50-colapse inner-border-right">
                         <CustomButton
                             buttonStyle="blue small"
