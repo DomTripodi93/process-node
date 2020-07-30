@@ -110,7 +110,8 @@ const stepReducer = (state = INITIAL_STATE, action) => {
             return {
                 steps: {},
                 selectedStep: {},
-                called: {}
+                called: {},
+                employeeSteps: {}
             };
         default:
             return state;

@@ -54,7 +54,8 @@ const commonDifficultyReducer = (state = INITIAL_STATE, action) => {
             };
         case CommonDifficultyActionTypes.SIGNOUT_USER:
             return {
-                commonDifficulties: []
+                commonDifficulties: [],
+                commonDifficultiesByStep: {}
             };
         default:
             return state;

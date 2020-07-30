@@ -1,8 +1,6 @@
 import React from "react";
 
 const ScheduleStepInfo = props => {
-    console.log(props.commonDifficulties)
-    console.log(props.bestPractices)
     return(
         <div>
             <div className="grid50">

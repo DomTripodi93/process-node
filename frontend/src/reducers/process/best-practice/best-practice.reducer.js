@@ -55,7 +55,8 @@ const bestPracticeReducer = (state = INITIAL_STATE, action) => {
             };
         case BestPracticeActionTypes.SIGNOUT_USER:
             return {
-                bestPractices: []
+                bestPractices: [],
+                bestPracticesByStep: {}
             };
         default:
             return state;
