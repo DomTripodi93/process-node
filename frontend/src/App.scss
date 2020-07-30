@@ -55,7 +55,10 @@ a, ul{
   border-color: rgb(0, 21, 44);
   border-width: thin;
   width: 90%;
-  margin: none;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
   line-height: 1.2;
   padding: 0 0 0 0;
 }
@@ -68,7 +71,6 @@ a, ul{
   border-style:  hidden solid hidden hidden;
   border-color: rgb(0, 21, 44);
   border-width: thin;
-  margin-left: 2.9vw;
   margin: none;
   line-height: 1.2;
   padding: 0 0 0 0;
@@ -78,7 +80,6 @@ a, ul{
   border-style: hidden hidden hidden solid;
   border-color: rgb(0, 21, 44);
   border-width: thin;
-  margin-right: 2.9vw;
   line-height: 1.2;
   padding: 0 0 0 0;
 }
