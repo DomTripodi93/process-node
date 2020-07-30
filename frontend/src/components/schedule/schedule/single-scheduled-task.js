@@ -7,7 +7,7 @@ const SingleScheduledTask = props => {
     const helper = new helpers();
     const time = helper.timeForDisplay(helper.timeFromDate(props.scheduledTask.date));
     return (
-        <div>
+        <div className="detail">
             {props.employeeId || !props.isRoot ?
                 <div className="grid-one-employee">
                     <div className="inner-border-left">

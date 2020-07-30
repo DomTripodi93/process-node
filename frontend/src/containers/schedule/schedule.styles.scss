@@ -76,6 +76,7 @@
     background-color: rgb(255, 255, 255);
     border-width: 2px;
     text-align: center;
+    overflow: hidden;
 }
 
 .inner-border-left-header{
@@ -83,7 +84,7 @@
     width: 100%;
     border-style: solid hidden solid solid;
     border-color: black;
-    background-color: rgb(228, 188, 255);
+    background-color: rgb(235, 206, 255);
     border-width: 2px;
     text-align: center;
 }
@@ -93,7 +94,7 @@
     width: 100%;
     border-style: solid;
     border-color: black;
-    background-color: rgb(228, 188, 255);
+    background-color: rgb(235, 206, 255);
     border-width: 2px;
     text-align: center;
 }
@@ -220,4 +221,16 @@
     @media only screen and (max-width: 700px) {
         font-size: 20px;
     }
+}
+
+div.orange-back div.detail div.inner-border-left, div.orange-back div.detail{
+    background-color: rgb(246, 236, 142);
+}
+
+div.blue-back div.detail div.inner-border-left, div.blue-back div.detail{
+    background-color: rgb(149, 248, 253);
+}
+
+div.green-back div.detail div.inner-border-left, div.green-back div.detail{
+    background-color: rgb(111, 255, 113);
 }

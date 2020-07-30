@@ -52,7 +52,7 @@ const ScheduleDetail = props => {
     }
 
     return (
-        <div className="inner-border-left">
+        <div className="detail inner-border-left">
             {objectives[deptName + "-" + objectiveName][0] ?
                 <div>
                     <div className="grid-inner-schedule">
@@ -78,14 +78,14 @@ const ScheduleDetail = props => {
                         <div></div>
                         {props.scheduledTask.status === "Scheduled" ?
                             <CustomButton
-                                buttonStyle="blue"
+                                buttonStyle="blue white-text"
                                 action={() => { updateSchedule(props.scheduledTask) }}
                                 label="Mark Read" />
                             :
-                            <div>  
+                            <div className="grid100">  
                                 {props.scheduledTask.status === "Read" ?
                                     <CustomButton
-                                        buttonStyle="blue"
+                                        buttonStyle="blue white-text"
                                         action={() => { updateSchedule(props.scheduledTask) }}
                                         label="Mark Complete" />
                                     :

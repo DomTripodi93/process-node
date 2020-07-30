@@ -51,6 +51,42 @@ const ScheduleForEmployeeList = props => {
         setDetailsShown(detailHold);
     }
 
+    const listItem = (scheduledTask) => {
+        return (
+            <div className="grid-one-employee-user-button size-holder middle">
+                {detailsShown[scheduledTask._id] ?
+                    <ScheduleDetail
+                        action={() => detailsVisible(scheduledTask._id)}
+                        scheduledTask={scheduledTask}
+                        objectives={props.objectives}
+                        steps={props.steps}
+                        date={props.date} />
+                    :
+                    <SingleScheduledTask
+                        objectives={props.objectives}
+                        scheduledTask={scheduledTask}
+                        className='sized30'
+                        isRoot={props.isRoot} />
+                }
+                <div className="grid100 inner-border-right">
+                    {detailsShown[scheduledTask._id] ?
+                        <CustomButton
+                            action={() => detailsVisible(scheduledTask._id)}
+                            label="&#x25B3;"
+                            buttonStyle="mini"
+                        />
+                        :
+                        <CustomButton
+                            action={() => detailsVisible(scheduledTask._id)}
+                            label="&#x25BD;"
+                            buttonStyle="mini"
+                        />
+                    }
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div>
             <div className="grid-one-employee-user-button size-holder middle">
@@ -68,38 +104,24 @@ const ScheduleForEmployeeList = props => {
                 <div className="inner-border-right-header"></div>
             </div>
             {scheduledTasks.map(scheduledTask => (
-                <div
-                    key={scheduledTask._id}
-                    className="grid-one-employee-user-button size-holder middle">
-                    {detailsShown[scheduledTask._id] ?
-                        <ScheduleDetail
-                            action={() => detailsVisible(scheduledTask._id)}
-                            scheduledTask={scheduledTask}
-                            objectives={props.objectives}
-                            steps={props.steps}
-                            date={props.year + "-" + props.month + "-" + props.day} />
+                <div key={scheduledTask._id}>
+                    {scheduledTask.status === "Scheduled" ?
+                        <div className="orange-back">
+                            {listItem(scheduledTask)}
+                        </div>
                         :
-                        <SingleScheduledTask
-                            objectives={props.objectives}
-                            scheduledTask={scheduledTask}
-                            className='sized30'
-                            isRoot={props.isRoot} />
+                        <div>
+                            {scheduledTask.status === "Read" ?
+                                <div className="blue-back">
+                                    {listItem(scheduledTask)}
+                                </div>
+                                :
+                                <div className="green-back">
+                                    {listItem(scheduledTask)}
+                                </div>
+                            }
+                        </div>
                     }
-                    <div className="grid100 inner-border-right">
-                        {detailsShown[scheduledTask._id] ?
-                            <CustomButton
-                                action={() => detailsVisible(scheduledTask._id)}
-                                label="&#x25B3;"
-                                buttonStyle="mini"
-                            />
-                            :
-                            <CustomButton
-                                action={() => detailsVisible(scheduledTask._id)}
-                                label="&#x25BD;"
-                                buttonStyle="mini"
-                            />
-                        }
-                    </div>
                 </div>
             ))}
         </div>

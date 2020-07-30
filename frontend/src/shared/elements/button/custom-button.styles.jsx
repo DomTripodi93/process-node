@@ -43,6 +43,10 @@ export const CustomizedButton = styled.button`
     background-color: rgb(200, 55, 10);
   }
 
+  &.white-text {
+    color: rgb(255, 255, 255);
+  }
+
   &.small{
     font-size: 2vw;
   

@@ -84,9 +84,7 @@ const ScheduleDay = props => {
                             objectives={props.objectives}
                             employeeMap={props.employeeMap}
                             employeeId={props.employeeId}
-                            year={props.year}
-                            month={props.month}
-                            day={props.day}
+                            date={props.year + "-" + props.month + "-" + props.day}
                             handleEdit={setEditMode}
                             handleDelete={handleDelete}
                             isRoot={props.isRoot} />
