@@ -55,16 +55,25 @@ const ScheduleList = props => {
                             }
                         </div>
                     }
-                    <div className="grid50-colapse inner-border-right">
-                        <CustomButton
-                            buttonStyle="blue small"
-                            action={() => { props.handleEdit(scheduledTask) }}
-                            label="Edit" />
-                        <CustomButton
-                            buttonStyle="red small"
-                            action={() => { props.handleDelete(scheduledTask) }}
-                            label="Delete" />
-                    </div>
+                    {scheduledTask.status === "Scheduled" ?
+                        <div className="grid50-colapse inner-border-right">
+                            <CustomButton
+                                buttonStyle="blue small"
+                                action={() => { props.handleEdit(scheduledTask) }}
+                                label="Edit" />
+                            <CustomButton
+                                buttonStyle="red small"
+                                action={() => { props.handleDelete(scheduledTask) }}
+                                label="Delete" />
+                        </div>
+                        :
+                        <div className="grid100 inner-border-right">
+                            <CustomButton
+                                buttonStyle="red small"
+                                action={() => { props.handleDelete(scheduledTask) }}
+                                label="Delete" />
+                        </div>
+                    }
                 </div>
             ))}
         </div>
