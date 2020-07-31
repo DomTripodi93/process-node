@@ -1,4 +1,6 @@
-function deleteController(Model) {
+const { models } = require("mongoose");
+
+function deleteController(Models) {
     function deleteOne(req, res) {
         let query = {
             userId: req.userId
@@ -6,7 +8,7 @@ function deleteController(Model) {
         Object.keys(req.params).forEach(key => {
             query[key] = req.params[key]
         })
-        Model.deleteOne(query).then(
+        Models[0].deleteOne(query).then(
             result => {
                 if (result.n > 0) {
                     return res.status(200).json({ message: "Deletion successful!" });
@@ -17,7 +19,28 @@ function deleteController(Model) {
         );
     }
 
-    return { deleteOne }
+    function deleteCascade(req, res) {
+        let query = {
+            userId: req.userId
+        }
+        Object.keys(req.params).forEach(key => {
+            query[key] = req.params[key]
+        })
+        for (let i = 1; i < Models.length; i++) {
+            Models[i].deleteMany(query).then(()=>{});
+        }
+        Models[0].deleteOne(query).then(
+            result => {
+                if (result.n > 0) {
+                    return res.status(200).json({ message: "Deletion successful!" });
+                } else {
+                    return res.status(500).json({ message: "Cannot Delete" });
+                }
+            }
+        );
+    }
+
+    return { deleteOne, deleteCascade }
 }
 
 module.exports = deleteController;

@@ -9,18 +9,19 @@ const User = require("./models/userModel");
 const authRoutes = require("./routes/authRoutes")(User);
 const userRoutes = require("./routes/userRoutes")(User);
 const employeeRoutes = require("./routes/employeeRoutes")(User);
-const Department = require("./models/departmentModel");
-const departmentRoutes = require("./routes/departmentRoutes")(Department);
-const Objective = require("./models/objectiveModel");
-const objectiveRoutes = require("./routes/objectiveRoutes")(Objective);
-const Step = require("./models/stepModel");
-const stepRoutes = require("./routes/stepRoutes")(Step);
+const Schedule = require("./models/scheduleModel");
+const scheduleRoutes = require("./routes/scheduleRoutes")(Schedule);
+
 const BestPractice = require("./models/bestPracticeModel");
 const bestPracticeRoutes = require("./routes/bestPracticeRoutes")(BestPractice);
 const CommonDifficulty = require("./models/commonDifficultyModel");
 const commonDifficultyRoutes = require("./routes/commonDifficultyRoutes")(CommonDifficulty);
-const Schedule = require("./models/scheduleModel");
-const scheduleRoutes = require("./routes/scheduleRoutes")(Schedule);
+const Step = require("./models/stepModel");
+const stepRoutes = require("./routes/stepRoutes")(Step, BestPractice, CommonDifficulty);
+const Objective = require("./models/objectiveModel");
+const objectiveRoutes = require("./routes/objectiveRoutes")(Objective);
+const Department = require("./models/departmentModel");
+const departmentRoutes = require("./routes/departmentRoutes")(Department);
 
 const app = express();
 

@@ -106,7 +106,7 @@ const ScheduleForEmployeeList = props => {
             {scheduledTasks.map(scheduledTask => (
                 <div key={scheduledTask._id}>
                     {scheduledTask.status === "Scheduled" ?
-                        <div className="orange-back">
+                        <div className="yellow-back">
                             {listItem(scheduledTask)}
                         </div>
                         :

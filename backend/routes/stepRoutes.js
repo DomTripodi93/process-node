@@ -3,10 +3,11 @@ const express = require('express');
 const stepController = require("../controllers/stepController");
 const deleteController = require("../controllers/deleteController");
 const checkAuth = require("../middleware/checkAuth");
+const bestPracticeRoute = require("./bestPracticeRoutes");
 
-function routes(Step) {
+function routes(Step, BestPractice, CommonDifficulty) {
     const controller = stepController(Step);
-    const controllerDelete = deleteController(Step);
+    const controllerDelete = deleteController([Step, BestPractice, CommonDifficulty]);
     const router = express.Router();
     router.use("", checkAuth);
 
@@ -19,7 +20,7 @@ function routes(Step) {
     router.route("/:deptName&:objectiveName&:stepNumber")
         .get(controller.getByNumber)
         .put(controller.put)
-        .delete(controllerDelete.deleteOne);
+        .delete((req, res) => {controllerDelete.deleteCascade(req, res)});
 
     router.route("/forEmployee/:deptName&:objectiveName")
         .get(controller.getForEmployee);

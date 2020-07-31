@@ -36,7 +36,7 @@ const ScheduleEmployeeList = props => {
                     key={scheduledTask._id}
                     className="grid-one-employee-button size-holder middle">
                     {scheduledTask.status === "Scheduled" ?
-                        <div className="orange-back">
+                        <div className="yellow-back">
                             {listItem(scheduledTask)}
                         </div>
                         :
@@ -66,7 +66,7 @@ const ScheduleEmployeeList = props => {
                         :
                         <div className="grid100 inner-border-right">
                             <CustomButton
-                                buttonStyle="red small"
+                                buttonStyle="orange small"
                                 action={() => { props.handleDelete(scheduledTask) }}
                                 label="Delete" />
                         </div>

@@ -20,12 +20,14 @@ function stepController(Step) {
             deptName: req.params.deptName,
             objectiveName: req.params.objectiveName
         }
-        Step.find(query, (err, steps) => {
-            if (err) {
-                return res.send(err);
-            }
-            return res.json(steps);
-        });
+        Step.find(query)
+            .sort({stepNumber: 1})
+            .exec((err, steps) => {
+                if (err) {
+                    return res.send(err);
+                }
+                return res.json(steps);
+            });
     };
 
     function getByNumber(req, res) {
@@ -65,8 +67,10 @@ function stepController(Step) {
                 });
         });
     }
+    
 
     //Below functions for employee use
+
 
     function getForEmployee(req, res) {
         const query = {
