@@ -22,7 +22,9 @@ function authController (User) {
                     name: result.name,
                     deptName: result.deptName,
                     title: result.title,
-                    canEdit: result.canEdit,}
+                    canEdit: result.canEdit,
+                    defaultEmployeePassword: result.defaultEmployeePassword
+                }
               });
             })
             .catch(err => {

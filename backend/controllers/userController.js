@@ -10,6 +10,7 @@ function userController(User) {
             if (!user[0].rootId){
                 let userForUpdate = user[0].toObject();
                 userForUpdate.rootId = userForUpdate._id;
+                userForUpdate.defaultEmployeePassword = "Password1!"
                 User.updateOne(query, userForUpdate)
                     .then(result => {
                         if (result.nModified > 0) {
