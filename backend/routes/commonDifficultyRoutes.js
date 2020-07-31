@@ -6,7 +6,7 @@ const checkAuth = require("../middleware/checkAuth");
 
 function routes(CommonDifficulty) {
     const controller = commonDifficultyController(CommonDifficulty);
-    const controllerDelete = deleteController(CommonDifficulty);
+    const controllerDelete = deleteController([CommonDifficulty]);
     const router = express.Router();
     router.use("", checkAuth);
 

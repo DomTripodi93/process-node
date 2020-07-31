@@ -6,7 +6,7 @@ const checkAuth = require("../middleware/checkAuth");
 
 function routes(BestPractice) {
     const controller = bestPracticeController(BestPractice);
-    const controllerDelete = deleteController(BestPractice);
+    const controllerDelete = deleteController([BestPractice]);
     const router = express.Router();
     router.use("", checkAuth);
 
