@@ -19,7 +19,7 @@ const commonDifficultyRoutes = require("./routes/commonDifficultyRoutes")(Common
 const Step = require("./models/stepModel");
 const stepRoutes = require("./routes/stepRoutes")(Step, BestPractice, CommonDifficulty);
 const Objective = require("./models/objectiveModel");
-const objectiveRoutes = require("./routes/objectiveRoutes")(Objective);
+const objectiveRoutes = require("./routes/objectiveRoutes")(Objective, Step);
 const Department = require("./models/departmentModel");
 const departmentRoutes = require("./routes/departmentRoutes")(Department);
 

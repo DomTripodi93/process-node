@@ -4,9 +4,9 @@ const objectiveController = require("../controllers/objectiveController");
 const deleteController = require("../controllers/deleteController");
 const checkAuth = require("../middleware/checkAuth");
 
-function routes(Objective) {
+function routes(Objective, Step) {
     const controller = objectiveController(Objective);
-    const controllerDelete = deleteController(Objective);
+    const controllerDelete = deleteController([Objective, Step]);
     const router = express.Router();
     router.use("", checkAuth);
 
@@ -19,7 +19,7 @@ function routes(Objective) {
     router.route("/:deptName&:objectiveName")
         .get(controller.getByName)
         .put(controller.put)
-        .delete(controllerDelete.deleteOne);
+        .delete(controllerDelete.deleteCascade);
 
     router.route("/forEmployee/:deptName&:objectiveName")
         .get(controller.getForEmployee);
