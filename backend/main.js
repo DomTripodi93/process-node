@@ -21,7 +21,7 @@ const stepRoutes = require("./routes/stepRoutes")(Step, BestPractice, CommonDiff
 const Objective = require("./models/objectiveModel");
 const objectiveRoutes = require("./routes/objectiveRoutes")(Objective, Step);
 const Department = require("./models/departmentModel");
-const departmentRoutes = require("./routes/departmentRoutes")(Department);
+const departmentRoutes = require("./routes/departmentRoutes")(Department, Objective);
 
 const app = express();
 
