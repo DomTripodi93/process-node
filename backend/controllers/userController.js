@@ -57,7 +57,7 @@ function userController(User) {
     function put(req, res) {
         const query = {
             rootId: req.userId,
-            _id: req.params.id
+            _id: req.params._id
         }
         User.find(query, (err, users) => {
             if (err) {

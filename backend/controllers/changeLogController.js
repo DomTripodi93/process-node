@@ -11,19 +11,20 @@ function changeLogController(ChangeLog, Model, modelName) {
 
         let query = {
             userId: req.userId
-        }
+        };
+
         Object.keys(req.params).forEach(key => {
             query[key] = req.params[key];
         })
+
         Model.find(query, (err, results) => {
             if (err) {
                 return res.send(err);
             }
-            let result = results[0];
-            const changeLog = new ChangeLog({
+            let changeLog = new ChangeLog({
                 userId: req.userId,
                 changedModel: modelName,
-                oldValues: JSON.stringify(result),
+                oldValues: JSON.stringify(results[0]),
                 newValues: newValues,
                 timeUpdated: dateRegulator(new Date)
             })

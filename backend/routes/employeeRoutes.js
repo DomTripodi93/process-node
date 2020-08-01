@@ -2,13 +2,11 @@ const express = require("express");
 
 const userController = require("../controllers/userController");
 const authController = require("../controllers/authController");
-const changeLogController = require("../controllers/changeLogController");
 const checkAuth = require("../middleware/checkAuth");
 
-function routes(User, ChangeLog) {
+function routes(User) {
     const controllerUser = userController(User);
     const controllerAuth = authController(User);
-    const controllerChangeLog = changeLogController(ChangeLog, User, "Employee");
     const router = express.Router();
     router.use("", checkAuth)
 
@@ -16,8 +14,7 @@ function routes(User, ChangeLog) {
         .get(controllerUser.getEmployeesForUser)
         .post(controllerAuth.postRegister);
     
-    router.route("/:id")
-        .put(controllerChangeLog.post)
+    router.route("/:_id")
         .put(controllerUser.put)
 
     return router;

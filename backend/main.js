@@ -8,8 +8,8 @@ const env = require("./.env/env");
 const User = require("./models/userModel");
 const authRoutes = require("./routes/authRoutes")(User);
 const userRoutes = require("./routes/userRoutes")(User);
+const employeeRoutes = require("./routes/employeeRoutes")(User);
 const ChangeLog = require("./models/changeLogModel");
-const employeeRoutes = require("./routes/employeeRoutes")(User, ChangeLog);
 const Schedule = require("./models/scheduleModel");
 const scheduleRoutes = require("./routes/scheduleRoutes")(Schedule, ChangeLog);
 
