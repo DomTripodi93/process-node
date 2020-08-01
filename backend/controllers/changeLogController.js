@@ -38,7 +38,22 @@ function changeLogController(ChangeLog, Model, modelName) {
         })
     }
 
-    return { post }
+    function getChanges(req, res) {
+        let query = {
+            userId: req.userId
+        };
+        
+        ChangeLog.find(query)
+            .sort({timeUpdated: -1})
+            .exec((err, changes) => {
+            if (err) {
+                return res.send(err);
+            }
+            return res.json(changes);
+        })
+    }
+
+    return { post, getChanges }
 }
 
 module.exports = changeLogController;
