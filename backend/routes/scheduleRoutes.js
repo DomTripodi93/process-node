@@ -2,11 +2,13 @@ const express = require('express');
 
 const scheduleController = require("../controllers/scheduleController");
 const deleteController = require("../controllers/deleteController");
+const changeLogController = require("../controllers/changeLogController");
 const checkAuth = require("../middleware/checkAuth");
 
 function routes(Schedule, ChangeLog) {
     const controller = scheduleController(Schedule);
     const controllerDelete = deleteController([Schedule]);
+    const controllerChangeLog = changeLogController(ChangeLog, Schedule, "Scheduled Task");
     const router = express.Router();
     router.use("", checkAuth);
 
@@ -21,7 +23,9 @@ function routes(Schedule, ChangeLog) {
 
     router.route("/:_id")
         .get(controller.getById)
+        .put(controllerChangeLog.post)
         .put(controller.put)
+        .delete(controllerChangeLog.post)
         .delete(controllerDelete.deleteOne);
 
     router.route("/employeeDay/:date")
@@ -31,6 +35,7 @@ function routes(Schedule, ChangeLog) {
         .get(controller.getByMonthForEmployee);
     
     router.route("/employeeStatus/:id&:status")
+        .put(controllerChangeLog.post)
         .put(controller.putStatus);
 
     return router;

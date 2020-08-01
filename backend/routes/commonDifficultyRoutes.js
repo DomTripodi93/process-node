@@ -2,11 +2,13 @@ const express = require('express');
 
 const commonDifficultyController = require("../controllers/commonDifficultyController");
 const deleteController = require("../controllers/deleteController");
+const changeLogController = require("../controllers/changeLogController");
 const checkAuth = require("../middleware/checkAuth");
 
 function routes(CommonDifficulty, ChangeLog) {
     const controller = commonDifficultyController(CommonDifficulty);
     const controllerDelete = deleteController([CommonDifficulty]);
+    const controllerChangeLog = changeLogController(ChangeLog, CommonDifficulty, "Common Difficulty");
     const router = express.Router();
     router.use("", checkAuth);
 
@@ -18,7 +20,9 @@ function routes(CommonDifficulty, ChangeLog) {
 
     router.route("/:_id")
         .get(controller.getById)
+        .put(controllerChangeLog.post)
         .put(controller.put)
+        .delete(controllerChangeLog.post)
         .delete(controllerDelete.deleteOne);
 
     router.route("/forEmployee/:deptName&:objectiveName&:stepNumber")

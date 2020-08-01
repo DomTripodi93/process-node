@@ -8,7 +8,7 @@ const checkAuth = require("../middleware/checkAuth");
 function routes(Department, Objective, ChangeLog) {
     const controller = departmentController(Department);
     const controllerDelete = deleteController([Department, Objective]);
-    const controllerChangeLog = changeLogController(ChangeLog, Department, "Department")
+    const controllerChangeLog = changeLogController(ChangeLog, Department, "Department");
     const router = express.Router();
     router.use("", checkAuth);
 
