@@ -1,12 +1,12 @@
 const autoMapper = require("../middleware/autoMapper");
+const dateRegulator = require("../middleware/dateRegulator");
 
 function scheduleController(Schedule) {
 
     function post(req, res) {
         const schedule = new Schedule(req.body);
         schedule.userId = req.userId;
-        const timeZoneOffset = (new Date).getTimezoneOffset() * 60000;
-        schedule.date = new Date((new Date(schedule.date) - timeZoneOffset));
+        schedule.date = dateRegulator(schedule.date);
         schedule.status = "Scheduled"
         schedule.save((err) => {
             if (err) {
@@ -85,8 +85,8 @@ function scheduleController(Schedule) {
                 return res.send(err);
             }
             let scheduleForUpdate = autoMapper(schedules[0], req.body);
-            const timeZoneOffset = (new Date).getTimezoneOffset() * 60000;
-            scheduleForUpdate.date = new Date((new Date(scheduleForUpdate.date) - timeZoneOffset));
+            scheduleForUpdate.date = dateRegulator(scheduleForUpdate.date);
+            scheduleForUpdate.lastUpdated = dateRegulator(new Date);
             Schedule.updateOne(query, scheduleForUpdate)
                 .then(result => {
                     if (result.nModified > 0) {

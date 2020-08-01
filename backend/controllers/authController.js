@@ -9,7 +9,8 @@ function authController (User) {
           const user = new User({
             title: "Owner",
             ...req.body,
-            password: hash
+            password: hash,
+            defaultEmployeePassword: "Password1!"
           });
           user.save()
             .then(result => {

@@ -12,7 +12,7 @@ const userModel = new Schema(
     deptName: { type: String },
     title: { type: String },
     canEdit: { type: Boolean, default: false },
-    defaultEmployeePassword: { type: String, required: true }
+    defaultEmployeePassword: { type: String }
   }
 );
 

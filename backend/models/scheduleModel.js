@@ -11,7 +11,8 @@ const scheduleModel = new Schema(
     deptName: { type: String, required: true },
     objectiveName: { type: String, required: true },
     date: { type: Date, required: true },
-    status: { type: String, required: true }
+    status: { type: String, required: true },
+    lastUpdated: { type: Date }
   }
 );
 

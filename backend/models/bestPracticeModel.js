@@ -10,7 +10,8 @@ const bestPracticeModel = new Schema(
     stepNumber: { type: String, required: true, unique: false },
     practice: { type: String, required: true, unique: false },
     method: { type: String },
-    purpose: { type: String}
+    purpose: { type: String},
+    lastUpdated: { type: Date }
   }
 );
 

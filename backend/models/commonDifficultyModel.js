@@ -10,7 +10,8 @@ const commonDifficultyModel = new Schema(
     stepNumber: { type: String, required: true, unique: false },
     difficulty: { type: String, required: true, unique: false },
     cause: { type: String },
-    solution: { type: String}
+    solution: { type: String},
+    lastUpdated: { type: Date }
   }
 );
 

@@ -8,7 +8,8 @@ const objectiveModel = new Schema(
     deptName: { type: String, required: true, unique: false },
     objectiveName: { type: String, required: true, unique: false },
     goal: {type: String},
-    time: {type: Number}
+    time: {type: Number},
+    lastUpdated: { type: Date }
   }
 );
 

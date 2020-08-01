@@ -9,7 +9,8 @@ const stepModel = new Schema(
     objectiveName: { type: String, required: true, unique: false },
     stepNumber: { type: String, required: true, unique: false },
     name: { type: String },
-    goal: { type: String }
+    goal: { type: String },
+    lastUpdated: { type: Date }
   }
 );
 

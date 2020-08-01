@@ -6,7 +6,8 @@ const departmentModel = new Schema(
   {
     deptName: { type: String, required: true, unique: false },
     userId: { type: mongoose.Schema.Types.ObjectId, required: true, unique: false },
-    funcName: { type: String }
+    funcName: { type: String },
+    lastUpdated: { type: Date }
   }
 );
 
