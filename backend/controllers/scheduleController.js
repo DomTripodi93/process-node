@@ -154,6 +154,7 @@ function scheduleController(Schedule) {
             }
             let scheduleForUpdate = schedules[0];
             scheduleForUpdate.status = req.params.status;
+            scheduleForUpdate.statusUpdated = dateRegulator(new Date);
             Schedule.updateOne(query, scheduleForUpdate)
                 .then(result => {
                     if (result.nModified > 0) {
