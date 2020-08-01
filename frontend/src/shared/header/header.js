@@ -37,6 +37,27 @@ const Header = props => {
         </Link>)
     ]
 
+    const changeItems = [
+        (<Link to='/changes/department' className='drop-down-item' key='1'>
+            Department
+        </Link>),
+        (<Link to='/changes/objective' className='drop-down-item' key='1'>
+            Objective
+        </Link>),
+        (<Link to='/changes/step' className='drop-down-item' key='1'>
+            Step
+        </Link>),
+        (<Link to='/changes/bestPractice' className='drop-down-item' key='1'>
+            Best Practice
+        </Link>),
+        (<Link to='/changes/commonDifficulty' className='drop-down-item' key='1'>
+            Common Difficulty
+        </Link>),
+        (<Link to='/changes/schedule' className='drop-down-item' key='1'>
+            Schedule
+        </Link>)
+    ]
+
     return (
         <div className='header-cover'>
             {rootValue ?
@@ -49,7 +70,7 @@ const Header = props => {
                             Home
                         </Link>
                         <ul onClick={toggleDropDown} className='route'>
-                            &#x21af; Schedule &#x21af;
+                            Schedule &#x21af;
                             {!dropDownHidden ?
                                 <div className='drop-down grid100'>{scheduleItems}</div>
                                 :
@@ -59,6 +80,14 @@ const Header = props => {
                         <Link to='/departments' className='route'>
                             Departments
                         </Link>
+                        <ul onClick={toggleDropDown} className='route'>
+                            Changes &#x21af;
+                            {!dropDownHidden ?
+                                <div className='drop-down grid100'>{changeItems}</div>
+                                :
+                                null
+                            }
+                        </ul>
                     </div>
                     <div className='edge'>
                         <Link to='/signout' className='route'>

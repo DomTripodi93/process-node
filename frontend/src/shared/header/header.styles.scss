@@ -26,7 +26,7 @@
     }
 
     .routes{
-        width: 61%;
+        width: 71%;
         height: 100%;
         display: flex;
         align-items: center;
@@ -34,7 +34,7 @@
     }
 
     .edge{
-        width: 17%;
+        width: 10%;
         height: 100%;
         display: flex;
         align-items: center;
@@ -46,6 +46,7 @@
         position: absolute;
         border: 1px solid black;
         top: 62px;
+        margin-left: -10px;
         padding:5px 0px 5px 0px;
         background-color:  rgb(70, 181, 255);
 
@@ -63,7 +64,7 @@
     @media only screen and (max-width: 510px){
 
         a, ul{
-          font-size: 15px;
+          font-size: 13px;
         }
         .drop-down-item{
             font-size: 14.5px;
