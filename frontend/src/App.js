@@ -24,6 +24,7 @@ const EmployeeContainer = lazy(() => import('./containers/schedule/employee-cont
 const ScheduleDayContainer = lazy(() => import('./containers/schedule/schedule-day-container'));
 const ScheduleContainer = lazy(() => import('./containers/schedule/schedule-container'));
 const ScheduleEmployeeDayContainer = lazy(() => import('./containers/schedule/schedule-employee-day-container'));
+const ChangeLogContainer = lazy(() => import('./containers/change-log/change-log-container'));
 
 
 
@@ -62,6 +63,7 @@ const App = (props) => {
               <Route exact path='/employees' component={EmployeeContainer} />
               <Route exact path='/schedule' component={ScheduleContainer} />
               <Route path='/schedule/:employeeId' component={ScheduleContainer} />
+              <Route path='/changes/:model' component={ChangeLogContainer} />
               {props.isRoot ?
                 <Route exact path='/day/:month/:day/:year' component={ScheduleDayContainer} />
                 :

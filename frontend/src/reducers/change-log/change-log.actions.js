@@ -1,4 +1,4 @@
-import rootHttp from '../../root-http';
+import rootHttp from '../root-http';
 import ChangeLogActionTypes from './change-log.types';
 
 
