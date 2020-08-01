@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import store from './reducers/store';
 import './App.scss';
-import { toggleDropDown } from './reducers/drop-down/drop-down.reducer';
+import { toggleAllHidden } from './reducers/drop-down/drop-down.reducer';
 import { checkUser } from './reducers/user/user.actions';
 import Header from './shared/header/header';
 import Loading from './shared/elements/loading/loading';
@@ -41,7 +41,7 @@ const App = (props) => {
 
   const checkDropDown = () => {
     if (!store.getState().dropDown.hidden) {
-      props.toggleDropDown();
+      props.toggleAllHidden();
     }
   }
 
@@ -87,7 +87,7 @@ const App = (props) => {
 const mapDispatchToProps = dispatch => {
   return {
     checkUser: (userId, token) => dispatch(checkUser(userId, token)),
-    toggleDropDown: () => dispatch(toggleDropDown())
+    toggleAllHidden: () => dispatch(toggleAllHidden())
   }
 }
 
