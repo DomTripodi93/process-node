@@ -7,7 +7,7 @@ function routes(ChangeLog) {
     const router = express.Router();
     router.use("", checkAuth);
 
-    router.route("")
+    router.route("/:model")
         .get(controller.getChanges);
 
     return router;

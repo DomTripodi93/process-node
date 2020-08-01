@@ -8,7 +8,7 @@ const checkAuth = require("../middleware/checkAuth");
 function routes(CommonDifficulty, ChangeLog) {
     const controller = commonDifficultyController(CommonDifficulty);
     const controllerDelete = deleteController([CommonDifficulty]);
-    const controllerChangeLog = changeLogController(ChangeLog, CommonDifficulty, "Common Difficulty");
+    const controllerChangeLog = changeLogController(ChangeLog, CommonDifficulty, "commonDifficulty");
     const router = express.Router();
     router.use("", checkAuth);
 

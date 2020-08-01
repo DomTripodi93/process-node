@@ -40,7 +40,8 @@ function changeLogController(ChangeLog, Model, modelName) {
 
     function getChanges(req, res) {
         let query = {
-            userId: req.userId
+            userId: req.userId,
+            changedModel: req.params.model
         };
         
         ChangeLog.find(query)

@@ -8,7 +8,7 @@ const checkAuth = require("../middleware/checkAuth");
 function routes(Schedule, ChangeLog) {
     const controller = scheduleController(Schedule);
     const controllerDelete = deleteController([Schedule]);
-    const controllerChangeLog = changeLogController(ChangeLog, Schedule, "Scheduled Task");
+    const controllerChangeLog = changeLogController(ChangeLog, Schedule, "schedule");
     const router = express.Router();
     router.use("", checkAuth);
 
