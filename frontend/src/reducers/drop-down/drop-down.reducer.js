@@ -3,12 +3,21 @@ const INITIAL_STATE = {
     hiddenChanges: true
 };
 
-const DropDownAction = { TOGGLE_DROP_DOWN: 'TOGGLE_DROP_DOWN' };
+const DropDownAction = { 
+    TOGGLE_DROP_DOWN: 'TOGGLE_DROP_DOWN',
+    TOGGLE_ALL_HIDDEN: 'TOGGLE_ALL_HIDDEN'
+};
 
 export const toggleDropDown = (changed) => {
     return { 
         type: DropDownAction.TOGGLE_DROP_DOWN,
         changed
+    }
+}
+
+export const toggleAllHidden = () => {
+    return {
+        type: DropDownAction.TOGGLE_ALL_HIDDEN
     }
 }
 
@@ -25,6 +34,11 @@ export const dropDownReducer = (state = INITIAL_STATE, action) => {
             return {
                 hiddenSchedule: schedule,
                 hiddenChanges: changes
+            }
+        case DropDownAction.TOGGLE_ALL_HIDDEN:
+            return {
+                hiddenSchedule: true,
+                hiddenChanges: true
             }
         default:
             return state;
