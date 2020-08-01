@@ -4,9 +4,9 @@ const INITIAL_STATE = {
     userToken: null,
     userId: null,
     isAuthenticated: false,
-    settings: {},
     rootId: null,
-    isRoot: false
+    isRoot: false,
+    canEdit: false
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -21,7 +21,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 isAuthenticated: true,
                 settings: action.payload.settings,
                 rootId: action.payload.rootId,
-                isRoot: isRootHold
+                isRoot: isRootHold,
+                canEdit: action.payload.canEdit
             };
         case UserActionTypes.SIGNOUT_USER:
             return {
@@ -31,7 +32,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 isAuthenticated: false,
                 settings: {},
                 rootId: null,
-                isRoot: false
+                isRoot: false,
+                canEdit: false
             };
         default:
             return state;

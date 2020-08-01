@@ -7,6 +7,7 @@ const ROOT_URL = 'http://localhost:4000/api';
 
 export const registerUser = (user, callback) => {
     user.name = helper.capitalize(user.name);
+    console.log(user);
 
     axios.post(`${ROOT_URL}/auth/register`, user).then(() => callback());
     return {
@@ -56,8 +57,8 @@ export const checkUser = (id, token) => {
                     setUserData({
                         token,
                         id,
-                        settings: user.data.settings,
-                        rootId: user.data.rootId
+                        rootId: user.data.rootId,
+                        canEdit: user.data.canEdit
                     })
                 )
             })

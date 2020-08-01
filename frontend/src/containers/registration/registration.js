@@ -28,7 +28,8 @@ const Registration = (props) => {
         let userForRegistration = {
             email,
             name,
-            password
+            password,
+            canEdit: true
         }
 
         props.registerUser(userForRegistration, () => { props.history.push('/signin') });
