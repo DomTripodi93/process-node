@@ -1,4 +1,5 @@
 const autoMapper = require("../middleware/autoMapper");
+const dateRegulator = require("../middleware/dateRegulator");
 
 function stepController(Step) {
 
@@ -57,6 +58,7 @@ function stepController(Step) {
                 return res.send(err);
             }
             let newStep = autoMapper(steps[0], req.body);
+            newStep.lastUpdated = dateRegulator(new Date);
             Step.updateOne(query, newStep)
                 .then(result => {
                     if (result.nModified > 0) {

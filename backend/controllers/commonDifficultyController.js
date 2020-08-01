@@ -1,4 +1,5 @@
 const autoMapper = require("../middleware/autoMapper");
+const dateRegulator = require("../middleware/dateRegulator");
 
 function commonDifficultyController(CommonDifficulty) {
 
@@ -52,6 +53,7 @@ function commonDifficultyController(CommonDifficulty) {
                 return res.send(err);
             }
             let newCommonDifficulty = autoMapper(commonDifficulties[0], req.body);
+            newCommonDifficulty.lastUpdated = dateRegulator(new Date);
             CommonDifficulty.updateOne(query, newCommonDifficulty)
                 .then(result => {
                     if (result.nModified > 0) {

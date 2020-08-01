@@ -1,4 +1,5 @@
 const autoMapper = require("../middleware/autoMapper");
+const dateRegulator = require("../middleware/dateRegulator");
 
 function objectiveController(Objective) {
 
@@ -52,6 +53,7 @@ function objectiveController(Objective) {
                 return res.send(err);
             }
             let newObjective = autoMapper(objectives[0], req.body);
+            newObjective.lastUpdated = dateRegulator(new Date);
             Objective.updateOne(query, newObjective)
                 .then(result => {
                     if (result.nModified > 0) {

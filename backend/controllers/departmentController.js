@@ -1,4 +1,5 @@
 const autoMapper = require("../middleware/autoMapper");
+const dateRegulator = require("../middleware/dateRegulator");
 
 function departmentController(Department) {
 
@@ -46,6 +47,7 @@ function departmentController(Department) {
                 return res.send(err);
             }
             let newDept = autoMapper(depts[0], req.body);
+            newDept.lastUpdated = dateRegulator(new Date);
             Department.updateOne(query, newDept)
                 .then(result => {
                     if (result.nModified > 0) {

@@ -1,4 +1,5 @@
 const autoMapper = require("../middleware/autoMapper");
+const dateRegulator = require("../middleware/dateRegulator");
 
 function bestPracticeController(BestPractice) {
 
@@ -52,6 +53,7 @@ function bestPracticeController(BestPractice) {
                 return res.send(err);
             }
             let newBestPractice = autoMapper(bestPractices[0], req.body);
+            newBestPractice.lastUpdated = dateRegulator(new Date);
             BestPractice.updateOne(query, newBestPractice)
                 .then(result => {
                     if (result.nModified > 0) {
