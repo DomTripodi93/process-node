@@ -6,7 +6,8 @@ const INITIAL_STATE = {
     isAuthenticated: false,
     rootId: null,
     isRoot: false,
-    canEdit: false
+    canEdit: false,
+    defaultEmployeePassword: ""
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -19,10 +20,10 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 userToken: action.payload.token,
                 userId: action.payload.id,
                 isAuthenticated: true,
-                settings: action.payload.settings,
                 rootId: action.payload.rootId,
                 isRoot: isRootHold,
-                canEdit: action.payload.canEdit
+                canEdit: action.payload.canEdit,
+                defaultEmployeePassword: action.payload.defaultEmployeePassword
             };
         case UserActionTypes.SIGNOUT_USER:
             return {
@@ -30,10 +31,10 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 userToken: null,
                 userId: null,
                 isAuthenticated: false,
-                settings: {},
                 rootId: null,
                 isRoot: false,
-                canEdit: false
+                canEdit: false,
+                defaultEmployeePassword: ""
             };
         default:
             return state;

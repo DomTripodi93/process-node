@@ -58,7 +58,8 @@ export const checkUser = (id, token) => {
                         token,
                         id,
                         rootId: user.data.rootId,
-                        canEdit: user.data.canEdit
+                        canEdit: user.data.canEdit,
+                        defaultEmployeePassword: user.data.defaultEmployeePassword
                     })
                 )
             })

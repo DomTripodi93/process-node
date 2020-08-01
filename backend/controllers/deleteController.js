@@ -1,12 +1,10 @@
-const { models } = require("mongoose");
-
 function deleteController(Models) {
     function deleteOne(req, res) {
         let query = {
             userId: req.userId
         }
         Object.keys(req.params).forEach(key => {
-            query[key] = req.params[key]
+            query[key] = req.params[key];
         })
         Models[0].deleteOne(query).then(
             result => {
@@ -24,7 +22,7 @@ function deleteController(Models) {
             userId: req.userId
         }
         Object.keys(req.params).forEach(key => {
-            query[key] = req.params[key]
+            query[key] = req.params[key];
         })
         for (let i = 1; i < Models.length; i++) {
             Models[i].deleteMany(query).then(()=>{});
