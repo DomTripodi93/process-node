@@ -10,22 +10,28 @@ import { toggleDropDown } from '../../reducers/drop-down/drop-down.reducer';
 const Header = props => {
     const [authValue, setAuthValue] = useState(props.isAuthenticated);
     const [rootValue, setRootValue] = useState(props.isRoot);
-    const [dropDownHidden, toggleDropDownHidden] = useState(props.hidden);
+    const [dropDownHidden, toggleDropDownHidden] = useState({
+        schedule: props.hiddenSchedule,
+        changes: props.hiddenChanges
+    });
     const date = new Date();
     const today = "/day/" + (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
 
-    const toggleDropDown = () => {
-        if (dropDownHidden) {
-            setTimeout(() => { props.toggleDropDown() }, 1);
+    const toggleDropDown = (changed) => {
+        if (dropDownHidden[changed]) {
+            setTimeout(() => { props.toggleDropDown(changed) }, 1);
         } else {
-            props.toggleDropDown();
+            props.toggleDropDown(changed);
         }
     };
 
     useEffect(() => {
         setAuthValue(props.isAuthenticated);
         setRootValue(props.isRoot);
-        toggleDropDownHidden(props.hidden);
+        toggleDropDownHidden({
+            schedule: props.hiddenSchedule,
+            changes: props.hiddenChanges
+        });
     }, [props]);
 
     const scheduleItems = [
@@ -41,19 +47,19 @@ const Header = props => {
         (<Link to='/changes/department' className='drop-down-item' key='1'>
             Department
         </Link>),
-        (<Link to='/changes/objective' className='drop-down-item' key='1'>
+        (<Link to='/changes/objective' className='drop-down-item' key='2'>
             Objective
         </Link>),
-        (<Link to='/changes/step' className='drop-down-item' key='1'>
+        (<Link to='/changes/step' className='drop-down-item' key='3'>
             Step
         </Link>),
-        (<Link to='/changes/bestPractice' className='drop-down-item' key='1'>
+        (<Link to='/changes/bestPractice' className='drop-down-item' key='4'>
             Best Practice
         </Link>),
-        (<Link to='/changes/commonDifficulty' className='drop-down-item' key='1'>
+        (<Link to='/changes/commonDifficulty' className='drop-down-item' key='5'>
             Common Difficulty
         </Link>),
-        (<Link to='/changes/schedule' className='drop-down-item' key='1'>
+        (<Link to='/changes/schedule' className='drop-down-item' key='6'>
             Schedule
         </Link>)
     ]
@@ -69,9 +75,9 @@ const Header = props => {
                         <Link to='/' className='route'>
                             Home
                         </Link>
-                        <ul onClick={toggleDropDown} className='route'>
+                        <ul onClick={() => {toggleDropDown("schedule")}} className='route'>
                             Schedule &#x21af;
-                            {!dropDownHidden ?
+                            {!dropDownHidden["schedule"] ?
                                 <div className='drop-down grid100'>{scheduleItems}</div>
                                 :
                                 null
@@ -80,9 +86,9 @@ const Header = props => {
                         <Link to='/departments' className='route'>
                             Departments
                         </Link>
-                        <ul onClick={toggleDropDown} className='route'>
+                        <ul onClick={() => {toggleDropDown("changes")}} className='route'>
                             Changes &#x21af;
-                            {!dropDownHidden ?
+                            {!dropDownHidden["changes"] ?
                                 <div className='drop-down grid100'>{changeItems}</div>
                                 :
                                 null
@@ -142,13 +148,14 @@ const Header = props => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    toggleDropDown: () => dispatch(toggleDropDown())
+    toggleDropDown: (changed) => dispatch(toggleDropDown(changed))
 });
 
 const mapStateToProps = state => ({
     isAuthenticated: state.user.isAuthenticated,
     isRoot: state.user.isRoot,
-    hidden: state.dropDown.hidden
+    hiddenSchedule: state.dropDown.hiddenSchedule,
+    hiddenChanges: state.dropDown.hiddenChanges
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
