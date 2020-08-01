@@ -9,6 +9,7 @@ import stepReducer from './process/step/step.reducer';
 import commonDifficultyReducer from './process/common-difficulty/common-difficulty.reducer';
 import bestPracticeReducer from './process/best-practice/best-practice.reducer';
 import scheduleReducer from './schedule/schedule/schedule.reducer';
+import changeLog from './change-log/change-log.reducer';
 
 
 export default combineReducers({
@@ -20,5 +21,6 @@ export default combineReducers({
     objective: objectiveReducer,
     step: stepReducer,
     commonDifficulty: commonDifficultyReducer,
-    bestPractice: bestPracticeReducer
+    bestPractice: bestPracticeReducer,
+    changeLog: changeLog
 })
