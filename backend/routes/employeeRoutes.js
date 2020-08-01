@@ -4,7 +4,7 @@ const userController = require("../controllers/userController");
 const authController = require("../controllers/authController");
 const checkAuth = require("../middleware/checkAuth");
 
-function routes(User) {
+function routes(User, ChangeLog) {
     const controllerUser = userController(User);
     const controllerAuth = authController(User);
     const router = express.Router();

@@ -4,7 +4,7 @@ const scheduleController = require("../controllers/scheduleController");
 const deleteController = require("../controllers/deleteController");
 const checkAuth = require("../middleware/checkAuth");
 
-function routes(Schedule) {
+function routes(Schedule, ChangeLog) {
     const controller = scheduleController(Schedule);
     const controllerDelete = deleteController([Schedule]);
     const router = express.Router();

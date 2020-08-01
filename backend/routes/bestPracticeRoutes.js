@@ -4,7 +4,7 @@ const bestPracticeController = require("../controllers/bestPracticeController");
 const deleteController = require("../controllers/deleteController");
 const checkAuth = require("../middleware/checkAuth");
 
-function routes(BestPractice) {
+function routes(BestPractice, ChangeLog) {
     const controller = bestPracticeController(BestPractice);
     const controllerDelete = deleteController([BestPractice]);
     const router = express.Router();

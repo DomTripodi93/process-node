@@ -3,9 +3,8 @@ const express = require('express');
 const stepController = require("../controllers/stepController");
 const deleteController = require("../controllers/deleteController");
 const checkAuth = require("../middleware/checkAuth");
-const bestPracticeRoute = require("./bestPracticeRoutes");
 
-function routes(Step, BestPractice, CommonDifficulty) {
+function routes(Step, BestPractice, CommonDifficulty, ChangeLog) {
     const controller = stepController(Step);
     const controllerDelete = deleteController([Step, BestPractice, CommonDifficulty]);
     const router = express.Router();

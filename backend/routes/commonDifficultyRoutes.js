@@ -4,7 +4,7 @@ const commonDifficultyController = require("../controllers/commonDifficultyContr
 const deleteController = require("../controllers/deleteController");
 const checkAuth = require("../middleware/checkAuth");
 
-function routes(CommonDifficulty) {
+function routes(CommonDifficulty, ChangeLog) {
     const controller = commonDifficultyController(CommonDifficulty);
     const controllerDelete = deleteController([CommonDifficulty]);
     const router = express.Router();
