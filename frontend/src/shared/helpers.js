@@ -85,6 +85,11 @@ class helpers {
         return time;
     }
 
+    dateForDisplay(date) {
+        let dateArr = date.split("T")[0].split("-")
+        return [+dateArr[1], +dateArr[2], +dateArr[0]].join("-") 
+    }
+
 }
 
 export default helpers;

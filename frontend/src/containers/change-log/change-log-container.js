@@ -3,21 +3,25 @@ import { connect } from 'react-redux';
 
 import { fetchChanges } from '../../reducers/change-log/change-log.actions';
 import helpers from '../../shared/helpers';
+import ChangeLogList from '../../components/change-log/change-log-list';
 
 
 const ChangeLogContainer = (props) => {
+    const changeType = props.match.params.model;
     const helper = new helpers();
     const model = helper.capitalizeAll(helper.splitAtCaps(props.match.params.model));
 
     useEffect(() => {
-        if (!props.changes[props.match.params.model]) {
-            props.fetchChanges(props.match.params.model);
+        if (!props.changes[changeType]) {
+            props.fetchChanges(changeType);
         }
-    }, [props]);
+    }, [props, changeType]);
 
     return (
         <div>
             <h3 className="centered">{model} Changes</h3>
+            <ChangeLogList
+                changes = {props.changes[changeType]}/>
         </div>
     )
 }
