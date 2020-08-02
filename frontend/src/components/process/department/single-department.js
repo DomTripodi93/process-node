@@ -8,6 +8,7 @@ import ObjectiveContainer from '../../../containers/process/objective-container'
 
 
 const SingleDepartment = props => {
+    console.log(props.department)
     const [editMode, updateEditMode] = useState(false);
 
     const setEditMode = () => {
@@ -33,17 +34,25 @@ const SingleDepartment = props => {
                             :
                             null
                         }
-                        <div className="grid50">
-                            <CustomButton action={setEditMode} buttonStyle="blue" label="Edit" />
-                            <CustomButton action={handleDelete} buttonStyle="red" label="Delete" />
-                        </div>
+                        {!props.change ?
+                            <div className="grid50">
+                                <CustomButton action={setEditMode} buttonStyle="blue" label="Edit" />
+                                <CustomButton action={handleDelete} buttonStyle="red" label="Delete" />
+                            </div>
+                            :
+                            null
+                        }
                     </div>
                     :
                     <DepartmentForm editMode={true} departmentInput={props.department} callback={setEditMode} />
                 }
             </div>
             <br />
-            <ObjectiveContainer deptName={props.department.deptName} />
+            {!props.change ?
+                <ObjectiveContainer deptName={props.department.deptName} />
+                :
+                null
+            }
         </div>
     )
 }

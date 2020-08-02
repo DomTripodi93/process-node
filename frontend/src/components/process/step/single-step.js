@@ -34,16 +34,20 @@ const SingleStep = props => {
                             :
                             null
                         }
-                        <div className="grid50">
-                            <CustomButton
-                                action={setEditMode}
-                                buttonStyle="blue"
-                                label="Edit" />
-                            <CustomButton
-                                action={handleDelete}
-                                buttonStyle="red"
-                                label="Delete" />
-                        </div>
+                        {!props.change ?
+                            <div className="grid50">
+                                <CustomButton
+                                    action={setEditMode}
+                                    buttonStyle="blue"
+                                    label="Edit" />
+                                <CustomButton
+                                    action={handleDelete}
+                                    buttonStyle="red"
+                                    label="Delete" />
+                            </div>
+                            :
+                            null
+                        }
                     </div>
                     :
                     <StepForm
@@ -55,23 +59,29 @@ const SingleStep = props => {
                         callback={setEditMode} />
                 }
             </div>
-            {!props.inDept ?
-                <div className="grid50">
-                    <BestPracticeContainer
-                        deptName={props.deptName}
-                        objectiveName={props.objectiveName}
-                        stepNumber={props.step.stepNumber} />
-                    <CommonDifficultyContainer
-                        deptName={props.deptName}
-                        objectiveName={props.objectiveName}
-                        stepNumber={props.step.stepNumber} />
+            {!props.change ?
+                <div>
+                    {!props.inDept ?
+                        <div className="grid50">
+                            <BestPracticeContainer
+                                deptName={props.deptName}
+                                objectiveName={props.objectiveName}
+                                stepNumber={props.step.stepNumber} />
+                            <CommonDifficultyContainer
+                                deptName={props.deptName}
+                                objectiveName={props.objectiveName}
+                                stepNumber={props.step.stepNumber} />
+                        </div>
+                        :
+                        <Link to={'/step/' + props.deptName + '/' + props.objectiveName + '/' + props.step.stepNumber} className='grid100 spaced'>
+                            <CustomButton
+                                buttonStyle='green round'
+                                label="View Step" />
+                        </Link>
+                    }
                 </div>
                 :
-                <Link to={'/step/' + props.deptName + '/' + props.objectiveName + '/' + props.step.stepNumber} className='grid100 spaced'>
-                    <CustomButton
-                        buttonStyle='green round'
-                        label="View Step" />
-                </Link>
+                null
             }
         </div>
     )

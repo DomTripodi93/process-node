@@ -43,16 +43,20 @@ const SingleObjective = props => {
                             :
                             null
                         }
-                        <div className="grid50">
-                            <CustomButton
-                                action={setEditMode}
-                                buttonStyle="blue"
-                                label="Edit" />
-                            <CustomButton
-                                action={handleDelete}
-                                buttonStyle="red"
-                                label="Delete" />
-                        </div>
+                        {!props.change ?
+                            <div className="grid50">
+                                <CustomButton
+                                    action={setEditMode}
+                                    buttonStyle="blue"
+                                    label="Edit" />
+                                <CustomButton
+                                    action={handleDelete}
+                                    buttonStyle="red"
+                                    label="Delete" />
+                            </div>
+                            :
+                            null
+                        }
                     </div>
                     :
                     <ObjectiveForm
@@ -63,16 +67,22 @@ const SingleObjective = props => {
                         callback={setEditMode} />
                 }
             </div>
-            {!props.inDept ?
-                <div className='size-holder middle'>
-                    <StepContainer objectiveName={props.objective.objectiveName} deptName={props.deptName} />
+            {!props.change ?
+                <div>
+                    {!props.inDept ?
+                        <div className='size-holder middle'>
+                            <StepContainer objectiveName={props.objective.objectiveName} deptName={props.deptName} />
+                        </div>
+                        :
+                        <Link to={'objective/' + props.deptName + '/' + props.objective.objectiveName} className='grid100 spaced'>
+                            <CustomButton
+                                buttonStyle='green'
+                                label="View Objective" />
+                        </Link>
+                    }
                 </div>
                 :
-                <Link to={'objective/' + props.deptName + '/' + props.objective.objectiveName} className='grid100 spaced'>
-                    <CustomButton
-                        buttonStyle='green'
-                        label="View Objective" />
-                </Link>
+                null
             }
         </div>
     )

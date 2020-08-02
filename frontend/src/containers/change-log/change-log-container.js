@@ -19,9 +19,10 @@ const ChangeLogContainer = (props) => {
 
     return (
         <div>
-            <h3 className="centered">{model} Changes</h3>
+            <h3 className="centered spaced">{model} Changes</h3>
             <ChangeLogList
-                changes = {props.changes[changeType]}/>
+                changes={props.changes[changeType]}
+                model={props.match.params.model}/>
         </div>
     )
 }

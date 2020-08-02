@@ -39,16 +39,20 @@ const SingleBestPractice = props => {
                             :
                             null
                         }
-                        <div className="grid50">
-                            <CustomButton
-                                action={setEditMode}
-                                buttonStyle="blue"
-                                label="Edit" />
-                            <CustomButton
-                                action={handleDelete}
-                                buttonStyle="red"
-                                label="Delete" />
-                        </div>
+                        {!props.change ?
+                            <div className="grid50">
+                                <CustomButton
+                                    action={setEditMode}
+                                    buttonStyle="blue"
+                                    label="Edit" />
+                                <CustomButton
+                                    action={handleDelete}
+                                    buttonStyle="red"
+                                    label="Delete" />
+                            </div>
+                            :
+                            null
+                        }
                     </div>
                     :
                     <BestPracticeForm
