@@ -24,6 +24,7 @@ function changeLogController(ChangeLog, Model, modelName) {
             let changeLog = new ChangeLog({
                 userId: req.userId,
                 rootId: req.rootId,
+                userName: req.name,
                 changedModel: modelName,
                 oldValues: JSON.stringify(results[0]),
                 newValues: newValues,
@@ -41,7 +42,7 @@ function changeLogController(ChangeLog, Model, modelName) {
 
     function getChanges(req, res) {
         let query = {
-            userId: req.userId,
+            rootId: req.userId,
             changedModel: req.params.model
         };
         

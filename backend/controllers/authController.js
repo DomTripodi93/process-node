@@ -55,7 +55,7 @@ function authController (User) {
               });
             }
             const token = jwt.sign(
-              { userId: fetchedUser._id, rootId: fetchedUser.rootId },
+              { userId: fetchedUser._id, rootId: fetchedUser.rootId, name: fetchedUser.name },
               env.tokenKey,
               { expiresIn: "24h" }
             );

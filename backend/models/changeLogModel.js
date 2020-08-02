@@ -6,6 +6,7 @@ const { Schema } = mongoose;
 const changeLogModel = new Schema(
   {
     userId: { type: String, required: true },
+    userName: { type: String, required: true },
     rootId: { type: String, required: true },
     changedModel: { type: String },
     oldValues: { type: String },
