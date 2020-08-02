@@ -11,6 +11,9 @@ function routes(User) {
   router.route("/login")
     .post(controller.postLogin);
 
+  router.route("/updatePassword")
+    .put(controller.putPassword);
+
   return router;
 }
 
