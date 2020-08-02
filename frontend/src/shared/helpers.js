@@ -13,6 +13,10 @@ class helpers {
         return words.join(" ");
     }
 
+    splitAtCaps(string) {
+        return string.match(/[A-Z]*[^A-Z]+/g).join(" ");
+    }
+
     slashToDash(string) {
         return string.split("/").join("-");
     }
