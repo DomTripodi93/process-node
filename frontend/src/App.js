@@ -41,7 +41,7 @@ const App = (props) => {
   }, [props]);
 
   const checkDropDown = () => {
-    if (!store.getState().dropDown.hidden) {
+    if (!props.hiddenSchedule || !props.hiddenChanges) {
       props.toggleAllHidden();
     }
   }
@@ -95,7 +95,9 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.user.isAuthenticated,
-  isRoot: state.user.isRoot
+  isRoot: state.user.isRoot,
+  hiddenSchedule: state.dropDown.hiddenSchedule,
+  hiddenChanges: state.dropDown.hiddenChanges
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
