@@ -2,7 +2,6 @@ import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import store from './reducers/store';
 import './App.scss';
 import { toggleAllHidden } from './reducers/drop-down/drop-down.reducer';
 import { checkUser } from './reducers/user/user.actions';

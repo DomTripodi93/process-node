@@ -13,7 +13,7 @@ const ChangeLogList = props => {
                     {props.changes.map(change => (
                         <div key={change._id} className="centered">
                             <h5>
-                                Edited by {change.userId.substring(19)}: {change.userName + ", "}
+                                Edited by {change.userName}({change.userId.substring(19)}), 
                                 at {helper.timeForDisplay(helper.timeFromDate(change.timeUpdated)) + " "}
                                 on {helper.dateForDisplay(change.timeUpdated)}
                             </h5>

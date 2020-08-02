@@ -4,7 +4,7 @@ import SingleObjective from '../process/objective/single-objective';
 import SingleStep from '../process/step/single-step';
 import SingleBestPractice from '../process/best-practice/single-best-practice';
 import SingleCommonDifficulty from '../process/common-difficulty/single-common-difficulty';
-import SingleScheduledTask from '../schedule/schedule/single-scheduled-task';
+import SingleScheduleBlock from '../schedule/schedule/single-schedule-block';
 
 
 const ChangeLogAnyModel = props => {
@@ -21,11 +21,11 @@ const ChangeLogAnyModel = props => {
 
     const displayModels = {
         department: (value) => {return(<SingleDepartment department={value} change={true}/>)},
-        objective: "",
-        step: "",
-        bestPractice: "",
-        commonDifficulty: "",
-        schedule: "",
+        objective: (value) => {return(<SingleObjective objective={value} change={true}/>)},
+        step: (value) => {return(<SingleStep step={value} change={true}/>)},
+        bestPractice: (value) => {return(<SingleBestPractice bestPractice={value} change={true}/>)},
+        commonDifficulty: (value) => {return(<SingleCommonDifficulty commonDifficulty={value} change={true}/>)},
+        schedule: (value) => {return(<SingleScheduleBlock scheduledTask={value}/>)},
     }
 
     return(

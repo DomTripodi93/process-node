@@ -1,6 +1,5 @@
 import React from 'react';
 import helpers from '../../../shared/helpers';
-import { Link } from 'react-router-dom';
 
 
 const SingleScheduleBlock = props => {
@@ -9,20 +8,20 @@ const SingleScheduleBlock = props => {
     return (
         <div className="border">
             <h5>
-                {props.scheduledTask.employeeId.substring(19)} - {props.scheduledTask.employeeName}
+                Employee: {props.scheduledTask.employeeId.substring(19)}<br/>
+                {props.scheduledTask.employeeName}
             </h5>
-            <div className="inner-border-left">
-                <h5 className="grid-text">
-                    {time}
-                </h5>
-            </div>
-            <div className="inner-border-left">
-                <h5 className="grid-text">
-                    {props.scheduledTask.deptName}
-                </h5>
-            </div>
-            <h5 className="grid-text">
-                {props.scheduledTask.objectiveName}
+            <h5>
+                Scheduled Time: {time}
+            </h5>
+            <h5>
+                Department: {props.scheduledTask.deptName}
+            </h5>
+            <h5>
+                Objective: {props.scheduledTask.objectiveName}
+            </h5>
+            <h5>
+                Status: {props.scheduledTask.status}
             </h5>
         </div>
     )
