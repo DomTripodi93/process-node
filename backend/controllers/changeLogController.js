@@ -23,6 +23,7 @@ function changeLogController(ChangeLog, Model, modelName) {
             }
             let changeLog = new ChangeLog({
                 userId: req.userId,
+                rootId: req.rootId,
                 changedModel: modelName,
                 oldValues: JSON.stringify(results[0]),
                 newValues: newValues,
