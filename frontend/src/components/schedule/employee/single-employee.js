@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import EmployeeForm from './employee-form';
 import { deleteEmployee } from '../../../reducers/schedule/employee/employee.actions';
 import { connect } from 'react-redux';
+import EmployeePasswordUpdate from './employee-password-update';
 
 
 const SingleEmployee = props => {
@@ -70,7 +71,9 @@ const SingleEmployee = props => {
                     :
                     <div>
                         {editPassword ?
-                            null
+                            <EmployeePasswordUpdate
+                                email={props.employee.email}
+                                callback={setEditPassword} />
                             :
                             <EmployeeForm
                                 deptOptions={props.deptOptions}

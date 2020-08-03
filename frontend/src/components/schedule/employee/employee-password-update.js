@@ -5,7 +5,7 @@ import CustomButton from '../../../shared/elements/button/custom-button.componen
 import FormInput from '../../../shared/elements/form-input/form-input.component';
 
 
-const EmployeeForm = props => {
+const EmployeePasswordUpdate = props => {
     const [employeeInfo, setEmployeeInfo] = useState({
         email: '',
         newPassword: '',
@@ -41,24 +41,16 @@ const EmployeeForm = props => {
     return (
         <div className='middle'>
             <h3 className='centered'>
-                Fill out the form below to update your password:
+                Fill out the form below to update password for {props.email}:
             </h3>
             {errorMessage.length > 0 ?
-                <h3 className="error">
+                <h3 className="error spaced">
                     {errorMessage}
                 </h3>
                 :
                 null
             }
             <form onSubmit={handleSubmit}>
-                <FormInput
-                    label='Email'
-                    type='text'
-                    name='email'
-                    value={email}
-                    onChange={handleChange}
-                    required
-                />
                 <FormInput
                     label='New Password'
                     type='password'
@@ -100,4 +92,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(null, mapDispatchToProps)(EmployeeForm);
+export default connect(null, mapDispatchToProps)(EmployeePasswordUpdate);
