@@ -74,10 +74,11 @@ function authController (User) {
 
       function putPassword(req, res) {
         let fetchedUser;
-        User.findOne({ 
+        let query = { 
           email: req.body.email,
           rootId: req.userId
-        })
+        }
+        User.findOne(query)
           .then(user => {
             if (!user) {
               return res.status(401).json({
@@ -87,12 +88,13 @@ function authController (User) {
             fetchedUser = user;
             bcrypt.hash(req.body.newPassword, 10).then(hash => {
               fetchedUser.password = hash;
-              fetchedUser.save()
-                .then((err)=>{
-                  if (err) {
-                      return res.send(err);
+              User.updateOne(query, fetchedUser)
+                .then(result => {
+                  if (result.nModified > 0) {
+                      return res.status(200).json({ message: "Password update successful" });
+                  } else {
+                      return res.status(500).json({ message: "No Changes" });
                   }
-                  return res.status(201).json({message: "Password update successful"})
                 })
             });
           })

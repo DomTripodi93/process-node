@@ -15,10 +15,14 @@ function routes(User, Schedule) {
     router.route("")
         .get(controllerUser.getEmployeesForUser)
         .post(controllerAuth.postRegister);
+        
+    router.route("/password")
+        .put(controllerAuth.putPassword);
     
     router.route("/:_id")
         .put(controllerUser.put)
         .delete(controllerDelete.deleteEmployee)
+    
 
     return router;
 }
