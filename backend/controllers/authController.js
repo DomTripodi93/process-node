@@ -85,26 +85,16 @@ function authController (User) {
               });
             }
             fetchedUser = user;
-            return bcrypt.compare(req.body.password, user.password);
-          })
-          .then(result => {
-            if (!result) {
-              return res.status(401).json({
-                message: "Auth failed, no result"
-              });
-            } else {
-              bcrypt.hash(req.body.newPassword, 10).then(hash => {
-                fetchedUser.password = hash;
-                fetchedUser.save()
-                  .then((err)=>{
-                    if (err) {
-                        return res.send(err);
-                    }
-                    return({message: "Password update successful"})
-                  })
-              });
-            }
-            
+            bcrypt.hash(req.body.newPassword, 10).then(hash => {
+              fetchedUser.password = hash;
+              fetchedUser.save()
+                .then((err)=>{
+                  if (err) {
+                      return res.send(err);
+                  }
+                  return res.status(201).json({message: "Password update successful"})
+                })
+            });
           })
           .catch(err => {
             return res.status(500).json({
