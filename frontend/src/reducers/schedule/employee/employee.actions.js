@@ -52,6 +52,17 @@ export function updateEmployee(employee, callback) {
 }
 //Updates employee in database
 
+export function updateEmployeePassword(employee, callback) {
+    employee = prepEmployeeValues(employee);
+    return () => {
+        http.updateItemById("employee", employee, "password")
+            .then(() => {
+                callback();
+            });
+    }
+}
+//Updates employee in database
+
 export function deleteEmployee(id) {
     return dispatch => {
         http.deleteItemById("employee", id)
