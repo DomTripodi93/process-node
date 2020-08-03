@@ -74,7 +74,10 @@ function authController (User) {
 
       function putPassword(req, res) {
         let fetchedUser;
-        User.findOne({ email: req.body.email })
+        User.findOne({ 
+          email: req.body.email,
+          rootId: req.userId
+        })
           .then(user => {
             if (!user) {
               return res.status(401).json({

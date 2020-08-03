@@ -1,5 +1,6 @@
 const express = require("express");
 const authController = require("../controllers/authController");
+const checkAuth = require("../middleware/checkAuth");
 
 function routes(User) {
   const router = express.Router();
@@ -12,7 +13,7 @@ function routes(User) {
     .post(controller.postLogin);
 
   router.route("/updatePassword")
-    .put(controller.putPassword);
+    .put(checkAuth, controller.putPassword);
 
   return router;
 }
