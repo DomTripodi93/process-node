@@ -32,7 +32,7 @@ export const CustomizedButton = styled.button`
   }
 
   &.orange {
-    background-color: #e27800;
+    background-color: rgb(255, 192, 97);
   }
 
   &.yellow {

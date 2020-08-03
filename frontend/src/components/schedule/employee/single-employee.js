@@ -7,10 +7,16 @@ import { connect } from 'react-redux';
 
 
 const SingleEmployee = props => {
-    const [editMode, updateEditMode] = useState(false)
+    const [editMode, updateEditMode] = useState(false);
+    const [editPassword, updateEditPassword] = useState(false);
 
     const setEditMode = () => {
         updateEditMode(!editMode)
+    }
+
+    const setEditPassword = () => {
+        updateEditMode(!editMode)
+        updateEditPassword(!editMode)
     }
 
     const handleDelete = () => {
@@ -62,19 +68,32 @@ const SingleEmployee = props => {
                         }
                     </div>
                     :
-                    <EmployeeForm
-                        deptOptions={props.deptOptions}
-                        editMode={true}
-                        employeeInput={props.employee}
-                        callback={setEditMode} />
+                    <div>
+                        {editPassword ?
+                            null
+                            :
+                            <EmployeeForm
+                                deptOptions={props.deptOptions}
+                                editMode={true}
+                                employeeInput={props.employee}
+                                callback={setEditMode} />
+                        }
+                    </div>
                 }
             </div>
             {!props.inFull ?
-                <Link to={'schedule/' + props.employee.id} className='grid100 spaced'>
+                <div className="grid100 spaced">
+                    <Link to={'schedule/' + props.employee.id} className='grid100'>
+                        <CustomButton
+                            buttonStyle='green'
+                            label="View Schedule" />
+                    </Link>
+                    <br />
                     <CustomButton
-                        buttonStyle='green'
-                        label="View Schedule" />
-                </Link>
+                        buttonStyle='orange'
+                        label="Update Password"
+                        action={setEditPassword} />
+                </div>
                 :
                 null
             }
