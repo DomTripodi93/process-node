@@ -41,7 +41,8 @@ const EmployeeContainer = (props) => {
             <h2 className='centered'>Employees</h2>
             <Employees
                 deptOptions={deptOptions}
-                employees={props.employees} />
+                employees={props.employees}
+                rootId={props.rootId} />
         </div>
     )
 }
@@ -57,7 +58,8 @@ const mapStateToProps = state => ({
     employees: state.employee.employees,
     employeesCalled: state.employee.called,
     departments: state.department.departments,
-    deptCalled: state.department.called
+    deptCalled: state.department.called,
+    rootId: state.user.rootId
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeeContainer);

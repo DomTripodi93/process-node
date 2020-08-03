@@ -14,7 +14,7 @@ const Employees = props => {
                             <SingleEmployee
                                 deptOptions={props.deptOptions}
                                 employee={employee}
-                                className='sized30' />
+                                rootId={props.rootId} />
                         </div>
                     ))}
                 </div>

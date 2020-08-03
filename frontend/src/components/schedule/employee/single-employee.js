@@ -50,10 +50,16 @@ const SingleEmployee = props => {
                             :
                             null
                         }
-                        <div className="grid50">
-                            <CustomButton action={setEditMode} buttonStyle="blue" label="Edit" />
-                            <CustomButton action={handleDelete} buttonStyle="red" label="Delete" />
-                        </div>
+                        {props.employee.id !== props.rootId ?
+                            <div className="grid50">
+                                <CustomButton action={setEditMode} buttonStyle="blue" label="Edit" />
+                                <CustomButton action={handleDelete} buttonStyle="red" label="Delete" />
+                            </div>
+                            :
+                            <div className="grid100">
+                                <CustomButton action={setEditMode} buttonStyle="blue" label="Edit" />
+                            </div>
+                        }
                     </div>
                     :
                     <EmployeeForm
