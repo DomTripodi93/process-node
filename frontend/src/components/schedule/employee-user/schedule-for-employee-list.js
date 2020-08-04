@@ -11,6 +11,8 @@ import { fetchStepsForEmployee } from "../../../reducers/process/step/step.actio
 const ScheduleForEmployeeList = props => {
     const getObjective = props.getObjective;
     const scheduledTasks = props.scheduledTasks;
+    const objectives = props.objectives;
+    const steps = props.steps;
 
     useEffect(() => {
         if (scheduledTasks) {
@@ -24,7 +26,10 @@ const ScheduleForEmployeeList = props => {
         if (scheduledTasks.length > 0) {
             scheduledTasks.forEach(task => {
                 objCount++;
-                if (!called[task.deptName + "-" + task.objectiveName]) {
+                if (
+                    !called[task.deptName + "-" + task.objectiveName] &&
+                    !objectives[task.deptName + "-" + task.objectiveName]
+                ) {
                     getObjective(task.deptName, task.objectiveName, task._id);
                     called[task.deptName + "-" + task.objectiveName] = true;
                 }
