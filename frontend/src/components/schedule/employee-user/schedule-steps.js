@@ -15,15 +15,15 @@ const ScheduleSteps = props => {
     return (
         <div>
             {props.steps.map(step => (
-                <div key={step._id} className="border grid-user-button">
+                <div key={step._id} className="grid-user-button size-holder middle">
                     {detailsShown[step._id] ?
                         <ScheduleStepInfo 
                             bestPractices={props.bestPractices[step.deptName + "&" + step.objectiveName + "&" + step.stepNumber]}
                             commonDifficulties={props.commonDifficulties[step.deptName + "&" + step.objectiveName + "&" + step.stepNumber]}
                             step={step} />
                         :
-                        <div className="grid50">
-                            <h5>
+                        <div className="grid50 inner-border-left-header border-back">
+                            <h5 className="border-back">
                                 Step# {step.stepNumber} - {step.name}
                             </h5>
                             <h5>
@@ -31,7 +31,7 @@ const ScheduleSteps = props => {
                             </h5>
                         </div>
                     }
-                    <div className="grid100">
+                    <div className="grid100 inner-border-right">
                         {detailsShown[step._id] ?
                             <CustomButton
                                 action={() => detailsVisible(step._id)}
