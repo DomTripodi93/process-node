@@ -5,7 +5,7 @@ function objectiveController(Objective) {
 
     function post(req, res) {
         const objective = new Objective(req.body);
-        objective.userId = req.userId;
+        objective.userId = req.rootId;
         objective.save((err) => {
             if (err) {
                 return res.send(err);
@@ -17,7 +17,7 @@ function objectiveController(Objective) {
 
     function getByDepartment(req, res) {
         const query = {
-            userId: req.userId,
+            userId: req.rootId,
             deptName: req.params.deptName
         }
         Objective.find(query, (err, objectives) => {
@@ -30,7 +30,7 @@ function objectiveController(Objective) {
 
     function getByName(req, res) {
         const query = {
-            userId: req.userId,
+            userId: req.rootId,
             objectiveName: req.params.objectiveName,
             deptName: req.params.deptName
         }
@@ -44,7 +44,7 @@ function objectiveController(Objective) {
 
     function put(req, res) {
         let query = { 
-            userId: req.userId,
+            userId: req.rootId,
             objectiveName: req.params.objectiveName,
             deptName: req.params.deptName
         };

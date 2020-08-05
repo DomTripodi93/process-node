@@ -5,7 +5,7 @@ function scheduleController(Schedule) {
 
     function post(req, res) {
         const schedule = new Schedule(req.body);
-        schedule.userId = req.userId;
+        schedule.userId = req.rootId;
         schedule.date = dateRegulator(schedule.date);
         schedule.status = "Scheduled"
         schedule.save((err) => {
@@ -32,7 +32,7 @@ function scheduleController(Schedule) {
     function getByDay(req, res) {
         const day = req.params.date;
         const query = {
-            userId: req.userId,
+            userId: req.rootId,
             date: getDateRange(day, day)
         }
         Schedule.find(query)
@@ -48,7 +48,7 @@ function scheduleController(Schedule) {
     function getByEmployeeDay(req, res) {
         const day = req.params.date;
         const query = {
-            userId: req.userId,
+            userId: req.rootId,
             date: getDateRange(day, day),
             employeeId: req.params.employeeId
         }
@@ -64,7 +64,7 @@ function scheduleController(Schedule) {
 
     function getById(req, res) {
         const query = {
-            userId: req.userId,
+            userId: req.rootId,
             _id: req.params._id
         }
         Schedule.find(query, (err, schedule) => {
@@ -77,7 +77,7 @@ function scheduleController(Schedule) {
 
     function put(req, res) {
         const query = {
-            userId: req.userId,
+            userId: req.rootId,
             _id: req.params._id
         }
         Schedule.find(query, (err, schedules) => {

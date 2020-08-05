@@ -5,7 +5,7 @@ function departmentController(Department) {
 
     function post(req, res) {
         const dept = new Department(req.body);
-        dept.userId = req.userId;
+        dept.userId = req.rootId;
         dept.save((err) => {
             if (err) {
                 return res.send(err);
@@ -17,7 +17,7 @@ function departmentController(Department) {
 
     function getByUser(req, res) {
         const query = {
-            userId: req.userId
+            userId: req.rootId
         }
         Department.find(query, (err, depts) => {
             if (err) {
@@ -29,7 +29,7 @@ function departmentController(Department) {
 
     function getByName(req, res) {
         const query = {
-            userId: req.userId,
+            userId: req.rootId,
             deptName: req.params.deptName
         }
         Department.find(query, (err, dept) => {
@@ -41,7 +41,7 @@ function departmentController(Department) {
     }
 
     function put(req, res) {
-        let query = { deptName: req.params.deptName, userId: req.userId };
+        let query = { deptName: req.params.deptName, userId: req.rootId };
         Department.find(query, (err, depts) => {
             if (err) {
                 return res.send(err);

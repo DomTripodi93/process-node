@@ -30,7 +30,7 @@ function userController(User) {
 
     function getEmployeesForUser(req, res) {
         const query = {
-            rootId: req.userId
+            rootId: req.rootId
         }
         User.find(query)
             .sort({name: 1})

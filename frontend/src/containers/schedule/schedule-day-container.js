@@ -53,6 +53,7 @@ const ScheduleDayContainer = props => {
                 fetchObjectivesForDepartment(dept.deptName);
             })
         } else if (departments.length === 0) {
+            console.log("hit")
             setNeededDataState(false);
         }
     }, [
@@ -75,7 +76,6 @@ const ScheduleDayContainer = props => {
     useEffect(() => {
         let setFor = year + "-" + month + "-" + day;
         if (isRoot){
-            console.log("1")
             if (employeeId) {
                 let setForId = employeeId + "-" + setFor;
                 if (!scheduledTasks[setForId]) {
@@ -93,7 +93,6 @@ const ScheduleDayContainer = props => {
                 selectSchedules(setFor);
             }
         } else {
-            console.log("2")
             if (!scheduledTasks.employee[setFor]) {
                 fetchSchedulesForDate(setFor);
             } else {
@@ -123,6 +122,7 @@ const ScheduleDayContainer = props => {
         if (!employeeCalled) {
             fetchEmployees();
         } else if (Object.keys(employeeMap).length === 0) {
+            console.log("1")
             setNeededDataState(false);
         }
     }, [

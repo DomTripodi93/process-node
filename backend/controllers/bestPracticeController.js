@@ -5,7 +5,7 @@ function bestPracticeController(BestPractice) {
 
     function post(req, res) {
         const bestPractice = new BestPractice(req.body);
-        bestPractice.userId = req.userId;
+        bestPractice.userId = req.rootId;
         bestPractice.save((err) => {
             if (err) {
                 return res.send(err);
@@ -17,7 +17,7 @@ function bestPracticeController(BestPractice) {
 
     function getByStep(req, res) {
         const query = {
-            userId: req.userId,
+            userId: req.rootId,
             deptName: req.params.deptName,
             objectiveName: req.params.objectiveName,
             stepNumber: req.params.stepNumber
@@ -32,7 +32,7 @@ function bestPracticeController(BestPractice) {
 
     function getById(req, res) {
         const query = {
-            userId: req.userId,
+            userId: req.rootId,
             _id: req.params._id
         }
         BestPractice.find(query, (err, bestPractice) => {
@@ -45,7 +45,7 @@ function bestPracticeController(BestPractice) {
 
     function put(req, res) {
         let query = { 
-            userId: req.userId,
+            userId: req.rootId,
             _id: req.params._id
         };
         BestPractice.find(query, (err, bestPractices) => {

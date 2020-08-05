@@ -5,7 +5,7 @@ function stepController(Step) {
 
     function post(req, res) {
         const step = new Step(req.body);
-        step.userId = req.userId;
+        step.userId = req.rootId;
         step.save((err) => {
             if (err) {
                 return res.send(err);
@@ -17,7 +17,7 @@ function stepController(Step) {
 
     function getByObjective(req, res) {
         const query = {
-            userId: req.userId,
+            userId: req.rootId,
             deptName: req.params.deptName,
             objectiveName: req.params.objectiveName
         }
@@ -33,7 +33,7 @@ function stepController(Step) {
 
     function getByNumber(req, res) {
         const query = {
-            userId: req.userId,
+            userId: req.rootId,
             deptName: req.params.deptName,
             objectiveName: req.params.objectiveName,
             stepNumber: req.params.stepNumber
@@ -48,7 +48,7 @@ function stepController(Step) {
 
     function put(req, res) {
         let query = { 
-            userId: req.userId,
+            userId: req.rootId,
             deptName: req.params.deptName,
             objectiveName: req.params.objectiveName,
             stepNumber: req.params.stepNumber

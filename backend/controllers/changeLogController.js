@@ -10,7 +10,7 @@ function changeLogController(ChangeLog, Model, modelName) {
         }
 
         let query = {
-            userId: req.userId
+            userId: req.rootId
         };
 
         Object.keys(req.params).forEach(key => {
@@ -42,7 +42,7 @@ function changeLogController(ChangeLog, Model, modelName) {
 
     function getChanges(req, res) {
         let query = {
-            rootId: req.userId,
+            rootId: req.rootId,
             changedModel: req.params.model
         };
         

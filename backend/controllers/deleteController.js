@@ -1,7 +1,7 @@
 function deleteController(Models) {
     function deleteOne(req, res) {
         let query = {
-            userId: req.userId
+            userId: req.rootId
         }
         Object.keys(req.params).forEach(key => {
             query[key] = req.params[key];
@@ -19,7 +19,7 @@ function deleteController(Models) {
 
     function deleteCascade(req, res) {
         let query = {
-            userId: req.userId
+            userId: req.rootId
         }
         Object.keys(req.params).forEach(key => {
             query[key] = req.params[key];
