@@ -2,7 +2,7 @@ import React from "react";
 
 const ScheduleStepInfo = props => {
     return(
-        <div className="inner-border-left-header border-back">
+        <div className="inner-border-left-header">
             <div className="grid50">
                 <h5>
                     Step# {props.step.stepNumber} - {props.step.name}

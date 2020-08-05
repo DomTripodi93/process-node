@@ -22,8 +22,8 @@ const ScheduleSteps = props => {
                             commonDifficulties={props.commonDifficulties[step.deptName + "&" + step.objectiveName + "&" + step.stepNumber]}
                             step={step} />
                         :
-                        <div className="grid50 inner-border-left-header border-back">
-                            <h5 className="border-back">
+                        <div className="grid50 inner-border-left-header">
+                            <h5>
                                 Step# {step.stepNumber} - {step.name}
                             </h5>
                             <h5>
