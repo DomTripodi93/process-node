@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from '../../components/schedule/calendar/calendar';
 import CalendarNew from '../../components/schedule/calendar/calendar-new';
-import { fetchSchedulesByMonth, selectSchedulesInState } from '../../reducers/schedule/schedule/schedule.actions';
+import { fetchSchedulesByMonth, selectSchedulesInStateForEmployee } from '../../reducers/schedule/schedule/schedule.actions';
 import { connect } from 'react-redux';
 
 import './schedule.styles.scss';
@@ -79,20 +79,19 @@ const ScheduleContainer = props => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchSchedulesByMonth: (date) => dispatch(fetchSchedulesByMonth(date)),
-        selectSchedulesInState: (date) => dispatch(selectSchedulesInState(date)),
+        selectSchedulesInState: (date) => dispatch(selectSchedulesInStateForEmployee(date)),
         setIsRoot: (isRoot) => dispatch(setIsRoot(isRoot))
     }
 }
 
 
 const mapStateToProps = state => ({
-    scheduledTasks: state.schedule.scheduledTasks,
+    scheduledTasks: state.schedule.scheduledTasks.employee,
     isRoot: state.schedule.isRoot,
     canEdit: state.user.canEdit,
     selectedTasks: state.schedule.selectedScheduledTasks,
     userId: state.user.userId,
-    rootId: state.user.rootId,
-    isRoot: state.schedule.isRoot
+    rootId: state.user.rootId
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScheduleContainer);

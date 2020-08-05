@@ -137,6 +137,13 @@ const scheduleReducer = (state = INITIAL_STATE, action) => {
                 scheduledTasks: taskHold,
                 selectedScheduledTasks: selectedHold
             };
+        
+        case ScheduleActionTypes.SELECT_SCHEDULES_FOR_EMPLOYEE:
+            selectedHold = taskHold.employee[action.payload];
+            return {
+                ...state,
+                selectedScheduledTasks: selectedHold
+            };
         case ScheduleActionTypes.SIGNOUT_USER:
             return {
                 scheduledTasks: { employee: {} },

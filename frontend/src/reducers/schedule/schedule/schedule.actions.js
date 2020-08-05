@@ -186,3 +186,11 @@ export function updateSchedulesInStateForEmployee(schedule, date, employeeId) {
     }
 }
 //Updates function for schedule
+
+export function selectSchedulesInStateForEmployee(date) {
+    return {
+        type: ScheduleActionTypes.SELECT_SCHEDULES_FOR_EMPLOYEE,
+        payload: date
+    }
+}
+//selects scheduled tasks for display from cached data

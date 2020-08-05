@@ -4,6 +4,7 @@ import {
     fetchSchedulesByEmployee,
     fetchSchedulesByDate,
     selectSchedulesInState,
+    selectSchedulesInStateForEmployee,
     extractScheduledTasksForEmployee
 } from '../../reducers/schedule/schedule/schedule.actions';
 import { connect } from 'react-redux';
@@ -67,36 +68,50 @@ const ScheduleDayContainer = props => {
     const fetchSchedulesForDate = props.fetchSchedulesByDate;
     const fetchSchedulesForEmployee = props.fetchSchedulesByEmployee;
     const selectSchedules = props.selectSchedulesInState;
+    const selectSchedulesForEmployee = props.selectSchedulesInStateForEmployee;
     const extractSchedules = props.extractScheduledTasksForEmployee;
+    const isRoot = props.isRoot;
 
     useEffect(() => {
         let setFor = year + "-" + month + "-" + day;
-        if (employeeId) {
-            let setForId = employeeId + "-" + setFor;
-            if (!scheduledTasks[setForId]) {
-                if (scheduledTasks[setFor]) {
-                    extractSchedules(setFor, employeeId);
+        if (isRoot){
+            console.log("1")
+            if (employeeId) {
+                let setForId = employeeId + "-" + setFor;
+                if (!scheduledTasks[setForId]) {
+                    if (scheduledTasks[setFor]) {
+                        extractSchedules(setFor, employeeId);
+                    } else {
+                        fetchSchedulesForEmployee(employeeId, setFor);
+                    }
                 } else {
-                    fetchSchedulesForEmployee(employeeId, setFor);
+                    selectSchedules(setForId);
                 }
+            } else if (!scheduledTasks[setFor]) {
+                fetchSchedulesForDate(setFor);
             } else {
-                selectSchedules(setForId);
+                selectSchedules(setFor);
             }
-        } else if (!scheduledTasks[setFor]) {
-            fetchSchedulesForDate(setFor);
         } else {
-            selectSchedules(setFor);
+            console.log("2")
+            if (!scheduledTasks.employee[setFor]) {
+                fetchSchedulesForDate(setFor);
+            } else {
+                selectSchedulesForEmployee(setFor);
+            }
         }
     }, [
         scheduledTasks,
         fetchSchedulesForEmployee,
         fetchSchedulesForDate,
         selectSchedules,
+        selectSchedulesForEmployee,
         extractSchedules,
         employeeId,
         month,
         day,
-        year
+        year,
+        isRoot
     ])
 
     const employeeMap = props.employeeMap;
@@ -203,7 +218,8 @@ const mapDispatchToProps = dispatch => {
         fetchObjectivesByDepartment: (deptName) => dispatch(fetchObjectivesByDepartment(deptName)),
         fetchEmployees: () => dispatch(fetchEmployees()),
         selectSchedulesInState: (date) => dispatch(selectSchedulesInState(date)),
-        extractScheduledTasksForEmployee: (date, employeeId) => dispatch(extractScheduledTasksForEmployee(date, employeeId))
+        extractScheduledTasksForEmployee: (date, employeeId) => dispatch(extractScheduledTasksForEmployee(date, employeeId)),
+        selectSchedulesInStateForEmployee: (date) => dispatch(selectSchedulesInStateForEmployee(date))
     }
 }
 

@@ -24,7 +24,9 @@ const Calendar = props => {
     useEffect(() => {
         setMonth(props.month);
         setYear(props.year);
-        countTasksForDay(props.scheduledTasks);
+        if (props.scheduledTasks){
+            countTasksForDay(props.scheduledTasks);
+        }
     }, [props])
 
     const [tasksForDay, setTasksForDay] = useState({});
