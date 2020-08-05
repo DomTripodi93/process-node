@@ -1,7 +1,7 @@
 import ScheduleActionTypes from './schedule.types';
 
 const INITIAL_STATE = {
-    scheduledTasks: {},
+    scheduledTasks: { employee: {} },
     selectedScheduledTasks: [],
     isRoot: false
 }
@@ -105,9 +105,41 @@ const scheduleReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 isRoot: action.isRoot
             };
+        case ScheduleActionTypes.SET_SCHEDULES_FOR_EMPLOYEE:
+            taskHold["employee"][action.date] = action.payload.data;
+            selectedHold = taskHold["employee"][action.date];
+            return {
+                ...state,
+                scheduledTasks: taskHold,
+                selectedScheduledTasks: selectedHold
+            };
+        case ScheduleActionTypes.UPDATE_SCHEDULES_FOR_EMPLOYEE:
+            if (taskHold["employee"][action.date]) {
+                taskHold["employee"][action.date].push(action.payload);
+                taskHold["employee"][action.date] = sortTasks([
+                    action.payload,
+                    ...filterTasks(taskHold["employee"][action.date], action.payload._id)
+                ]);
+            }
+            if (taskHold[dateWithEmployee]) {
+                taskHold[dateWithEmployee].push(dateWithEmployee);
+                taskHold[dateWithEmployee] = sortTasks([
+                    action.payload,
+                    ...filterTasks(taskHold[dateWithEmployee], action.payload._id)
+                ]);
+            }
+            selectedHold = sortTasks([
+                action.payload,
+                ...filterTasks(selectedHold, action.payload._id)
+            ]);
+            return {
+                ...state,
+                scheduledTasks: taskHold,
+                selectedScheduledTasks: selectedHold
+            };
         case ScheduleActionTypes.SIGNOUT_USER:
             return {
-                scheduledTasks: {},
+                scheduledTasks: { employee: {} },
                 selectedScheduledTasks: [],
                 isRoot: false
             }

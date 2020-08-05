@@ -130,7 +130,7 @@ export function fetchSchedulesByMonth(date) {
     return dispatch => {
         http.fetchAll("schedule/employeeMonth/" + date)
             .then((schedules) => {
-                dispatch(setSchedules(schedules, date.split("-")[1]));
+                dispatch(setSchedulesForEmployee(schedules, date.split("-")[1]));
             });
     }
 }
@@ -140,7 +140,7 @@ export function fetchSchedulesByEmployeeDay(date) {
     return dispatch => {
         http.fetchAll("schedule/employeeDay/" + date)
             .then((schedules) => {
-                dispatch(setSchedules(schedules, date));
+                dispatch(setSchedulesForEmployee(schedules, date));
             });
     }
 }
@@ -150,18 +150,39 @@ export function updateScheduledTaskStatus(schedule, status, date, callback) {
     return dispatch => {
         http.updateItem("schedule/employeeStatus", schedule, schedule._id + "&" + status)
             .then(() => {
-                dispatch(updateSchedulesInState(schedule, date));
-                dispatch(updateSchedulesInState(schedule, date.split("-")[1]));
+                dispatch(updateSchedulesInStateForEmployee(schedule, date));
+                dispatch(updateSchedulesInStateForEmployee(schedule, date.split("-")[1]));
                 callback();
             });
     }
 }
 //Updates schedule in database
 
-export const setIsRoot = (isRoot) => {
+export function setIsRoot(isRoot) {
     return {
         type: ScheduleActionTypes.SET_IS_ROOT,
         isRoot
     };
 };
 //changes isRoot value
+
+
+
+export function setSchedulesForEmployee(schedules, date) {
+    return {
+        type: ScheduleActionTypes.SET_SCHEDULES_FOR_EMPLOYEE,
+        payload: schedules,
+        date
+    }
+}
+//Sets all schedules in state
+
+export function updateSchedulesInStateForEmployee(schedule, date, employeeId) {
+    return {
+        type: ScheduleActionTypes.UPDATE_SCHEDULES_FOR_EMPLOYEE,
+        payload: schedule,
+        date,
+        employeeId
+    }
+}
+//Updates function for schedule
