@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import './App.scss';
 import { toggleAllHidden } from './reducers/drop-down/drop-down.reducer';
 import { checkUser } from './reducers/user/user.actions';
+import { setIsRoot } from './reducers/schedule/schedule/schedule.actions';
 import Header from './shared/header/header';
 import Loading from './shared/elements/loading/loading';
 
@@ -36,7 +37,8 @@ const App = (props) => {
     if (!props.isAuthenticated) {
       props.checkUser(userId, token);
     }
-    setAuthValue(props.isAuthenticated)
+    setAuthValue(props.isAuthenticated);
+    props.setIsRoot(props.isRoot);
   }, [props]);
 
   const checkDropDown = () => {
@@ -88,7 +90,8 @@ const App = (props) => {
 const mapDispatchToProps = dispatch => {
   return {
     checkUser: (userId, token) => dispatch(checkUser(userId, token)),
-    toggleAllHidden: () => dispatch(toggleAllHidden())
+    toggleAllHidden: () => dispatch(toggleAllHidden()),
+    setIsRoot: (isRoot) => dispatch(setIsRoot(isRoot))
   }
 }
 
