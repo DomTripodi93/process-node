@@ -63,7 +63,7 @@ const App = (props) => {
               <Route exact path='/schedule' component={ScheduleContainer} />
               <Route path='/schedule/:employeeId' component={ScheduleContainer} />
               <Route path='/changes/:model' component={ChangeLogContainer} />
-              {props.isRoot ?
+              {props.scheduleIsRoot ?
                 <Route exact path='/day/:month/:day/:year' component={ScheduleDayContainer} />
                 :
                 <Route exact path='/day/:month/:day/:year' component={ScheduleEmployeeDayContainer} />
@@ -95,6 +95,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => ({
   isAuthenticated: state.user.isAuthenticated,
   isRoot: state.user.isRoot,
+  scheduleIsRoot: state.schedule.isRoot,
   hiddenSchedule: state.dropDown.hiddenSchedule,
   hiddenChanges: state.dropDown.hiddenChanges
 });

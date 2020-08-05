@@ -157,3 +157,11 @@ export function updateScheduledTaskStatus(schedule, status, date, callback) {
     }
 }
 //Updates schedule in database
+
+export const setIsRoot = (isRoot) => {
+    return {
+        type: ScheduleActionTypes.SET_IS_ROOT,
+        isRoot
+    };
+};
+//changes isRoot value

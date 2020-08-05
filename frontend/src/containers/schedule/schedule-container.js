@@ -5,7 +5,7 @@ import { fetchSchedulesByMonth, selectSchedulesInState } from '../../reducers/sc
 import { connect } from 'react-redux';
 
 import './schedule.styles.scss';
-import { setIsRoot } from '../../reducers/user/user.actions';
+import { setIsRoot } from '../../reducers/schedule/schedule/schedule.actions';
 
 
 const ScheduleContainer = props => {
@@ -87,11 +87,12 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => ({
     scheduledTasks: state.schedule.scheduledTasks,
-    isRoot: state.user.isRoot,
+    isRoot: state.schedule.isRoot,
     canEdit: state.user.canEdit,
     selectedTasks: state.schedule.selectedScheduledTasks,
     userId: state.user.userId,
-    rootId: state.user.rootId
+    rootId: state.user.rootId,
+    isRoot: state.schedule.isRoot
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScheduleContainer);

@@ -2,7 +2,8 @@ import ScheduleActionTypes from './schedule.types';
 
 const INITIAL_STATE = {
     scheduledTasks: {},
-    selectedScheduledTasks: []
+    selectedScheduledTasks: [],
+    isRoot: false
 }
 
 const scheduleReducer = (state = INITIAL_STATE, action) => {
@@ -28,6 +29,7 @@ const scheduleReducer = (state = INITIAL_STATE, action) => {
             taskHold[action.date] = action.payload.data;
             selectedHold = taskHold[action.date];
             return {
+                ...state,
                 scheduledTasks: taskHold,
                 selectedScheduledTasks: selectedHold
             };
@@ -43,6 +45,7 @@ const scheduleReducer = (state = INITIAL_STATE, action) => {
             });
             selectedHold = taskHold[dateWithEmployee];
             return {
+                ...state,
                 scheduledTasks: taskHold,
                 selectedScheduledTasks: selectedHold
             };
@@ -80,6 +83,7 @@ const scheduleReducer = (state = INITIAL_STATE, action) => {
                 ...filterTasks(selectedHold, action.payload._id)
             ]);
             return {
+                ...state,
                 scheduledTasks: taskHold,
                 selectedScheduledTasks: selectedHold
             };
@@ -92,13 +96,20 @@ const scheduleReducer = (state = INITIAL_STATE, action) => {
             }
             selectedHold = filterTasks(selectedHold, action.payload);
             return {
+                ...state,
                 scheduledTasks: taskHold,
                 selectedScheduledTasks: selectedHold
+            };
+        case ScheduleActionTypes.SET_IS_ROOT:
+            return {
+                ...state,
+                isRoot: action.isRoot
             };
         case ScheduleActionTypes.SIGNOUT_USER:
             return {
                 scheduledTasks: {},
-                selectedScheduledTasks: []
+                selectedScheduledTasks: [],
+                isRoot: false
             }
         default:
             return state;

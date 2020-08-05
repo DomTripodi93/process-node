@@ -25,11 +25,6 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 canEdit: action.payload.canEdit,
                 defaultEmployeePassword: action.payload.defaultEmployeePassword
             };
-        case UserActionTypes.SET_IS_ROOT:
-            return {
-                ...state,
-                isRoot: action.isRoot
-            };
         case UserActionTypes.SIGNOUT_USER:
             return {
                 ...state,
