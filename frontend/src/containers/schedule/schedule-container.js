@@ -5,6 +5,7 @@ import { fetchSchedulesByMonth, selectSchedulesInState } from '../../reducers/sc
 import { connect } from 'react-redux';
 
 import './schedule.styles.scss';
+import { setIsRoot } from '../../reducers/user/user.actions';
 
 
 const ScheduleContainer = props => {
@@ -25,6 +26,11 @@ const ScheduleContainer = props => {
     const selectSchedules = props.selectSchedulesInState;
     const fetchSchedules = props.fetchSchedulesByMonth;
     const isRoot = props.isRoot;
+    const canEdit = props.canEdit;
+    const location = window.location.pathname;
+    const setIsRoot = props.setIsRoot;
+    const rootId = props.rootId;
+    const userId = props.userId;
 
     useEffect(() => {
         if (!isRoot && !scheduledTasks[thisMonth + 1]) {
@@ -32,13 +38,23 @@ const ScheduleContainer = props => {
         } else if (!isRoot && scheduledTasks[thisMonth + 1]) {
             selectSchedules(thisMonth + 1)
         }
+        if (!isRoot && canEdit && location === "/schedule"){
+            setIsRoot(true)
+        } else if (rootId !== userId && location !== "/schedule"){
+            setIsRoot(false)
+        }
     }, [
         scheduledTasks,
         fetchSchedules,
         selectSchedules,
         dayForCall,
         thisMonth,
-        isRoot
+        isRoot,
+        setIsRoot,
+        canEdit,
+        location,
+        rootId,
+        userId
     ])
 
     return (
@@ -54,7 +70,8 @@ const ScheduleContainer = props => {
                 month={month}
                 thisMonth={thisMonth}
                 year={year}
-                isRoot={isRoot} />
+                isRoot={isRoot}
+                canEdit={canEdit} />
         </div>
     )
 }
@@ -62,7 +79,8 @@ const ScheduleContainer = props => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchSchedulesByMonth: (date) => dispatch(fetchSchedulesByMonth(date)),
-        selectSchedulesInState: (date) => dispatch(selectSchedulesInState(date))
+        selectSchedulesInState: (date) => dispatch(selectSchedulesInState(date)),
+        setIsRoot: (isRoot) => dispatch(setIsRoot(isRoot))
     }
 }
 
@@ -70,7 +88,10 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => ({
     scheduledTasks: state.schedule.scheduledTasks,
     isRoot: state.user.isRoot,
-    selectedTasks: state.schedule.selectedScheduledTasks
+    canEdit: state.user.canEdit,
+    selectedTasks: state.schedule.selectedScheduledTasks,
+    userId: state.user.userId,
+    rootId: state.user.rootId
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScheduleContainer);

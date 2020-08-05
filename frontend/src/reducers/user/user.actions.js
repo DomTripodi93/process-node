@@ -45,6 +45,15 @@ export const signOutUser = (callback) => {
     };
 };
 
+export const setIsRoot = (isRoot) => {
+    return {
+        type: UserActionTypes.SET_IS_ROOT,
+        isRoot
+    };
+};
+
+// SET_IS_ROOT
+
 export const checkUser = (id, token) => {
     return dispatch => {
         axios.get(`${ROOT_URL}/user`, {
