@@ -115,6 +115,32 @@ const Header = props => {
                                 <Link to={today} className='route'>
                                     Today
                                 </Link>
+                                {props.canEdit ?
+                                    <Link to='/schedule' className='route'>
+                                        Schedule
+                                    </Link>
+                                    :
+                                    null
+                                }
+                                {props.canEdit ?
+                                    <Link to='/departments' className='route'>
+                                        Departments
+                                    </Link>
+                                    :
+                                    null
+                                }
+                                {props.canEdit ?
+                                    <ul onClick={() => {toggleDropDown("changes")}} className='route'>
+                                        Changes &#x21af;
+                                        {!dropDownHidden["changes"] ?
+                                            <div className='drop-down grid100'>{changeItems}</div>
+                                            :
+                                            null
+                                        }
+                                    </ul>
+                                    :
+                                    null
+                                }
                             </div>
                             <div className='edge'>
                                 <Link to='/signout' className='route'>
@@ -154,6 +180,7 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
     isAuthenticated: state.user.isAuthenticated,
     isRoot: state.user.isRoot,
+    canEdit: state.user.canEdit,
     hiddenSchedule: state.dropDown.hiddenSchedule,
     hiddenChanges: state.dropDown.hiddenChanges
 });
