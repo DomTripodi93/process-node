@@ -21,6 +21,7 @@ function objectiveController(Objective) {
             deptName: req.params.deptName
         }
         Objective.find(query)
+            .sort({objectiveName: 1})
             .skip((req.params.page-1)*10)
             .limit(10)
             .exec((err, objectives) => {
