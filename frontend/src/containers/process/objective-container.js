@@ -42,10 +42,14 @@ const ObjectiveContainer = (props) => {
                     <Objectives
                         deptName={props.deptName}
                         objectives={props.objectives[props.deptName]} />
-                    <CustomButton
-                        action={getMoreObjectives} 
-                        label="More Objectives"
-                        style="soft-green"/>
+                    {props.moreResults[props.deptName] ?
+                        <CustomButton
+                            action={getMoreObjectives} 
+                            label="More Objectives"
+                            style="soft-green"/>
+                        :
+                        null
+                    }
                 </div>
                 :
                 null
@@ -62,7 +66,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => ({
     objectives: state.objective.objectives,
-    objectivesCalled: state.objective.called
+    objectivesCalled: state.objective.called,
+    moreResults: state.objective.moreResults
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ObjectiveContainer);
