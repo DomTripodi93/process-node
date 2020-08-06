@@ -3,11 +3,13 @@ import ObjectiveActionTypes from './objective.types';
 const INITIAL_STATE = {
     objectives: {},
     selectedObjective: {},
-    called: false
+    called: false,
+    moreResults: {}
 }
 
 const objectiveReducer = (state = INITIAL_STATE, action) => {
     let objectiveHold = { ...state.objectives };
+    let moreResultsHold = {...state.moreResults};
     switch (action.type) {
         case ObjectiveActionTypes.SET_SINGLE_OBJECTIVE:
             return {
@@ -15,6 +17,11 @@ const objectiveReducer = (state = INITIAL_STATE, action) => {
                 selectedObjective: action.payload
             };
         case ObjectiveActionTypes.SET_OBJECTIVES:
+            if (action.payload.data.length === 10){
+                moreResultsHold[action.deptName] = true;
+            } else {
+                moreResultsHold[action.deptName] = false;
+            }
             if (action.payload.data.length > 0) {
                 if (objectiveHold[action.deptName]){
                     objectiveHold[action.deptName] = [...objectiveHold[action.deptName],...action.payload.data];
@@ -29,7 +36,8 @@ const objectiveReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 objectives: objectiveHold,
-                called: true
+                called: true,
+                moreResults: moreResultsHold
             };
         case ObjectiveActionTypes.ADD_OBJECTIVE:
             objectiveHold[action.payload.deptName].push(action.payload)
