@@ -16,7 +16,11 @@ const objectiveReducer = (state = INITIAL_STATE, action) => {
             };
         case ObjectiveActionTypes.SET_OBJECTIVES:
             if (action.payload.data.length > 0) {
-                objectiveHold[action.deptName] = action.payload.data;
+                if (objectiveHold[action.deptName]){
+                    objectiveHold[action.deptName] = [...objectiveHold[action.deptName],...action.payload.data];
+                } else {
+                    objectiveHold[action.deptName] = action.payload.data;
+                }
             } else {
                 objectiveHold[action.deptName] = [];
             }
