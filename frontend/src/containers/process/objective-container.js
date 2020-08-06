@@ -22,10 +22,50 @@ const ObjectiveContainer = (props) => {
         setAddMode(!addMode)
     }
 
-    const getMoreObjectives = () => {
+    const getNextObjectives = () => {
         props.fetchObjectives(props.deptName, page + 1);
         setPage(page + 1);
     }
+
+    const getLastObjectives = () => {
+        props.fetchObjectives(props.deptName, page - 1);
+        setPage(page - 1);
+    }
+
+    const arrows = () => {
+        return(
+            <div>
+                {props.moreResults[props.deptName] ?
+                    <div>
+                        {page > 1 ?
+                            <CustomButton
+                                action={getLastObjectives} 
+                                label="&#8656;"
+                                buttonStyle="blue arrow"/>
+                            :
+                            <div></div>
+                        }
+                        <div></div>
+                        <CustomButton
+                            action={getNextObjectives} 
+                            label="&#8658;"
+                            buttonStyle="blue arrow"/>
+                    </div>
+                    :
+                    <div>
+                        {page > 1 ?
+                            <CustomButton
+                                action={getLastObjectives} 
+                                label="&#8656;"
+                                buttonStyle="blue arrow"/>
+                            :
+                            null
+                        }
+                    </div>
+                }
+            </div>
+        )
+    } 
 
     return (
         <div>
@@ -39,17 +79,12 @@ const ObjectiveContainer = (props) => {
             <br />
             {props.objectives[props.deptName] ?
                 <div>
+                    {arrows()}
+                    <br/>
                     <Objectives
                         deptName={props.deptName}
                         objectives={props.objectives[props.deptName]} />
-                    {props.moreResults[props.deptName] ?
-                        <CustomButton
-                            action={getMoreObjectives} 
-                            label="More Objectives"
-                            style="soft-green"/>
-                        :
-                        null
-                    }
+                    {arrows()}
                 </div>
                 :
                 null
