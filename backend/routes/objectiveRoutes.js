@@ -15,7 +15,7 @@ function routes(Objective, Step, Schedule, ChangeLog) {
     router.route("")
         .post(controller.post);
 
-    router.route("/byDepartment/:deptName")
+    router.route("/byDepartment/:deptName&:page")
         .get(controller.getByDepartment);
 
     router.route("/:deptName&:objectiveName")

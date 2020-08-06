@@ -20,12 +20,15 @@ function objectiveController(Objective) {
             userId: req.rootId,
             deptName: req.params.deptName
         }
-        Objective.find(query, (err, objectives) => {
-            if (err) {
-                return res.send(err);
-            }
-            return res.json(objectives);
-        });
+        Objective.find(query)
+            .skip((req.params.page-1)*10)
+            .limit(10)
+            .exec((err, objectives) => {
+                if (err) {
+                    return res.send(err);
+                }
+                return res.json(objectives);
+            });
     };
 
     function getByName(req, res) {
