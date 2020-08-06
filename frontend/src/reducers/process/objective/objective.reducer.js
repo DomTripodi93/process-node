@@ -40,7 +40,17 @@ const objectiveReducer = (state = INITIAL_STATE, action) => {
                 moreResults: moreResultsHold
             };
         case ObjectiveActionTypes.ADD_OBJECTIVE:
-            objectiveHold[action.payload.deptName].push(action.payload)
+            objectiveHold[action.payload.deptName].push(action.payload);
+            objectiveHold[action.payload.deptName].sort((first, second) => {
+                    if (first.objectiveName > second.objectiveName) {
+                        return 1
+                    } else {
+                        return -1
+                    }
+                })
+            if (objectiveHold[action.payload.deptName].length === 11){
+                objectiveHold[action.payload.deptName].pop();
+            }
             return {
                 ...state,
                 objectives: objectiveHold
