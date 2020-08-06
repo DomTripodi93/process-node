@@ -28,9 +28,9 @@ export function fetchSingleObjective(objectiveName, deptName) {
 }
 //Gets specific objective by name
 
-export function fetchObjectivesByDepartment(deptName) {
+export function fetchObjectivesByDepartment(deptName, page) {
     return dispatch => {
-        http.fetchAll("objective/byDepartment/" + deptName)
+        http.fetchAll("objective/byDepartment/" + deptName + "&" + page)
             .then((objectives) => {
                 dispatch(setObjectives(objectives, deptName));
             });
