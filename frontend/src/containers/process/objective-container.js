@@ -5,19 +5,26 @@ import ObjectiveNew from '../../components/process/objective/objective-new';
 import Objectives from '../../components/process/objective/objectives';
 
 import './process.styles.scss';
+import CustomButton from '../../shared/elements/button/custom-button.component';
 
 
 const ObjectiveContainer = (props) => {
     const [addMode, setAddMode] = useState(false);
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
         if (!props.objectivesCalled) {
-            props.fetchObjectives(props.deptName);
+            props.fetchObjectives(props.deptName, page);
         }
-    }, [props]);
+    }, [props, page]);
 
     const showObjectiveForm = () => {
         setAddMode(!addMode)
+    }
+
+    const getMoreObjectives = () => {
+        props.fetchObjectives(props.deptName, page + 1);
+        setPage(page + 1);
     }
 
     return (
@@ -31,9 +38,15 @@ const ObjectiveContainer = (props) => {
             </div>
             <br />
             {props.objectives[props.deptName] ?
-                <Objectives
-                    deptName={props.deptName}
-                    objectives={props.objectives[props.deptName]} />
+                <div>
+                    <Objectives
+                        deptName={props.deptName}
+                        objectives={props.objectives[props.deptName]} />
+                    <CustomButton
+                        action={getMoreObjectives} 
+                        label="More Objectives"
+                        style="soft-green"/>
+                </div>
                 :
                 null
             }
@@ -43,7 +56,7 @@ const ObjectiveContainer = (props) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchObjectives: (deptName) => dispatch(fetchObjectivesByDepartment(deptName))
+        fetchObjectives: (deptName, page) => dispatch(fetchObjectivesByDepartment(deptName, page))
     }
 }
 

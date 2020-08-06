@@ -22,7 +22,9 @@ const objectiveReducer = (state = INITIAL_STATE, action) => {
                     objectiveHold[action.deptName] = action.payload.data;
                 }
             } else {
-                objectiveHold[action.deptName] = [];
+                if (!objectiveHold[action.deptName]){
+                    objectiveHold[action.deptName] = [];
+                }
             }
             return {
                 ...state,
