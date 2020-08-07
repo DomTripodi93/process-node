@@ -23,12 +23,18 @@ const ObjectiveContainer = (props) => {
     }
 
     const getNextObjectives = () => {
-        props.fetchObjectives(props.deptName, page + 1);
+        if (!props.objectives[props.deptName][page+1]){
+            props.fetchObjectives(props.deptName, page + 1);
+        } else {
+            console.log("1")
+        }
         setPage(page + 1);
     }
 
     const getLastObjectives = () => {
-        props.fetchObjectives(props.deptName, page - 1);
+        if (!props.objectives[props.deptName][page-1]){
+            props.fetchObjectives(props.deptName, page - 1);
+        }
         setPage(page - 1);
     }
 
@@ -83,7 +89,7 @@ const ObjectiveContainer = (props) => {
                     <br/>
                     <Objectives
                         deptName={props.deptName}
-                        objectives={props.objectives[props.deptName]} />
+                        objectives={props.objectives[props.deptName][page]} />
                     {arrows()}
                 </div>
                 :
