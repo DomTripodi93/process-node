@@ -11,59 +11,58 @@ import CustomButton from '../../shared/elements/button/custom-button.component';
 const ObjectiveContainer = (props) => {
     const [addMode, setAddMode] = useState(false);
     const [page, setPage] = useState(1)
+    const [moreResults, setMoreResults] = useState({});
 
     useEffect(() => {
         if (!props.objectivesCalled) {
-            props.fetchObjectives(props.deptName, page);
+            props.fetchObjectives(props.deptName, page, () => { setTimeout(setPage(1)) });
+        } else if (moreResults[page] === undefined) {
+            setMoreResults({ ...moreResults, [page]: props.moreResults[props.deptName] })
         }
-    }, [props, page]);
+    }, [props, page, moreResults]);
 
     const showObjectiveForm = () => {
         setAddMode(!addMode)
     }
 
     const getNextObjectives = () => {
-        if (!props.objectives[props.deptName][page+1]){
-            props.fetchObjectives(props.deptName, page + 1);
+        if (!props.objectives[props.deptName][page + 1]) {
+            props.fetchObjectives(props.deptName, page + 1, () => { setPage(page + 1) });
         } else {
-            console.log("1")
+            setPage(page + 1)
         }
-        setPage(page + 1);
     }
 
     const getLastObjectives = () => {
-        if (!props.objectives[props.deptName][page-1]){
-            props.fetchObjectives(props.deptName, page - 1);
-        }
-        setPage(page - 1);
+        setPage(page - 1)
     }
 
     const arrows = () => {
-        return(
+        return (
             <div className="size-holder">
-                {props.moreResults[props.deptName] ?
+                {moreResults[page] ?
                     <div className="grid-arrows">
                         {page > 1 ?
                             <CustomButton
-                                action={getLastObjectives} 
+                                action={getLastObjectives}
                                 label="&#8656;"
-                                buttonStyle="blue arrow"/>
+                                buttonStyle="blue arrow" />
                             :
                             <div></div>
                         }
                         <div></div>
                         <CustomButton
-                            action={getNextObjectives} 
+                            action={getNextObjectives}
                             label="&#8658;"
-                            buttonStyle="blue arrow"/>
+                            buttonStyle="blue arrow" />
                     </div>
                     :
                     <div className="grid-arrows">
                         {page > 1 ?
                             <CustomButton
-                                action={getLastObjectives} 
+                                action={getLastObjectives}
                                 label="&#8656;"
-                                buttonStyle="blue arrow"/>
+                                buttonStyle="blue arrow" />
                             :
                             null
                         }
@@ -71,7 +70,7 @@ const ObjectiveContainer = (props) => {
                 }
             </div>
         )
-    } 
+    }
 
     return (
         <div>
@@ -86,7 +85,7 @@ const ObjectiveContainer = (props) => {
             {props.objectives[props.deptName] ?
                 <div>
                     {arrows()}
-                    <br/>
+                    <br />
                     <Objectives
                         deptName={props.deptName}
                         objectives={props.objectives[props.deptName][page]} />
@@ -101,7 +100,7 @@ const ObjectiveContainer = (props) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchObjectives: (deptName, page) => dispatch(fetchObjectivesByDepartment(deptName, page))
+        fetchObjectives: (deptName, page, callback) => dispatch(fetchObjectivesByDepartment(deptName, page, callback))
     }
 }
 
