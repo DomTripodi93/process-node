@@ -34,9 +34,9 @@ const ObjectiveContainer = (props) => {
 
     const arrows = () => {
         return(
-            <div>
+            <div className="size-holder">
                 {props.moreResults[props.deptName] ?
-                    <div>
+                    <div className="grid-arrows">
                         {page > 1 ?
                             <CustomButton
                                 action={getLastObjectives} 
@@ -52,7 +52,7 @@ const ObjectiveContainer = (props) => {
                             buttonStyle="blue arrow"/>
                     </div>
                     :
-                    <div>
+                    <div className="grid-arrows">
                         {page > 1 ?
                             <CustomButton
                                 action={getLastObjectives} 

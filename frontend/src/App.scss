@@ -129,6 +129,11 @@ a, ul{
   grid-template-columns: 20% 80%;
 }
 
+.grid-arrows { 
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+}
+
 .sized30{
   width: 30.2%;
   margin: 17px 1.5% 17px 1.5%;

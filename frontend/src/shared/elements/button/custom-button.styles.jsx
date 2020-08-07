@@ -43,6 +43,11 @@ export const CustomizedButton = styled.button`
     background-color: rgb(200, 55, 10);
   }
 
+  &.arrow {
+    font-size: 27px;
+    height: 47px;
+  }
+
   &.white-text {
     color: rgb(255, 255, 255);
   }

@@ -8,7 +8,6 @@ import ObjectiveContainer from '../../../containers/process/objective-container'
 
 
 const SingleDepartment = props => {
-    console.log(props.department)
     const [editMode, updateEditMode] = useState(false);
 
     const setEditMode = () => {
