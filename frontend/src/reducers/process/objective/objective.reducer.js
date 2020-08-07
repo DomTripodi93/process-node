@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 
 const objectiveReducer = (state = INITIAL_STATE, action) => {
     let objectiveHold = { ...state.objectives };
-    let moreResultsHold = {...state.moreResults};
+    let moreResultsHold = { ...state.moreResults };
     switch (action.type) {
         case ObjectiveActionTypes.SET_SINGLE_OBJECTIVE:
             return {
@@ -17,15 +17,19 @@ const objectiveReducer = (state = INITIAL_STATE, action) => {
                 selectedObjective: action.payload
             };
         case ObjectiveActionTypes.SET_OBJECTIVES:
-            if (action.payload.data.length === 10){
+            if (action.payload.data.length === 10) {
                 moreResultsHold[action.deptName] = true;
             } else {
                 moreResultsHold[action.deptName] = false;
             }
             if (action.payload.data.length > 0) {
-                objectiveHold[action.deptName] = action.payload.data;
+                if (action.page) {
+                    objectiveHold[action.deptName] = { page: action.payload.data };
+                } else {
+                    objectiveHold[action.deptName] = action.payload.data;
+                }
             } else {
-                if (!objectiveHold[action.deptName]){
+                if (!objectiveHold[action.deptName]) {
                     objectiveHold[action.deptName] = [];
                 }
             }
@@ -38,13 +42,13 @@ const objectiveReducer = (state = INITIAL_STATE, action) => {
         case ObjectiveActionTypes.ADD_OBJECTIVE:
             objectiveHold[action.payload.deptName].push(action.payload);
             objectiveHold[action.payload.deptName].sort((first, second) => {
-                    if (first.objectiveName > second.objectiveName) {
-                        return 1
-                    } else {
-                        return -1
-                    }
-                })
-            if (objectiveHold[action.payload.deptName].length === 11){
+                if (first.objectiveName > second.objectiveName) {
+                    return 1
+                } else {
+                    return -1
+                }
+            })
+            if (objectiveHold[action.payload.deptName].length === 11) {
                 objectiveHold[action.payload.deptName].pop();
             }
             return {

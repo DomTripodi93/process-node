@@ -32,7 +32,7 @@ export function fetchObjectivesByDepartment(deptName, page) {
     return dispatch => {
         http.fetchAll("objective/byDepartment/" + deptName + "&" + page)
             .then((objectives) => {
-                dispatch(setObjectives(objectives, deptName));
+                dispatch(setObjectivesPage(objectives, deptName, page));
             });
     }
 }
@@ -99,7 +99,17 @@ export function setObjectives(objectives, deptName) {
     return {
         type: ObjectiveActionTypes.SET_OBJECTIVES,
         payload: objectives,
-        deptName: deptName
+        deptName
+    }
+}
+//Sets all objectives in state
+
+export function setObjectivesPage(objectives, deptName, page) {
+    return {
+        type: ObjectiveActionTypes.SET_OBJECTIVES,
+        payload: objectives,
+        deptName,
+        page
     }
 }
 //Sets all objectives in state
