@@ -14,9 +14,10 @@ function changeLogController(ChangeLog, Model, modelName) {
         };
 
         Object.keys(req.params).forEach(key => {
-            query[key] = req.params[key];
+            if (key !== "status"){
+                query[key] = req.params[key];
+            }
         })
-
         Model.find(query, (err, results) => {
             if (err) {
                 return res.send(err);

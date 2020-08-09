@@ -47,7 +47,6 @@ const ScheduleDetail = props => {
         } else {
             scheduleHold.status = "Complete";
         }
-        console.log(scheduleHold)
         props.updateScheduledTaskStatus(scheduleHold, scheduleHold.status, props.date, props.action);
     }
 

@@ -19,7 +19,6 @@ import ScheduleDayChanger from '../../components/schedule/schedule/schedule-day-
 
 
 const ScheduleDayContainer = props => {
-    console.log("X")
     const [hasNeededData, setNeededDataState] = useState(true);
     const [addMode, setAddMode] = useState(false);
     const helper = new CalendarHelper();
@@ -54,7 +53,6 @@ const ScheduleDayContainer = props => {
                 fetchObjectivesForDepartment(dept.deptName);
             })
         } else if (departments.length === 0) {
-            console.log("hit")
             setNeededDataState(false);
         }
     }, [
@@ -115,7 +113,6 @@ const ScheduleDayContainer = props => {
         if (!employeeCalled) {
             fetchEmployees();
         } else if (Object.keys(employeeMap).length === 0) {
-            console.log("1")
             setNeededDataState(false);
         }
     }, [

@@ -146,7 +146,7 @@ function scheduleController(Schedule) {
     function putStatus(req, res) {
         const query = {
             employeeId: req.userId,
-            _id: req.params.id,
+            _id: req.params._id,
         }
         Schedule.find(query, (err, schedules) => {
             if (err) {

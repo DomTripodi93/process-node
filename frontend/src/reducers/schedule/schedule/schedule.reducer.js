@@ -24,35 +24,7 @@ const scheduleReducer = (state = INITIAL_STATE, action) => {
             }
         });
     }
-    const updateBase = () => {
-        if (taskHold[action.date]) {
-            taskHold[action.date].push(action.payload);
-            taskHold[action.date] = sortTasks([
-                action.payload,
-                ...filterTasks(taskHold[action.date], action.payload._id)
-            ]);
-        }
-        if (taskHold[dateWithEmployee]) {
-            taskHold[dateWithEmployee].push(dateWithEmployee);
-            taskHold[dateWithEmployee] = sortTasks([
-                action.payload,
-                ...filterTasks(taskHold[dateWithEmployee], action.payload._id)
-            ]);
-        }
-        selectedHold = sortTasks([
-            action.payload,
-            ...filterTasks(selectedHold, action.payload._id)
-        ]);
-    }
-    const updateForEmployeeUser = () => {
-        if (taskHold["employee"][action.date] && action.payload.userId === action.employeeUserId) {
-            taskHold["employee"][action.date].push(action.payload);
-            taskHold["employee"][action.date] = sortTasks([
-                action.payload,
-                ...filterTasks(taskHold["employee"][action.date], action.payload._id)
-            ]);
-        }
-    }
+
     switch (action.type) {
         case ScheduleActionTypes.SET_SCHEDULES:
             taskHold[action.date] = action.payload.data;
@@ -93,10 +65,34 @@ const scheduleReducer = (state = INITIAL_STATE, action) => {
                 scheduledTasks: taskHold
             };
         case ScheduleActionTypes.UPDATE_SCHEDULES:
-            if (taskHold["employee"]) {
-                updateForEmployeeUser();
+            if (taskHold["employee"] && 
+                taskHold["employee"][action.date] && 
+                action.payload.userId === action.employeeUserId
+            ) {
+                taskHold["employee"][action.date].push(action.payload);
+                taskHold["employee"][action.date] = sortTasks([
+                    action.payload,
+                    ...filterTasks(taskHold["employee"][action.date], action.payload._id)
+                ]);
             }
-            updateBase();
+            if (taskHold[action.date]) {
+                taskHold[action.date].push(action.payload);
+                taskHold[action.date] = sortTasks([
+                    action.payload,
+                    ...filterTasks(taskHold[action.date], action.payload._id)
+                ]);
+            }
+            if (taskHold[dateWithEmployee]) {
+                taskHold[dateWithEmployee].push(dateWithEmployee);
+                taskHold[dateWithEmployee] = sortTasks([
+                    action.payload,
+                    ...filterTasks(taskHold[dateWithEmployee], action.payload._id)
+                ]);
+            }
+            selectedHold = sortTasks([
+                action.payload,
+                ...filterTasks(selectedHold, action.payload._id)
+            ]);
             return {
                 ...state,
                 scheduledTasks: taskHold,
@@ -108,6 +104,9 @@ const scheduleReducer = (state = INITIAL_STATE, action) => {
             }
             if (taskHold[dateWithEmployee]) {
                 taskHold[dateWithEmployee] = filterTasks(taskHold[dateWithEmployee], action.payload);
+            }
+            if (taskHold["employee"] && taskHold["employee"][action.date]){
+                taskHold["employee"][action.date] = filterTasks(taskHold["employee"][action.date], action.payload);
             }
             selectedHold = filterTasks(selectedHold, action.payload);
             return {

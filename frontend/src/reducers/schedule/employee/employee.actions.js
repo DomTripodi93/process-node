@@ -32,7 +32,6 @@ export function addEmployee(employee, callback) {
     return dispatch => {
         http.addItem("employee", employee)
             .then(addedEmployee => {
-                console.log(addedEmployee)
                 dispatch(addEmployeeToState(addedEmployee.data.result));
                 callback();
             });

@@ -29,7 +29,6 @@ const ChangeLogContainer = lazy(() => import('./containers/change-log/change-log
 
 
 const App = (props) => {
-  console.log("inapp")
   const [authValue, setAuthValue] = useState(props.isAuthenticated);
 
   useEffect(() => {
@@ -39,7 +38,6 @@ const App = (props) => {
       props.checkUser(userId, token);
     }
     setAuthValue(props.isAuthenticated);
-    // props.setIsRoot(props.isRoot);
   }, [props]);
 
   const checkDropDown = () => {

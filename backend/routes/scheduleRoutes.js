@@ -34,7 +34,7 @@ function routes(Schedule, ChangeLog) {
     router.route("/employeeMonth/:date")
         .get(controller.getByMonthForEmployee);
     
-    router.route("/employeeStatus/:id&:status")
+    router.route("/employeeStatus/:_id&:status")
         .put(controllerChangeLog.post)
         .put(controller.putStatus);
 

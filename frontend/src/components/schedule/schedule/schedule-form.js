@@ -88,8 +88,6 @@ const ScheduledTaskForm = props => {
                 deptOptions: [
                     { value: "None", label: "None" },
                     ...Object.keys(props.objectives).map(key => {
-                        console.log(key)
-                        console.log(props.objectives)
                         return { value: key, label: key };
                     })
                 ]
