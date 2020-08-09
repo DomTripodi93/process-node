@@ -1,5 +1,6 @@
 import rootHttp from '../../root-http';
 import ScheduleActionTypes from './schedule.types';
+import store from "../../store";
 
 
 const http = new rootHttp();
@@ -80,11 +81,13 @@ export function setSchedules(schedules, date) {
 //Sets all schedules in state
 
 export function updateSchedulesInState(schedule, date, employeeId) {
+    let employeeUserId = store.getState().user.userId;
     return {
         type: ScheduleActionTypes.UPDATE_SCHEDULES,
         payload: schedule,
         date,
-        employeeId
+        employeeId,
+        employeeUserId
     }
 }
 //Updates function for schedule
@@ -150,8 +153,8 @@ export function updateScheduledTaskStatus(schedule, status, date, callback) {
     return dispatch => {
         http.updateItem("schedule/employeeStatus", schedule, schedule._id + "&" + status)
             .then(() => {
-                dispatch(updateSchedulesInStateForEmployee(schedule, date));
-                dispatch(updateSchedulesInStateForEmployee(schedule, date.split("-")[1]));
+                dispatch(updateSchedulesInState(schedule, date));
+                dispatch(updateSchedulesInState(schedule, date.split("-")[1]));
                 callback();
             });
     }
@@ -176,16 +179,6 @@ export function setSchedulesForEmployee(schedules, date) {
     }
 }
 //Sets all schedules in state
-
-export function updateSchedulesInStateForEmployee(schedule, date, employeeId) {
-    return {
-        type: ScheduleActionTypes.UPDATE_SCHEDULES_FOR_EMPLOYEE,
-        payload: schedule,
-        date,
-        employeeId
-    }
-}
-//Updates function for schedule
 
 export function selectSchedulesInStateForEmployee(date) {
     return {
