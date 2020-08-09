@@ -142,7 +142,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = state => ({
-    objectives: state.objective.objectives,
+    objectives: state.objective.employeeObjectives,
     steps: state.step.employeeSteps,
 });
 
