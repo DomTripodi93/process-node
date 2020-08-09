@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import CalendarHelper from '../../shared/calendar-helper';
 import {
     selectSchedulesInState,
-    fetchSchedulesByEmployeeDay
+    fetchSchedulesByEmployeeDay,
+    selectSchedulesInStateForEmployee
 } from '../../reducers/schedule/schedule/schedule.actions';
 import { connect } from 'react-redux';
 import ScheduleDay from '../../components/schedule/schedule/schedule-day';
@@ -44,13 +45,13 @@ const ScheduleEmployeeDayContainer = props => {
     ])
 
 
-    const selectSchedules = props.selectSchedulesInState;
+    const selectSchedules = props.selectSchedulesInStateForEmployee;
     const scheduledTasks = props.scheduledTasks;
     const fetchSchedulesForDate = props.fetchSchedulesByEmployeeDay;
 
     useEffect(() => {
         let setFor = year + "-" + month + "-" + day;
-        if (!scheduledTasks[setFor]) {
+        if (!scheduledTasks.employee[setFor]) {
             fetchSchedulesForDate(setFor);
         } else {
             selectSchedules(setFor);
@@ -122,8 +123,8 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchDepartments: () => dispatch(fetchDepartments()),
         fetchObjectivesByDepartment: (deptName) => dispatch(fetchObjectivesByDepartment(deptName)),
-        selectSchedulesInState: (date) => dispatch(selectSchedulesInState(date)),
-        fetchSchedulesByEmployeeDay: (date) => dispatch(fetchSchedulesByEmployeeDay(date))
+        fetchSchedulesByEmployeeDay: (date) => dispatch(fetchSchedulesByEmployeeDay(date)),
+        selectSchedulesInStateForEmployee: (date) => dispatch(selectSchedulesInStateForEmployee(date))
     }
 }
 

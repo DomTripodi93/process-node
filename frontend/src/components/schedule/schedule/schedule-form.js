@@ -70,7 +70,7 @@ const ScheduledTaskForm = props => {
     }, [props, objectiveOptionSets])
 
     useEffect(() => {
-        if (props.hasNeededData && deptOptions.length < 2) {
+        if (props.hasNeededData && deptOptions.length < 1) {
             setScheduledTaskInfo({
                 employeeId: Object.keys(props.employeeMap)[0],
                 employeeName: props.employeeMap[Object.keys(props.employeeMap)[0]],
@@ -88,6 +88,8 @@ const ScheduledTaskForm = props => {
                 deptOptions: [
                     { value: "None", label: "None" },
                     ...Object.keys(props.objectives).map(key => {
+                        console.log(key)
+                        console.log(props.objectives)
                         return { value: key, label: key };
                     })
                 ]

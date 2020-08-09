@@ -33,7 +33,9 @@ export function fetchObjectivesByDepartment(deptName, page, callback) {
         http.fetchAll("objective/byDepartment/" + deptName + "&" + page)
             .then((objectives) => {
                 dispatch(setObjectivesPage(objectives, deptName, page));
-                callback();
+                if (callback) {
+                    callback();
+                }
             });
     }
 }

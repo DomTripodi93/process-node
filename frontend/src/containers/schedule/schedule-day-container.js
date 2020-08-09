@@ -19,6 +19,7 @@ import ScheduleDayChanger from '../../components/schedule/schedule/schedule-day-
 
 
 const ScheduleDayContainer = props => {
+    console.log("X")
     const [hasNeededData, setNeededDataState] = useState(true);
     const [addMode, setAddMode] = useState(false);
     const helper = new CalendarHelper();
@@ -69,7 +70,6 @@ const ScheduleDayContainer = props => {
     const fetchSchedulesForDate = props.fetchSchedulesByDate;
     const fetchSchedulesForEmployee = props.fetchSchedulesByEmployee;
     const selectSchedules = props.selectSchedulesInState;
-    const selectSchedulesForEmployee = props.selectSchedulesInStateForEmployee;
     const extractSchedules = props.extractScheduledTasksForEmployee;
     const isRoot = props.isRoot;
 
@@ -92,19 +92,12 @@ const ScheduleDayContainer = props => {
             } else {
                 selectSchedules(setFor);
             }
-        } else {
-            if (!scheduledTasks.employee[setFor]) {
-                fetchSchedulesForDate(setFor);
-            } else {
-                selectSchedulesForEmployee(setFor);
-            }
         }
     }, [
         scheduledTasks,
         fetchSchedulesForEmployee,
         fetchSchedulesForDate,
         selectSchedules,
-        selectSchedulesForEmployee,
         extractSchedules,
         employeeId,
         month,
@@ -219,7 +212,6 @@ const mapDispatchToProps = dispatch => {
         fetchEmployees: () => dispatch(fetchEmployees()),
         selectSchedulesInState: (date) => dispatch(selectSchedulesInState(date)),
         extractScheduledTasksForEmployee: (date, employeeId) => dispatch(extractScheduledTasksForEmployee(date, employeeId)),
-        selectSchedulesInStateForEmployee: (date) => dispatch(selectSchedulesInStateForEmployee(date))
     }
 }
 
