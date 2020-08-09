@@ -159,8 +159,17 @@ export function getSingleObjectiveForEmployee(deptName, objectiveName) {
     return dispatch => {
         http.fetchByValue("objective/forEmployee", deptName + "&" + objectiveName)
             .then((objective) => {
-                dispatch(setObjectives(objective, deptName + "-" + objectiveName));
+                dispatch(setObjectivesForEmployee(objective, deptName + "-" + objectiveName));
             });
     }
 }
 //Gets specific objective by name for Employee User
+
+function setObjectivesForEmployee(objectives, keyVal) {
+    return {
+        type: ObjectiveActionTypes.SET_OBJECTIVES_FOR_EMPLOYEE,
+        payload: objectives,
+        keyVal
+    }
+}
+//Sets all objectives in state

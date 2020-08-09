@@ -25,7 +25,7 @@ const objectiveReducer = (state = INITIAL_STATE, action) => {
             }
             if (action.payload.data.length > 0) {
                 if (action.page) {
-                    if (objectiveHold[action.deptName]){
+                    if (objectiveHold[action.deptName]) {
                         objectiveHold[action.deptName][action.page] = action.payload.data;
                     } else {
                         objectiveHold[action.deptName] = { [action.page]: action.payload.data };
@@ -44,6 +44,14 @@ const objectiveReducer = (state = INITIAL_STATE, action) => {
                 called: true,
                 moreResults: moreResultsHold
             };
+        case ObjectiveActionTypes.SET_OBJECTIVES_FOR_EMPLOYEE:
+            let employeeObjectivesHold = { ...state.employeeObjectives };
+            employeeObjectivesHold[action.keyVal] = action.payload.data;
+            return {
+                ...state,
+                employeeObjectives: employeeObjectivesHold
+            };
+
         case ObjectiveActionTypes.ADD_OBJECTIVE:
             objectiveHold[action.payload.deptName].push(action.payload);
             objectiveHold[action.payload.deptName].sort((first, second) => {
