@@ -155,7 +155,7 @@ function prepObjectiveValues(objective) {
 //Below functions are for Employee User
 
 
-export function getSingleObjectiveForEmployee(objectiveName, deptName) {
+export function getSingleObjectiveForEmployee(deptName, objectiveName) {
     return dispatch => {
         http.fetchByValue("objective/forEmployee", deptName + "&" + objectiveName)
             .then((objective) => {

@@ -2,6 +2,7 @@ import ObjectiveActionTypes from './objective.types';
 
 const INITIAL_STATE = {
     objectives: {},
+    employeeObjectives: {},
     selectedObjective: {},
     called: false,
     moreResults: {}
@@ -89,8 +90,10 @@ const objectiveReducer = (state = INITIAL_STATE, action) => {
         case ObjectiveActionTypes.SIGNOUT_USER:
             return {
                 objectives: {},
+                employeeObjectives: {},
                 selectedObjective: {},
-                called: false
+                called: false,
+                moreResults: {}
             };
         case ObjectiveActionTypes.ADD_DEPARTMENT:
             objectiveHold[action.payload.deptName] = [];
