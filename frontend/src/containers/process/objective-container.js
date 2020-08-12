@@ -10,7 +10,7 @@ import CustomButton from '../../shared/elements/button/custom-button.component';
 
 const ObjectiveContainer = (props) => {
     const [addMode, setAddMode] = useState(false);
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1);
     const [moreResults, setMoreResults] = useState({});
 
     useEffect(() => {
@@ -88,7 +88,8 @@ const ObjectiveContainer = (props) => {
                     <br />
                     <Objectives
                         deptName={props.deptName}
-                        objectives={props.objectives[props.deptName][page]} />
+                        objectives={props.objectives[props.deptName][page]}
+                        page={page} />
                     {arrows()}
                 </div>
                 :
