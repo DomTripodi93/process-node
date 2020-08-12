@@ -18,7 +18,7 @@ const ChangeLogReducer = (state = INITIAL_STATE, action) => {
             }
             return {
                 changes: changeHold,
-                moreResult: moreResultHold
+                moreResults: moreResultHold
             }
         case ChangeLogActionTypes.SIGNOUT_USER:
             return {
