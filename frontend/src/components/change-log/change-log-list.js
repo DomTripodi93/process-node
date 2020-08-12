@@ -11,7 +11,7 @@ const ChangeLogList = props => {
             {props.changes && props.changes.length > 0 ?
                 <div className="size-holder middle">
                     {props.changes.map(change => (
-                        <div key={change._id} className="centered">
+                        <div key={change._id} className="centered top-border">
                             <h5>
                                 Edited by {change.userName}({change.userId.substring(19)}), 
                                 at {helper.timeForDisplay(helper.timeFromDate(change.timeUpdated)) + " "}
@@ -20,6 +20,7 @@ const ChangeLogList = props => {
                             <ChangeLogAnyModel
                                 model={props.model}
                                 data={[change.oldValues, change.newValues]} />
+                            <br/>
                         </div>
                     ))}
                 </div>

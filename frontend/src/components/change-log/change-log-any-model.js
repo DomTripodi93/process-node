@@ -32,7 +32,9 @@ const ChangeLogAnyModel = props => {
         <div className="grid50">
             {values.length > 0 ?
                 <div className="centered">
-                    From:
+                    <h4>
+                        From:
+                    </h4>
                     {displayModels[props.model](values[0])}
                 </div>
                 :
@@ -40,7 +42,9 @@ const ChangeLogAnyModel = props => {
             }
             {values.length > 0 ?
                 <div className="centered">
-                    To:
+                    <h4>
+                        To:
+                    </h4>
                     {values[1] === "Deleted" ?
                         <h3>
                             Deleted
