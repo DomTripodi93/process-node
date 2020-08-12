@@ -4,9 +4,9 @@ import ChangeLogActionTypes from './change-log.types';
 
 const http = new rootHttp();
 
-export function fetchChanges(model) {
+export function fetchChanges(model, page) {
     return dispatch => {
-        http.fetchAll("changeLog/"+ model)
+        http.fetchAll("changeLog/"+ model + "&" + page)
             .then((changes) => {
                 dispatch(setChanges(changes, model));
             });

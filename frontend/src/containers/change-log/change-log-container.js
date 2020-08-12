@@ -13,7 +13,7 @@ const ChangeLogContainer = (props) => {
 
     useEffect(() => {
         if (!props.changes[changeType]) {
-            props.fetchChanges(changeType);
+            props.fetchChanges(changeType, 1);
         }
     }, [props, changeType]);
 
@@ -29,7 +29,7 @@ const ChangeLogContainer = (props) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchChanges: (model) => dispatch(fetchChanges(model))
+        fetchChanges: (model, page) => dispatch(fetchChanges(model, page))
     }
 }
 
