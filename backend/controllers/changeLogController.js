@@ -49,6 +49,8 @@ function changeLogController(ChangeLog, Model, modelName) {
         
         ChangeLog.find(query)
             .sort({timeUpdated: -1})
+            .skip((req.params.page-1)*10)
+            .limit(10)
             .exec((err, changes) => {
             if (err) {
                 return res.send(err);
