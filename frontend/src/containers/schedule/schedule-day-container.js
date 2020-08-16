@@ -4,7 +4,6 @@ import {
     fetchSchedulesByEmployee,
     fetchSchedulesByDate,
     selectSchedulesInState,
-    selectSchedulesInStateForEmployee,
     extractScheduledTasksForEmployee
 } from '../../reducers/schedule/schedule/schedule.actions';
 import { connect } from 'react-redux';

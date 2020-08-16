@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import CalendarHelper from '../../shared/calendar-helper';
 import {
-    selectSchedulesInState,
     fetchSchedulesByEmployeeDay,
     selectSchedulesInStateForEmployee
 } from '../../reducers/schedule/schedule/schedule.actions';

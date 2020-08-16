@@ -11,7 +11,7 @@ const EmployeePasswordUpdate = props => {
         newPassword: '',
         confirmPassword: ''
     });
-    const { email, newPassword, confirmPassword } = employeeInfo;
+    const { newPassword, confirmPassword } = employeeInfo;
 
     const [errorMessage, setErrorMessage] = useState("")
 

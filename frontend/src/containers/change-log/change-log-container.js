@@ -65,6 +65,7 @@ const ChangeLogContainer = (props) => {
                         }
                     </div>
                 }
+                <br/>
             </div>
         )
     }

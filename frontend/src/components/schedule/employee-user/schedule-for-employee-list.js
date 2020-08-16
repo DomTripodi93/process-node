@@ -12,7 +12,6 @@ const ScheduleForEmployeeList = props => {
     const getObjective = props.getObjective;
     const scheduledTasks = props.scheduledTasks;
     const objectives = props.objectives;
-    const steps = props.steps;
 
     useEffect(() => {
         if (scheduledTasks) {
