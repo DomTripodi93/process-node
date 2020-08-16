@@ -37,6 +37,9 @@ const App = (props) => {
     if (!props.isAuthenticated) {
       props.checkUser(userId, token);
     }
+    if (props.isRoot) {
+      props.setIsRoot(props.isRoot);
+    }
     setAuthValue(props.isAuthenticated);
   }, [props]);
 

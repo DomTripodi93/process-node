@@ -92,7 +92,7 @@ const messageController = (Message, User) => {
         });
     }
 
-    return { post, get, getByPage }
+    return { post, get, getByPage, put }
 }
 
 module.exports = messageController;
