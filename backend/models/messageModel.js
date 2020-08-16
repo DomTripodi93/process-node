@@ -4,12 +4,15 @@ const uniqueValidator = require("mongoose-unique-validator");
 const { Schema } = mongoose;
 
 const messageModel = new Schema(
-  {
-    userId: { type: String, required: true },
-    userName: { type: String, required: true },
-    message: { type: String, required: true },
-    date: { type: Date, required: true }
-  }
+    {
+        rootId: { type: String, required: true },
+        userId: { type: String, required: true },
+        userName: { type: String, required: true },
+        lastChangeId: { type: String },
+        lastChangeName: { type: String },
+        message: { type: String, required: true },
+        date: { type: Date, required: true }
+    }
 );
 
 messageModel.plugin(uniqueValidator);
