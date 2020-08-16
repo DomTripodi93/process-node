@@ -10,6 +10,8 @@ const authRoutes = require("./routes/authRoutes")(User);
 const userRoutes = require("./routes/userRoutes")(User);
 const ChangeLog = require("./models/changeLogModel");
 const changeLogRoutes = require("./routes/changeLogRoutes")(ChangeLog);
+const Message = require("./models/messageModel");
+const messageRoutes = require("./routes/messageRoutes")(Message, User, ChangeLog);
 const Schedule = require("./models/scheduleModel");
 const scheduleRoutes = require("./routes/scheduleRoutes")(Schedule, ChangeLog);
 const employeeRoutes = require("./routes/employeeRoutes")(User, Schedule);
@@ -74,6 +76,7 @@ app.use("/api/commonDifficulty", commonDifficultyRoutes);
 app.use("/api/employee", employeeRoutes);
 app.use("/api/schedule", scheduleRoutes);
 app.use("/api/changeLog", changeLogRoutes);
+app.use("/api/message", messageRoutes);
 
 
 const port = process.env.PORT || 3200;
