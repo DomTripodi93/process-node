@@ -1,0 +1,10 @@
+const MessageActionTypes = {
+    SET_MESSAGES: 'SET_MESSAGES',
+    SET_TOP_MESSAGES: 'SET_TOP_MESSAGES',
+    ADD_MESSAGE: "ADD_MESSAGE",
+    UPDATE_MESSAGES: 'UPDATE_MESSAGES',
+    DELETE_MESSAGE: 'DELETE_MESSAGE',
+    SIGNOUT_USER: 'SIGNOUT_USER'
+};
+
+export default MessageActionTypes;
