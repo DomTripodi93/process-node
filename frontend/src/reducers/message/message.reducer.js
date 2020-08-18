@@ -2,7 +2,8 @@ import MessageActionTypes from './message.types';
 
 const INITIAL_STATE = {
     topMessages: [],
-    messages: {}
+    messages: {},
+    called: {}
 }
 
 const messageReducer = (state = INITIAL_STATE, action) => {
@@ -13,12 +14,14 @@ const messageReducer = (state = INITIAL_STATE, action) => {
         case MessageActionTypes.SET_MESSAGES:
             return {
                 ...state,
-                messages: { ...messageHold, [action.page]: [...action.payload.data] }
+                messages: { ...messageHold, [action.page]: [...action.payload.data] },
+                called: { ...state.called, [action.page]: true }
             };
         case MessageActionTypes.SET_TOP_MESSAGES:
             return {
                 ...state,
-                topMessages: action.payload.data
+                topMessages: action.payload.data,
+                called: { ...state.called, top: true }
             };
         case MessageActionTypes.ADD_MESSAGE:
             Object.keys(messageHold).forEach(key => {
