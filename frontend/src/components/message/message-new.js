@@ -1,5 +1,7 @@
 import React from 'react';
 import CustomButton from '../../shared/elements/button/custom-button.component';
+import MessageForm from './message-form';
+
 
 const MessageNew = (props) => {
     return (
@@ -7,7 +9,8 @@ const MessageNew = (props) => {
             {props.addMode ?
                 <div>
                     <div className='border'>
-                        form
+                        <MessageForm 
+                            callback={props.action}/>
                     </div>
                     <br />
                 </div>

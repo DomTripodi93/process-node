@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import CustomButton from '../../../shared/elements/button/custom-button.component';
-import FormInput from '../../../shared/elements/form-input/form-input.component';
+import CustomButton from '../../shared/elements/button/custom-button.component';
+import FormInput from '../../shared/elements/form-input/form-input.component';
 import { addMessage, updateMessage } from '../../reducers/message/message.actions';
 
 
