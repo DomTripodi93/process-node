@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchMessages } from '../../reducers/message/message.actions';
+import MessageNew from '../../components/message/message-new';
 
 
 const MessageTopContainer = (props) => {
@@ -19,6 +20,9 @@ const MessageTopContainer = (props) => {
 
     return (
         <div>
+            <MessageNew 
+            addMode={addMode}
+            action={showMessageForm}/>
             top messages
         </div>
     )
