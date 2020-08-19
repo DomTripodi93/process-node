@@ -3,19 +3,27 @@ import MessageActionTypes from './message.types';
 const INITIAL_STATE = {
     topMessages: [],
     messages: {},
-    called: {}
+    called: {},
+    moreResults: {}
 }
 
 const messageReducer = (state = INITIAL_STATE, action) => {
     let messageHold = { ...state.messages };
-    let topMessageHold = [...state.topMessages]
-    let lastMessage = {}
+    let topMessageHold = [...state.topMessages];
+    let moreResultsHold = { ...state.moreResults };
+    let lastMessage = {};
     switch (action.type) {
         case MessageActionTypes.SET_MESSAGES:
+            if (action.payload.data.length === 5) {
+                moreResultsHold[action.page] = true;
+            } else {
+                moreResultsHold[action.page] = false;
+            }
             return {
                 ...state,
                 messages: { ...messageHold, [action.page]: [...action.payload.data] },
-                called: { ...state.called, [action.page]: true }
+                called: { ...state.called, [action.page]: true },
+                moreResults: moreResultsHold
             };
         case MessageActionTypes.SET_TOP_MESSAGES:
             return {
@@ -35,6 +43,8 @@ const messageReducer = (state = INITIAL_STATE, action) => {
                             return -1
                         }
                     }).pop();
+                } else {
+                    messageHold[key].push(lastMessage);
                 }
             })
             topMessageHold = [action.payload, ...topMessageHold.pop()];
@@ -93,7 +103,10 @@ const messageReducer = (state = INITIAL_STATE, action) => {
             };
         case MessageActionTypes.SIGNOUT_USER:
             return {
-                messages: {}
+                topMessages: [],
+                messages: {},
+                called: {},
+                moreResults: {}
             };
         default:
             return state;

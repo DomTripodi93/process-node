@@ -15,11 +15,12 @@ export function fetchMessages() {
 }
 //Gets all changes for a specific department
 
-export function fetchNextMessages(page) {
+export function fetchNextMessages(page, callback) {
     return dispatch => {
         http.fetchAll("message/next/" + page)
             .then((messages) => {
                 dispatch(setMessages(messages, page));
+                callback();
             });
     }
 }
