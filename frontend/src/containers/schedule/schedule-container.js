@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import './schedule.styles.scss';
 import { setIsRoot } from '../../reducers/schedule/schedule/schedule.actions';
 import MessageTopContainer from '../message/message-top';
+import MessagePagedContainer from '../message/message-paged';
 
 
 const ScheduleContainer = props => {
@@ -74,6 +75,7 @@ const ScheduleContainer = props => {
                 year={year}
                 isRoot={isRoot}
                 canEdit={canEdit} />
+            <MessagePagedContainer />
         </div>
     )
 }
