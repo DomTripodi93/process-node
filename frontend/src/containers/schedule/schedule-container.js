@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import './schedule.styles.scss';
 import { setIsRoot } from '../../reducers/schedule/schedule/schedule.actions';
+import MessageTopContainer from '../message/message-top';
 
 
 const ScheduleContainer = props => {
@@ -59,6 +60,7 @@ const ScheduleContainer = props => {
 
     return (
         <div>
+            <MessageTopContainer />
             <CalendarNew
                 callback={updateMonth}
                 month={month}

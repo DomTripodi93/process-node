@@ -15,7 +15,7 @@ const ObjectiveContainer = (props) => {
 
     useEffect(() => {
         if (!props.objectivesCalled) {
-            props.fetchObjectives(props.deptName, page, () => { setTimeout(setPage(1)) });
+            props.fetchObjectives(props.deptName, page, () => { });
         } else if (moreResults[page] === undefined) {
             setMoreResults({ ...moreResults, [page]: props.moreResults[props.deptName] })
         }

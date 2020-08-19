@@ -1,4 +1,4 @@
-import rootHttp from '../../root-http';
+import rootHttp from '../root-http';
 import MessageActionTypes from './message.types';
 
 
@@ -70,6 +70,14 @@ export function setTopMessages(messages) {
     return {
         type: MessageActionTypes.SET_TOP_MESSAGES,
         payload: messages
+    }
+}
+//Sets all changes in state
+
+export function addMessageToState(message) {
+    return {
+        type: MessageActionTypes.ADD_MESSAGE,
+        payload: message
     }
 }
 //Sets all changes in state
