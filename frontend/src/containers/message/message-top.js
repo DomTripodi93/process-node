@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { fetchMessages } from '../../reducers/message/message.actions';
 import MessageNew from '../../components/message/message-new';
+import MessageList from '../../components/message/message-list';
 
 
 const MessageTopContainer = (props) => {
@@ -20,10 +21,13 @@ const MessageTopContainer = (props) => {
 
     return (
         <div className="size-holder middle">
-            <MessageNew 
-            addMode={addMode}
-            action={showMessageForm}/>
-            top messages
+            <MessageNew
+                addMode={addMode}
+                action={showMessageForm} />
+            <div className="spaced">
+                <MessageList
+                    messages={props.messages} />
+            </div>
         </div>
     )
 }
