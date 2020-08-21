@@ -19,7 +19,7 @@ const MessageTopContainer = (props) => {
     }
 
     return (
-        <div>
+        <div className="size-holder middle">
             <MessageNew 
             addMode={addMode}
             action={showMessageForm}/>
