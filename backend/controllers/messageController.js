@@ -3,7 +3,7 @@ const dateRegulator = require("../middleware/dateRegulator");
 const messageController = (Message, User) => {
     function post(req, res, next) {
         let query = {
-            userId: req.userId
+            _id: req.userId
         };
         User.findOne(query, (err, user) => {
             if (err) {
@@ -20,8 +20,7 @@ const messageController = (Message, User) => {
                 if (err) {
                     return res.send(err);
                 }
-                res.status(201);
-                next();
+                return res.status(201);
             });
         })
     }
@@ -32,7 +31,7 @@ const messageController = (Message, User) => {
         }
         Message.find(query)
             .sort({date: 1})
-            .limit(2)
+            .limit(3)
             .exec((err, messages) => {
                 if (err) {
                     return res.send(err);
@@ -47,7 +46,7 @@ const messageController = (Message, User) => {
         }
         Message.find(query)
             .sort({date: 1})
-            .skip(((req.params.page-1)*5) + 2)
+            .skip(((req.params.page-1)*5) + 3)
             .limit(5)
             .exec((err, messages) => {
                 if (err) {
@@ -67,14 +66,13 @@ const messageController = (Message, User) => {
                 return res.send(err);
             }
             let userQuery = {
-                userId: req.userId
+                _id: req.userId
             };
             User.findOne(userQuery, (err, user) => {
                 if (err) {
                     return res.send(err);
                 }
                 let newMessage = {
-                    ...message, 
                     ...req.body,
                     lastChangeId: req.userId,
                     lastChangeName: user.name
