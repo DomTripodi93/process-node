@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
+import "./message.styles.scss";
 import { fetchMessages } from '../../reducers/message/message.actions';
 import MessageNew from '../../components/message/message-new';
 import MessageList from '../../components/message/message-list';

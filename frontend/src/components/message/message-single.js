@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import CustomButton from '../../../shared/elements/button/custom-button.component';
+import CustomButton from '../../shared/elements/button/custom-button.component';
 import { connect } from 'react-redux';
 import MessageForm from './message-form';
 import { deleteMessage } from '../../reducers/message/message.actions';
 
 
 
-const SingleBestPractice = props => {
+const SingleMessage = props => {
     const [editMode, updateEditMode] = useState(false);
 
     const setEditMode = () => {
@@ -25,11 +25,11 @@ const SingleBestPractice = props => {
     }
 
     return (
-        <div>
-            <div className='border'>
+        <div className="middle">
+            <div className='border spaced'>
                 {!editMode ?
                     <div>
-                        <h5>{props.message.userName} - {props.message.date}</h5>
+                        <h5 className="shortened">{props.message.userName} - {props.message.date}</h5>
                         {props.message.lastChangeName ?
                             <h4>Last Updated By: <br /> {props.bestPractice.method}</h4>
                             :
@@ -68,4 +68,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(SingleBestPractice);
+export default connect(null, mapDispatchToProps)(SingleMessage);

@@ -1,4 +1,6 @@
 import React from 'react';
+import SingleMessage from './message-single';
+
 
 const MessageList = props => {
     return (
@@ -10,7 +12,8 @@ const MessageList = props => {
                             <div
                                 key={message._id}
                             >
-                                {message.message}
+                                <SingleMessage 
+                                    message={message} />
                             </div>
                         ))}
                     </div>
