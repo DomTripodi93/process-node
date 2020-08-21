@@ -31,7 +31,7 @@ const messageController = (Message, User) => {
         }
         Message.find(query)
             .sort({date: 1})
-            .limit(2)
+            .limit(3)
             .exec((err, messages) => {
                 if (err) {
                     return res.send(err);
@@ -46,7 +46,7 @@ const messageController = (Message, User) => {
         }
         Message.find(query)
             .sort({date: 1})
-            .skip(((req.params.page-1)*5) + 2)
+            .skip(((req.params.page-1)*5) + 3)
             .limit(5)
             .exec((err, messages) => {
                 if (err) {
