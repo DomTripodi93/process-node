@@ -22,7 +22,7 @@ const MessageForm = props => {
         event.preventDefault();
         if (props.editMode) {
             if (message !== props.messageInput.message) {
-                props.updateMessage(messageInfo, props.callback);
+                props.updateMessage({...props.messageInput, ...messageInfo}, props.callback);
             } else {
                 props.callback();
             }

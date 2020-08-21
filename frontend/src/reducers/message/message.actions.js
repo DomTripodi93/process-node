@@ -39,7 +39,7 @@ export function addMessage(message, callback) {
 
 export function updateMessage(message, page) {
     return dispatch => {
-        http.updateItemById("message/" + message._id, message)
+        http.updateItemById("message", message, message._id)
             .then((messageReturned) => {
                 dispatch(updateMessageInState(messageReturned, page));
             });
