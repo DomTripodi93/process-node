@@ -5,7 +5,7 @@ const MessageList = props => {
         <div>
             {props.messages.length > 0 ?
                 <div>
-                    <div className='grid50-to-100'>
+                    <div className='grid100'>
                         {props.messages.map(message => (
                             <div
                                 key={message._id}

@@ -24,10 +24,8 @@ const MessageTopContainer = (props) => {
             <MessageNew
                 addMode={addMode}
                 action={showMessageForm} />
-            <div className="spaced">
-                <MessageList
-                    messages={props.messages} />
-            </div>
+            <MessageList
+                messages={props.messages} />
         </div>
     )
 }
