@@ -30,7 +30,7 @@ const messageController = (Message, User) => {
             userId: req.rootId
         }
         Message.find(query)
-            .sort({date: 1})
+            .sort({date: -1})
             .limit(3)
             .exec((err, messages) => {
                 if (err) {
@@ -61,32 +61,27 @@ const messageController = (Message, User) => {
             rootId: req.rootId,
             _id: req.params._id
         };
-        Message.findOne(query, (err, message) => {
+        let userQuery = {
+            _id: req.userId
+        };
+        User.findOne(userQuery, (err, user) => {
             if (err) {
                 return res.send(err);
             }
-            let userQuery = {
-                _id: req.userId
+            let newMessage = {
+                ...req.body,
+                lastChangeId: req.userId,
+                lastChangeName: user.name
             };
-            User.findOne(userQuery, (err, user) => {
-                if (err) {
-                    return res.send(err);
-                }
-                let newMessage = {
-                    ...req.body,
-                    lastChangeId: req.userId,
-                    lastChangeName: user.name
-                };
-                newMessage.date = dateRegulator(new Date);
-                Message.updateOne(query, newMessage)
-                    .then(result => {
-                        if (result.nModified > 0) {
-                            return res.status(200).json({ message: "Update Successful" });
-                        } else {
-                            return res.status(500).json({ message: "No Changes" });
-                        }
-                    });
-            });
+            newMessage.date = dateRegulator(new Date);
+            Message.updateOne(query, newMessage)
+                .then(result => {
+                    if (result.nModified > 0) {
+                        return res.status(200).json({ message: "Update Successful" });
+                    } else {
+                        return res.status(500).json({ message: "No Changes" });
+                    }
+                });
         });
     }
 

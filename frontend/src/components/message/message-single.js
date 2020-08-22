@@ -31,7 +31,7 @@ const SingleMessage = props => {
                     <div>
                         <h5 className="shortened">{props.message.userName} - {props.message.date}</h5>
                         {props.message.lastChangeName ?
-                            <h4>Last Updated By: <br /> {props.bestPractice.method}</h4>
+                            <h5 className="shortened">Last Updated By: {props.message.lastChangeName}</h5>
                             :
                             null
                         }

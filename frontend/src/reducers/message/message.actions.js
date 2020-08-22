@@ -84,7 +84,7 @@ export function addMessageToState(message) {
 
 export function updateMessageInState(message, page) {
     return {
-        type: MessageActionTypes.UPDATE_MESSAGE,
+        type: MessageActionTypes.UPDATE_MESSAGES,
         payload: message,
         page
     }
