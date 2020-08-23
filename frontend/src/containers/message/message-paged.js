@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import CustomButton from '../../shared/elements/button/custom-button.component';
 import { fetchNextMessages } from '../../reducers/message/message.actions';
+import MessageList from '../../components/message/message-list';
 
 
 const MessagePagedContainer = (props) => {
@@ -66,7 +67,12 @@ const MessagePagedContainer = (props) => {
 
     return (
         <div>
-            paged messages
+        {props.messages[page] ?
+            <MessageList
+                messages={props.messages[page]} />
+            :
+            null
+        }
         </div>
     )
 }
