@@ -68,8 +68,11 @@ const MessagePagedContainer = (props) => {
     return (
         <div>
         {props.messages[page] ?
-            <MessageList
-                messages={props.messages[page]} />
+            <div>
+                {arrows()}
+                <MessageList
+                    messages={props.messages[page]} />
+            </div>
             :
             null
         }
