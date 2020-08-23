@@ -1,7 +1,7 @@
 const dateRegulator = require("../middleware/dateRegulator");
 
 const messageController = (Message, User) => {
-    function post(req, res, next) {
+    function post(req, res) {
         let query = {
             _id: req.userId
         };
@@ -20,7 +20,8 @@ const messageController = (Message, User) => {
                 if (err) {
                     return res.send(err);
                 }
-                return res.status(201);
+                res.status(201);
+                return res.json(message);
             });
         })
     }
