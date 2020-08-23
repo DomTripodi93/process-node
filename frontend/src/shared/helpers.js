@@ -79,6 +79,8 @@ class helpers {
             } else {
                 time = time + " AM"
             }
+        } else if (+time[1] == 0) {
+            time = "12" + time.substring(2, 5) + " AM"
         } else {
             time = time.substring(1, 5) + " AM"
         }
