@@ -46,7 +46,7 @@ const messageController = (Message, User) => {
             userId: req.rootId
         }
         Message.find(query)
-            .sort({date: 1})
+            .sort({date: -1})
             .skip(((req.params.page-1)*5) + 3)
             .limit(5)
             .exec((err, messages) => {
