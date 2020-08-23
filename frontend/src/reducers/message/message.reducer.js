@@ -32,6 +32,9 @@ const messageReducer = (state = INITIAL_STATE, action) => {
                 called: { ...state.called, top: true }
             };
         case MessageActionTypes.ADD_MESSAGE:
+            if (topMessageHold.length > 2){
+                lastMessage = topMessageHold[2];
+            }
             Object.keys(messageHold).forEach(key => {
                 if (messageHold[key].length === 5) {
                     messageHold[key].push(lastMessage)
@@ -47,10 +50,11 @@ const messageReducer = (state = INITIAL_STATE, action) => {
                     messageHold[key].push(lastMessage);
                 }
             })
-            topMessageHold = [action.payload, ...topMessageHold.pop()];
+            topMessageHold.pop();
+            topMessageHold = [action.payload.data, ...topMessageHold];
             return {
                 ...state,
-                messages: [...state.messages, action.payload],
+                messages: messageHold,
                 topMessages: topMessageHold
             };
         case MessageActionTypes.UPDATE_MESSAGES:
