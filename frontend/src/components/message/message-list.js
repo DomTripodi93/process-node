@@ -13,7 +13,8 @@ const MessageList = props => {
                                 key={message._id}
                             >
                                 <SingleMessage 
-                                    message={message} />
+                                    message={message}
+                                    page={props.page} />
                             </div>
                         ))}
                     </div>

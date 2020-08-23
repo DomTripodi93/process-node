@@ -26,7 +26,8 @@ const MessageTopContainer = (props) => {
                 addMode={addMode}
                 action={showMessageForm} />
             <MessageList
-                messages={props.messages} />
+                messages={props.messages}
+                page={"top"} />
         </div>
     )
 }
