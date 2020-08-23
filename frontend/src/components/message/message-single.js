@@ -68,7 +68,7 @@ const SingleMessage = props => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        deleteBestPractice: (id, page) => dispatch(deleteMessage(id, page))
+        deleteMessage: (id, page) => dispatch(deleteMessage(id, page))
     }
 }
 
