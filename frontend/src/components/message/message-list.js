@@ -20,7 +20,7 @@ const MessageList = props => {
                 </div>
                 :
                 <div className="border centered">
-                    <h4 className="spaced">
+                    <h4 className="spaced-msg">
                         You currently don't have any messages!
                     </h4>
                 </div>

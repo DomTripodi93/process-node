@@ -15,7 +15,7 @@ const MessageNew = (props) => {
                     <br />
                 </div>
                 :
-                <div className='full-button'>
+                <div className='size-border middle'>
                     <div className='grid100'>
                         <CustomButton
                             buttonStyle="blue"

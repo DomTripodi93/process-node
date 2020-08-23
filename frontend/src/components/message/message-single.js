@@ -26,7 +26,7 @@ const SingleMessage = props => {
 
     return (
         <div className="middle">
-            <div className='border spaced'>
+            <div className='border spaced-msg'>
                 {!editMode ?
                     <div>
                         <h5 className="shortened">{props.message.userName} - {props.message.date}</h5>

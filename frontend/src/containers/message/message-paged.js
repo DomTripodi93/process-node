@@ -32,7 +32,7 @@ const MessagePagedContainer = (props) => {
 
     const arrows = () => {
         return (
-            <div className="size-holder">
+            <div className="size-border middle">
                 {moreResults[page] ?
                     <div className="grid-arrows">
                         {page > 1 ?
@@ -68,7 +68,7 @@ const MessagePagedContainer = (props) => {
     return (
         <div>
         {props.messages[page] ?
-            <div>
+            <div className="spaced-msg">
                 {arrows()}
                 <MessageList
                     messages={props.messages[page]} />

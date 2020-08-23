@@ -62,10 +62,12 @@ const ScheduleContainer = props => {
     return (
         <div>
             <MessageTopContainer />
-            <CalendarNew
-                callback={updateMonth}
-                month={month}
-                year={year} />
+            <div className="space-top">
+                <CalendarNew
+                    callback={updateMonth}
+                    month={month}
+                    year={year} />
+            </div>
             <Calendar
                 employeeId={props.match.params.employeeId}
                 scheduledTasks = {props.selectedTasks}
