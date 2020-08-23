@@ -71,7 +71,8 @@ const MessagePagedContainer = (props) => {
             <div className="spaced-msg">
                 {arrows()}
                 <MessageList
-                    messages={props.messages[page]} />
+                    messages={props.messages[page]}
+                    page={page} />
             </div>
             :
             null
