@@ -47,11 +47,11 @@ export function updateMessage(message, page) {
 }
 //Posts new bestPractice to API
 
-export function deleteMessage(message, page) {
+export function deleteMessage(id, page) {
     return dispatch => {
-        http.deleteItemById("message/" + message._id, message)
+        http.deleteItemById("message", id)
             .then(() => {
-                dispatch(deleteMessageInState(message, page));
+                dispatch(deleteMessageInState(id, page));
             });
     }
 }
@@ -91,10 +91,10 @@ export function updateMessageInState(message, page) {
 }
 //Sets all changes in state
 
-export function deleteMessageInState(message, page) {
+export function deleteMessageInState(id, page) {
     return {
         type: MessageActionTypes.DELETE_MESSAGE,
-        payload: message,
+        payload: id,
         page
     }
 }

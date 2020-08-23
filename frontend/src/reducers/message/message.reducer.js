@@ -92,12 +92,12 @@ const messageReducer = (state = INITIAL_STATE, action) => {
             if (action.page === "top") {
                 topMessageHold = topMessageHold
                     .filter((value) => {
-                        return value._id !== action.payload._id
+                        return value._id !== action.payload
                     })
             } else {
                 messageHold[action.page] = messageHold[action.page]
                     .filter((value) => {
-                        return value._id !== action.payload._id
+                        return value._id !== action.payload
                     })
             }
             return {
