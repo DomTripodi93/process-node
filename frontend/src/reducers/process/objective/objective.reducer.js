@@ -35,7 +35,7 @@ const objectiveReducer = (state = INITIAL_STATE, action) => {
                 }
             } else {
                 if (!objectiveHold[action.deptName]) {
-                    objectiveHold[action.deptName] = [];
+                    objectiveHold[action.deptName] = { [action.page]: action.payload.data };
                 }
             }
             return {
