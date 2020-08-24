@@ -72,7 +72,8 @@ const MessagePagedContainer = (props) => {
                 {arrows()}
                 <MessageList
                     messages={props.messages[page]}
-                    page={page} />
+                    page={page}
+                    isRoot={props.isRoot} />
             </div>
             :
             null
@@ -90,7 +91,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => ({
     messages: state.message.messages,
     called: state.message.called,
-    moreResults: state.message.moreResults
+    moreResults: state.message.moreResults,
+    isRoot: state.schedule.isRoot
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagePagedContainer);
