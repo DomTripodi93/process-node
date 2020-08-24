@@ -22,12 +22,17 @@ const MessageTopContainer = (props) => {
 
     return (
         <div className="middle">
-            <MessageNew
-                addMode={addMode}
-                action={showMessageForm} />
+            {props.isRoot ? 
+                <MessageNew
+                    addMode={addMode}
+                    action={showMessageForm} />
+                :
+                null
+            }
             <MessageList
                 messages={props.messages}
-                page={"top"} />
+                page={"top"}
+                isRoot={props.isRoot} />
         </div>
     )
 }
@@ -40,7 +45,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => ({
     messages: state.message.topMessages,
-    called: state.message.called
+    called: state.message.called,
+    isRoot: state.schedule.isRoot
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageTopContainer);
