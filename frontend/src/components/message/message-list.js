@@ -14,7 +14,8 @@ const MessageList = props => {
                             >
                                 <SingleMessage 
                                     message={message}
-                                    page={props.page} />
+                                    page={props.page}
+                                    isRoot={props.isRoot} />
                             </div>
                         ))}
                     </div>

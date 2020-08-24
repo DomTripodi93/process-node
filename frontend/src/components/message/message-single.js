@@ -40,7 +40,7 @@ const SingleMessage = props => {
                         }
                         <hr />
                         <h4 className="centered">{props.message.message}</h4>
-                        {!props.change ?
+                        {!props.change && props.isRoot ?
                             <div className="grid50">
                                 <CustomButton
                                     action={setEditMode}
