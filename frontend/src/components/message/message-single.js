@@ -59,7 +59,8 @@ const SingleMessage = props => {
                     <MessageForm
                         editMode={true}
                         messageInput={props.message}
-                        callback={setEditMode} />
+                        callback={setEditMode}
+                        page={props.page} />
                 }
             </div>
         </div>

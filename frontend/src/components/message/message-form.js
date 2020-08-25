@@ -22,7 +22,7 @@ const MessageForm = props => {
         event.preventDefault();
         if (props.editMode) {
             if (message !== props.messageInput.message) {
-                props.updateMessage({...props.messageInput, ...messageInfo}, props.callback);
+                props.updateMessage({...props.messageInput, ...messageInfo}, props.page, props.callback);
             } else {
                 props.callback();
             }
@@ -87,8 +87,8 @@ const mapDispatchToProps = dispatch => ({
     addMessage: (message, callback) => {
         dispatch(addMessage(message, callback))
     },
-    updateMessage: (message, callback) => {
-        dispatch(updateMessage(message, callback))
+    updateMessage: (message, page, callback) => {
+        dispatch(updateMessage(message, page, callback))
     }
 });
 

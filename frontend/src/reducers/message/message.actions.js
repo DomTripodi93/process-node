@@ -37,11 +37,12 @@ export function addMessage(message, callback) {
 }
 //Posts new bestPractice to API
 
-export function updateMessage(message, page) {
+export function updateMessage(message, page, callback) {
     return dispatch => {
         http.updateItemById("message", message, message._id)
             .then((messageReturned) => {
                 dispatch(updateMessageInState(messageReturned, page));
+                callback();
             });
     }
 }

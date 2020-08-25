@@ -25,7 +25,8 @@ const MessageTopContainer = (props) => {
             {props.isRoot ? 
                 <MessageNew
                     addMode={addMode}
-                    action={showMessageForm} />
+                    action={showMessageForm}
+                    page={"top"} />
                 :
                 null
             }

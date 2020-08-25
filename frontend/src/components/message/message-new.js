@@ -10,7 +10,8 @@ const MessageNew = (props) => {
                 <div>
                     <div className='border'>
                         <MessageForm 
-                            callback={props.action}/>
+                            callback={props.action}
+                            page={props.page} />
                     </div>
                     <br />
                 </div>
