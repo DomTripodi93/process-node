@@ -77,8 +77,9 @@ const messageController = (Message, User) => {
             newMessage.date = dateRegulator(new Date);
             Message.updateOne(query, newMessage)
                 .then(result => {
+                    console.log(result)
                     if (result.nModified > 0) {
-                        return res.status(200).json({ message: "Update Successful" });
+                        return res.status(200).json({...newMessage});
                     } else {
                         return res.status(500).json({ message: "No Changes" });
                     }
