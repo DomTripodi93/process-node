@@ -41,7 +41,7 @@ export function updateMessage(message, page, callback) {
     return dispatch => {
         http.updateItemById("message", message, message._id)
             .then((messageReturned) => {
-                dispatch(updateMessageInState(messageReturned, page));
+                dispatch(updateMessageInState(messageReturned.data, page));
                 callback();
             });
     }
