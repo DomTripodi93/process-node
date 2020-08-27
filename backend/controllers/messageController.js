@@ -69,20 +69,26 @@ const messageController = (Message, User) => {
             if (err) {
                 return res.send(err);
             }
-            let newMessage = {
-                ...req.body,
-                lastChangeId: req.userId,
-                lastChangeName: user.name
-            };
-            newMessage.date = dateRegulator(new Date);
-            Message.updateOne(query, newMessage)
-                .then(result => {
-                    if (result.nModified > 0) {
-                        return res.status(200).json({...newMessage});
-                    } else {
-                        return res.status(500).json({ message: "No Changes" });
-                    }
-                });
+            Message.findOne(query, (msgErr, message) =>{ 
+                if (msgErr) {
+                    return res.send(msgErr);
+                }
+                let newMessage = {
+                    ...message.toObject(),
+                    dateUpdated: dateRegulator(new Date),
+                    message: req.body.message,
+                    lastChangeId: req.userId,
+                    lastChangeName: user.name
+                }
+                Message.updateOne(query, newMessage)
+                    .then(result => {
+                        if (result.nModified > 0) {
+                            return res.status(200).json({...newMessage});
+                        } else {
+                            return res.status(500).json({ message: "No Changes" });
+                        }
+                    });
+            })
         });
     }
 
