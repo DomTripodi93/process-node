@@ -11,6 +11,15 @@ const SingleMessage = props => {
     const helper = new helpers();
     const date = helper.dateForDisplay(props.message.date);
     const time = helper.timeForDisplay(props.message.date.split("T")[1])
+    const [updateDate, setUpdateDate] = useState("");
+    const [updateTime, setUpdateTime] = useState("");
+
+    useEffect(()=>{
+        if (props.message.dateUpdated){
+            setUpdateDate("- " + helper.dateForDisplay(props.message.dateUpdated))
+            setUpdateTime(helper.timeForDisplay(props.message.dateUpdated.split("T")[1]))
+        }
+    },[setUpdateDate, setUpdateTime, props])
 
     const setEditMode = () => {
         updateEditMode(!editMode)
@@ -34,10 +43,11 @@ const SingleMessage = props => {
                     <div>
                         <h5 className="shortened">{props.message.userName} - {date} {time}</h5>
                         {props.message.lastChangeName ?
-                            <h5 className="shortened">Last Updated By: {props.message.lastChangeName}</h5>
+                            <h5 className="shortened">Last Updated By: {props.message.lastChangeName} {updateDate} {updateTime}</h5>
                             :
                             null
                         }
+
                         <hr />
                         <h4 className="centered">{props.message.message}</h4>
                         {!props.change && props.isRoot ?
