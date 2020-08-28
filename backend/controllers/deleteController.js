@@ -17,6 +17,24 @@ function deleteController(Models) {
         );
     }
 
+    function deleteOneByRoot(req, res) {
+        let query = {
+            rootId: req.rootId
+        }
+        Object.keys(req.params).forEach(key => {
+            query[key] = req.params[key];
+        })
+        Models[0].deleteOne(query).then(
+            result => {
+                if (result.n > 0) {
+                    return res.status(200).json({ message: "Deletion successful!" });
+                } else {
+                    return res.status(500).json({ message: "Cannot Delete" });
+                }
+            }
+        );
+    }
+
     function deleteCascade(req, res) {
         let query = {
             userId: req.rootId
@@ -65,7 +83,7 @@ function deleteController(Models) {
         
     }
 
-    return { deleteOne, deleteCascade, deleteEmployee }
+    return { deleteOne, deleteOneByRoot, deleteCascade, deleteEmployee }
 }
 
 module.exports = deleteController;
