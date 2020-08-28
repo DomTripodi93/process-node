@@ -20,7 +20,7 @@ function routes(Message, User, ChangeLog) {
         .put(controllerChangeLog.post)
         .put(controllerMessage.put)
         .delete(controllerChangeLog.post)
-        .delete(controllerDelete.deleteOne);
+        .delete(controllerDelete.deleteOneByRoot);
 
     router.route("/next/:page")
         .get(controllerMessage.getByPage);
