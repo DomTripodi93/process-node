@@ -12,7 +12,7 @@ const messageModel = new Schema(
         lastChangeName: { type: String },
         message: { type: String, required: true },
         date: { type: Date, required: true },
-        dateUpdated: { type: Date, required: true }
+        dateUpdated: { type: Date }
     }
 );
 

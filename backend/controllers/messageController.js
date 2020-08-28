@@ -43,7 +43,7 @@ const messageController = (Message, User) => {
 
     function getByPage(req, res) {
         const query = {
-            userId: req.rootId
+            rootId: req.rootId
         }
         Message.find(query)
             .sort({date: -1})
