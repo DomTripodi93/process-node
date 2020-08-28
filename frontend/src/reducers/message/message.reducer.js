@@ -12,6 +12,25 @@ const messageReducer = (state = INITIAL_STATE, action) => {
     let topMessageHold = [...state.topMessages];
     let moreResultsHold = { ...state.moreResults };
     let lastMessage = {};
+    let calledHold = { ...state.called }
+    const shiftMessages = (messageObj, startPage) => {
+        let msgObjHold = { ...messageObj };
+        Object.keys(msgObjHold).forEach(page => {
+            if (page > startPage){
+                if (msgObjHold[+page + 1]) {
+                    msgObjHold[page].shift();
+                    msgObjHold[page].push(msgObjHold[page + 1][0])
+                } else {
+                    delete msgObjHold[page];
+                    calledHold[page] = false;
+                }
+            } else if (!msgObjHold[+page + 1]){
+                delete msgObjHold[page];
+                calledHold[page] = false;
+            }
+        })
+        return msgObjHold;
+    }
     switch (action.type) {
         case MessageActionTypes.SET_MESSAGES:
             if (action.payload.data.length === 5) {
@@ -32,7 +51,7 @@ const messageReducer = (state = INITIAL_STATE, action) => {
                 called: { ...state.called, top: true }
             };
         case MessageActionTypes.ADD_MESSAGE:
-            if (topMessageHold.length > 2){
+            if (topMessageHold.length > 2) {
                 lastMessage = topMessageHold[2];
             }
             Object.keys(messageHold).forEach(key => {
@@ -94,16 +113,21 @@ const messageReducer = (state = INITIAL_STATE, action) => {
                     .filter((value) => {
                         return value._id !== action.payload
                     })
+                topMessageHold.push(messageHold[1][0]);
+                messageHold = shiftMessages(messageHold, 0);
             } else {
                 messageHold[action.page] = messageHold[action.page]
                     .filter((value) => {
                         return value._id !== action.payload
                     })
+                messageHold = shiftMessages(messageHold, action.page);
             }
+            console.log(messageHold)
             return {
                 ...state,
                 messages: messageHold,
-                topMessages: topMessageHold
+                topMessages: topMessageHold,
+                called: calledHold
             };
         case MessageActionTypes.SIGNOUT_USER:
             return {
