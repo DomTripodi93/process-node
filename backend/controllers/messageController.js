@@ -28,7 +28,7 @@ const messageController = (Message, User) => {
 
     function get(req, res) {
         const query = {
-            userId: req.rootId
+            rootId: req.rootId
         }
         Message.find(query)
             .sort({date: -1})
