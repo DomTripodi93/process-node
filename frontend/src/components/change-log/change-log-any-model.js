@@ -5,6 +5,7 @@ import SingleStep from '../process/step/single-step';
 import SingleBestPractice from '../process/best-practice/single-best-practice';
 import SingleCommonDifficulty from '../process/common-difficulty/single-common-difficulty';
 import SingleScheduleBlock from '../schedule/schedule/single-schedule-block';
+import SingleMessage from '../message/message-single';
 
 
 const ChangeLogAnyModel = props => {
@@ -26,6 +27,7 @@ const ChangeLogAnyModel = props => {
         bestPractice: (value) => {return(<SingleBestPractice bestPractice={value} change={true}/>)},
         commonDifficulty: (value) => {return(<SingleCommonDifficulty commonDifficulty={value} change={true}/>)},
         schedule: (value) => {return(<SingleScheduleBlock scheduledTask={value}/>)},
+        message: (value) => {return(<SingleMessage message={value}/>)}
     }
 
     return(
