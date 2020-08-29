@@ -61,6 +61,9 @@ const Header = props => {
         </Link>),
         (<Link to='/changes/schedule' className='drop-down-item' key='6'>
             Schedule
+        </Link>),
+        (<Link to='/changes/message' className='drop-down-item' key='7'>
+            Message
         </Link>)
     ]
 
