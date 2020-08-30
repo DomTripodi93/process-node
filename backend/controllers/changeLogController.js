@@ -41,6 +41,46 @@ function changeLogController(ChangeLog, Model, modelName) {
         })
     }
 
+    function postByRoot(req, res, next) {
+        let newValues = "";
+        if (req.method === "DELETE"){
+            newValues = "Deleted";
+        } else {
+            newValues = JSON.stringify(req.body);
+        }
+
+        let query = {
+            rootId: req.rootId
+        };
+
+        Object.keys(req.params).forEach(key => {
+            if (key !== "status"){
+                query[key] = req.params[key];
+            }
+        })
+        Model.find(query, (err, results) => {
+            if (err) {
+                return res.send(err);
+            }
+            let changeLog = new ChangeLog({
+                userId: req.userId,
+                rootId: req.rootId,
+                userName: req.name,
+                changedModel: modelName,
+                oldValues: JSON.stringify(results[0]),
+                newValues: newValues,
+                timeUpdated: dateRegulator(new Date)
+            })
+            changeLog.save((err) => {
+                if (err) {
+                    return res.send(err);
+                }
+                res.status(201);
+                next();
+            });
+        })
+    }
+
     function getChanges(req, res) {
         let query = {
             rootId: req.rootId,
@@ -59,7 +99,7 @@ function changeLogController(ChangeLog, Model, modelName) {
         })
     }
 
-    return { post, getChanges }
+    return { post, postByRoot, getChanges }
 }
 
 module.exports = changeLogController;
