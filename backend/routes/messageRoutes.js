@@ -17,9 +17,9 @@ function routes(Message, User, ChangeLog) {
         .get(controllerMessage.get);
 
     router.route("/:_id")
-        .put(controllerChangeLog.post)
+        .put(controllerChangeLog.postByRoot)
         .put(controllerMessage.put)
-        .delete(controllerChangeLog.post)
+        .delete(controllerChangeLog.postByRoot)
         .delete(controllerDelete.deleteOneByRoot);
 
     router.route("/next/:page")
