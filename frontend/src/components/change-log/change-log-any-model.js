@@ -27,7 +27,7 @@ const ChangeLogAnyModel = props => {
         bestPractice: (value) => {return(<SingleBestPractice bestPractice={value} change={true}/>)},
         commonDifficulty: (value) => {return(<SingleCommonDifficulty commonDifficulty={value} change={true}/>)},
         schedule: (value) => {return(<SingleScheduleBlock scheduledTask={value}/>)},
-        message: (value) => {return(<SingleMessage message={value}/>)}
+        message: (value) => {return(<SingleMessage message={value} change={true}/>)}
     }
 
     return(
