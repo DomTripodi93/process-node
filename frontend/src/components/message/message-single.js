@@ -43,7 +43,20 @@ const SingleMessage = props => {
                     <div>
                         <h5 className="shortened">{props.message.userName} - {date} {time}</h5>
                         {props.message.lastChangeName ?
-                            <h5 className="shortened">Last Updated By: {props.message.lastChangeName} {updateDate} {updateTime}</h5>
+                            <div>
+                            {props.change ?
+                                <h5>
+                                    Last Updated By: 
+                                    <br />
+                                    {props.message.lastChangeName} {updateDate} {updateTime}
+                                </h5>
+                                :
+                                <h5 className="shortened">
+                                    Last Updated By: 
+                                    {props.message.lastChangeName} {updateDate} {updateTime}
+                                </h5>
+                            }
+                            </div>
                             :
                             null
                         }
