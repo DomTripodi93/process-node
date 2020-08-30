@@ -3,7 +3,7 @@ const dateRegulator = require("../middleware/dateRegulator");
 function changeLogController(ChangeLog, Model, modelName) {
     function post(req, res, next) {
         let newValues = "";
-        if (req.method === "DELETE"){
+        if (req.method === "DELETE") {
             newValues = "Deleted";
         } else {
             newValues = JSON.stringify(req.body);
@@ -14,7 +14,7 @@ function changeLogController(ChangeLog, Model, modelName) {
         };
 
         Object.keys(req.params).forEach(key => {
-            if (key !== "status"){
+            if (key !== "status") {
                 query[key] = req.params[key];
             }
         })
@@ -43,8 +43,13 @@ function changeLogController(ChangeLog, Model, modelName) {
 
     function postByRoot(req, res, next) {
         let newValues = "";
-        if (req.method === "DELETE"){
+        let timeStamp = dateRegulator(new Date);
+        if (req.method === "DELETE") {
             newValues = "Deleted";
+        } else if (modelName === "message") {
+            let newValHold = { ...req.body }
+            newValHold.dateUpdated = timeStamp;
+            newValues = JSON.stringify(newValHold);
         } else {
             newValues = JSON.stringify(req.body);
         }
@@ -54,7 +59,7 @@ function changeLogController(ChangeLog, Model, modelName) {
         };
 
         Object.keys(req.params).forEach(key => {
-            if (key !== "status"){
+            if (key !== "status") {
                 query[key] = req.params[key];
             }
         })
@@ -69,7 +74,7 @@ function changeLogController(ChangeLog, Model, modelName) {
                 changedModel: modelName,
                 oldValues: JSON.stringify(results[0]),
                 newValues: newValues,
-                timeUpdated: dateRegulator(new Date)
+                timeUpdated: timeStamp
             })
             changeLog.save((err) => {
                 if (err) {
@@ -86,17 +91,17 @@ function changeLogController(ChangeLog, Model, modelName) {
             rootId: req.rootId,
             changedModel: req.params.model
         };
-        
+
         ChangeLog.find(query)
-            .sort({timeUpdated: -1})
-            .skip((req.params.page-1)*10)
+            .sort({ timeUpdated: -1 })
+            .skip((req.params.page - 1) * 10)
             .limit(10)
             .exec((err, changes) => {
-            if (err) {
-                return res.send(err);
-            }
-            return res.json(changes);
-        })
+                if (err) {
+                    return res.send(err);
+                }
+                return res.json(changes);
+            })
     }
 
     return { post, postByRoot, getChanges }
