@@ -104,7 +104,7 @@ const objectiveReducer = (state = INITIAL_STATE, action) => {
                 moreResults: {}
             };
         case ObjectiveActionTypes.ADD_DEPARTMENT:
-            objectiveHold[action.payload.deptName] = [];
+            objectiveHold[action.payload.deptName] = {1: []};
             return {
                 ...state,
                 objectives: objectiveHold
