@@ -53,16 +53,23 @@ const objectiveReducer = (state = INITIAL_STATE, action) => {
             };
 
         case ObjectiveActionTypes.ADD_OBJECTIVE:
-            objectiveHold[action.payload.deptName][1].push(action.payload);
-            objectiveHold[action.payload.deptName][1].sort((first, second) => {
-                if (first.objectiveName > second.objectiveName) {
-                    return 1
+            let pageNumber = 1;
+            while(true){
+                if (objectiveHold[action.payload.deptName][pageNumber]){
+                    if (objectiveHold[action.payload.deptName][pageNumber].length !== 10){
+                        objectiveHold[action.payload.deptName][pageNumber].push(action.payload);
+                        objectiveHold[action.payload.deptName][pageNumber].sort((first, second) => {
+                            if (first.objectiveName > second.objectiveName) {
+                                return 1
+                            } else {
+                                return -1
+                            }
+                        })
+                        break;
+                    }
                 } else {
-                    return -1
+                    break;
                 }
-            })
-            if (objectiveHold[action.payload.deptName].length === 11) {
-                objectiveHold[action.payload.deptName].pop();
             }
             return {
                 ...state,
