@@ -57,6 +57,9 @@ const objectiveReducer = (state = INITIAL_STATE, action) => {
             while(true){
                 if (objectiveHold[action.payload.deptName][pageNumber]){
                     if (objectiveHold[action.payload.deptName][pageNumber].length !== 10){
+                        if (objectiveHold[action.payload.deptName][pageNumber].length === 9){
+                            moreResultsHold[action.payload.deptName][pageNumber] = true;
+                        }
                         objectiveHold[action.payload.deptName][pageNumber].push(action.payload);
                         objectiveHold[action.payload.deptName][pageNumber].sort((first, second) => {
                             if (first.objectiveName > second.objectiveName) {
@@ -73,7 +76,8 @@ const objectiveReducer = (state = INITIAL_STATE, action) => {
             }
             return {
                 ...state,
-                objectives: objectiveHold
+                objectives: objectiveHold,
+                moreResults: moreResultsHold
             };
         case ObjectiveActionTypes.UPDATE_OBJECTIVES:
             objectiveHold[action.payload.deptName] = objectiveHold[action.payload.deptName]
