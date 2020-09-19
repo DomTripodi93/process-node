@@ -69,3 +69,10 @@ export const checkUser = (id, token) => {
             });
     }
 }
+
+export const callTest = () => {
+    axios.post(`${ROOT_URL}/test`);
+    return {
+        type: UserActionTypes.REGISTER_USER
+    }
+}

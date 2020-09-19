@@ -26,6 +26,8 @@ const Objective = require("./models/objectiveModel");
 const objectiveRoutes = require("./routes/objectiveRoutes")(Objective, Step, Schedule, ChangeLog);
 const Department = require("./models/departmentModel");
 const departmentRoutes = require("./routes/departmentRoutes")(Department, Objective, ChangeLog);
+const serverless = require('serverless-http');
+
 
 const app = express();
 
@@ -50,11 +52,11 @@ mongoose
   });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/images", express.static(path.join("backend/images")));
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
@@ -66,6 +68,8 @@ app.use((req, res, next) => {
   next();
 });
 
+
+app.use("/api/test", (req, res)=>{res.send({'response': {'body': "test successful"}})})
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/department", departmentRoutes);
@@ -79,10 +83,4 @@ app.use("/api/changeLog", changeLogRoutes);
 app.use("/api/message", messageRoutes);
 
 
-const port = process.env.PORT || 3200;
-
-app.server = app.listen(port, () => {
-  console.log(`Running on port ${port}`);
-});
-
-module.exports = app;
+module.exports.handler = serverless(app);
