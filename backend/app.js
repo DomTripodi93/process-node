@@ -83,4 +83,4 @@ app.use("/api/changeLog", changeLogRoutes);
 app.use("/api/message", messageRoutes);
 
 
-module.exports.handler = serverless(app);
+module.exports.handler = app;

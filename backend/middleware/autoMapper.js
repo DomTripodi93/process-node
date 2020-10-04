@@ -1,11 +1,7 @@
 module.exports = (fullObj, partialObj) => {
-    let objForReturn = {};
-    Object.keys(fullObj.toJSON()).forEach(key => {
-        if (partialObj[key]){
-            objForReturn[key] = partialObj[key];
-        } else {
-            objForReturn[key] = fullObj[key];
-        }
+    let objForReturn = {...fullObj};
+    Object.keys(partialObj.toJSON()).forEach(key => {
+        objForReturn[key] = partialObj[key];
     })
     return objForReturn;
 }
